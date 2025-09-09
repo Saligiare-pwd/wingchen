@@ -1,0 +1,377 @@
+:root {
+  --bg: #0b0c10;
+  --panel: #ffffff;
+  --ink: #111827;
+  --muted: #6b7280;
+  --brand: #4f46e5; /* indigo-600 */
+  --brand-2: #22d3ee; /* cyan-400 */
+  --ring: rgba(79,70,229,.45);
+  --maxw: 1100px;
+  --radius: 16px;
+}
+
+* { box-sizing: border-box }
+html, body { height: 100% }
+
+body {
+  margin: 0;
+  font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 800px at 10% 0%, #0ea5e90f, transparent 50%),
+    radial-gradient(1200px 800px at 90% 10%, #6366f11a, transparent 60%),
+    #f3f4f6;
+}
+
+a { color: var(--brand); text-underline-offset: 3px }
+.container { max-width: var(--maxw); margin: 0 auto; padding: 0 20px }
+
+/* Header */
+header.site {
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: saturate(140%) blur(8px);
+  background: color-mix(in srgb, #ffffff 70%, transparent);
+  border-bottom: 1px solid #e5e7eb;
+}
+.navwrap { display: flex; align-items: center; justify-content: space-between; padding: 12px 0 }
+.brand { display: flex; align-items: baseline; gap: 8px; font-weight: 700 }
+.brand .sub { font-weight: 500; color: var(--muted); font-size: .95rem }
+nav a { text-decoration: none; color: #111827; padding: 8px 10px; border-radius: 10px }
+nav a:hover, nav a:focus { background: #eef2ff; outline: none }
+.navlinks { display: flex; gap: 2px; flex-wrap: wrap }
+
+/* Hero */
+.hero { padding: 28px 0 0 }
+.hero .card {
+  background: var(--panel);
+  border: 1px solid #e5e7eb;
+  border-radius: var(--radius);
+  padding: 28px;
+  display: grid;
+  gap: 12px;
+}
+
+/* Center the content inside the small hero grid you used */
+/* Two-column hero layout (stacks on small screens) */
+.hero-grid {
+  display: grid;
+  gap: 12px;
+  align-items: center;
+}
+@media (min-width: 800px) {
+  .hero-grid { grid-template-columns: 1fr 1.5fr; }
+}
+
+/* Constrain both GIF and badges to same width */
+.hero-grid > .grid .batch-figure,
+.hero-grid > .grid .badges {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Tidy spacing for left column */
+.hero-text { display: grid; gap: 10px; }
+
+/* Portrait sizing (square, cropped) */
+.portrait { display: grid; justify-items: center; margin: 0; }
+.portrait img {
+  width: 100%; height: 35vh; object-fit: cover;
+  border-radius: 3.78%; border: 2px solid #e5e7eb; box-shadow: 0 6px 12px #00000022;
+}
+
+.name {
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.1;
+  margin: 2px 0;
+ text-align: center;
+}
+
+.aff { color: var(--muted); margin: 2px 0;text-align: center; }
+
+/* Let badges expand cleanly */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: flex-start;   /* important so tall slides don't pull others */
+}
+
+.badge {
+  padding: 6px 10px;
+  border-radius: 4px;
+  background: #eef2ff;
+  color: #1e293b;
+  border: 1px solid #e5e7eb;
+}
+
+/* Badge = a little pill; when open, it becomes a full-row container */
+.badge.pub {
+  position: relative;
+  cursor: pointer;
+  /* stays compact when closed */
+}
+
+.badge.pub.open {
+  flex-basis: 100%;          /* take entire row when open */
+  max-width: 100%;
+  align-self: stretch;       /* prevents neighbors from constraining height */
+}
+
+/* The slide box under the badge */
+.badges .summary-slide {
+  display: none;             /* JS toggles to block by adding .open on parent */
+  margin-top: 8px;
+  padding: 10px 12px;
+  border: 1px solid #dbeafe;
+  background: #f8fafc;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px #00000012;
+  width: 100%;               /* fill the full-row badge width */
+  text-align: left;
+  max-width: 900px;          /* optional: keep a nice readable width */
+}
+
+.badge.pub.open .summary-slide { display: block; }
+
+/* PDF inside the slide: give it a real height */
+.badges .summary-slide object[type="application/pdf"] {
+  display: block;
+  width: 100%;
+  height: 33vh;              /* adjust to taste: 60–85vh */
+  border: none;
+  border-radius: 12px;
+}
+
+.badges img {
+  max-width: 100%;
+  border-radius: 4px;
+}
+/* Make badges look clickable and highlight the active one */
+.badges .badge.pub { cursor: pointer; }
+.badges .badge.pub[aria-selected="true"] {
+  background: #eef2ff;
+  border-color: #c7d2fe;
+}
+
+/* Sections */
+section { padding: 32px 0 }
+.section-title { font-size: clamp(22px, 3vw, 28px); margin: 16px 0 16px; line-height: 1.2 }
+.panel { background: var(--panel); border: 1px solid #e5e7eb; border-radius: var(--radius); padding: 22px }
+
+/* Academic lists */
+.grid { display: grid; gap: 16px }
+@media (min-width: 900px) { .grid.two { grid-template-columns: 1.5fr 1.5fr } }
+.item { padding: 14px; border: 1px solid #eef2ff; border-radius: 12px; background: #fafaff }
+.meta { color: var(--muted); font-size: .92rem }
+
+/* DAAD tabs */
+.daad { display: grid; gap: 16px }
+.tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px }
+.tabbtn {
+  position: relative; padding: 6px 8px; border-radius: 8px;
+  border: 1px solid #e5e7eb; background: #ffffff; cursor: pointer;
+  text-align: center; font-weight: 700; font-size: 20px;
+}
+.tabbtn[aria-selected="true"] { outline: 3px solid var(--ring); background: #eef2ff; }
+
+.slide {
+  cursor: pointer;
+}
+.slide:hover {
+  box-shadow: 0 4px 16px #0000001a;
+}
+.slides { position: relative; min-height: 360px }
+
+.slide {
+  display: flex;
+  flex-direction: column;   /* 先讓標題佔上方 */
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+}
+.slide {
+  position: absolute; inset: 0;
+  border: 1px solid #e5e7eb; background: #ffffff;
+  border-radius: 12px; padding: 12px;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity .25s, transform .25s;
+  pointer-events: none;
+}
+.slide.active { opacity: 1; transform: translateY(0); pointer-events: auto }
+
+/* slide 裡的按鈕：並排 */
+.slide .slidebtn {
+  flex:1 1 1;
+  max-width: 100%;
+  padding: 16px 16px;
+  font-size: 1.2rem;
+  text-align: center;
+  background: #eef2ff;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+
+/* 如果有多個 slidebtn，讓它們一排顯示 */
+.slide.active {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.slidebtn:hover {
+  background: #e0e7ff;
+  transform: translateY(-2px);
+}
+
+/* Contact layout + logos */
+#contactForm {
+  display: grid;
+  gap: 16px;            /* space between fields */
+}
+
+#contactForm label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--ink);
+}
+
+#contactForm input,
+#contactForm textarea {
+  display: block;
+  width: 100%;          /* stretch across panel */
+  font-size: 1.05rem;   /* make text larger */
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  margin-top: 4px;
+}
+
+#contactForm textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+#contactForm button {
+  justify-self: start;  /* keep button left aligned */
+  font-size: 1rem;
+  padding: 10px 20px;
+}
+
+.contact-grid { display: grid; gap: 16px }
+@media (min-width: 900px) { .contact-grid { grid-template-columns: 2fr 1fr } }
+.logos { display: grid; gap: 14px; align-content: start }
+.logos figure {
+  margin: 0; padding: 12px; border: 1px solid #e5e7eb; border-radius: 12px;
+  background: #ffffff; display: grid; gap: 6px; justify-items: center
+}
+.logos img { max-width: 160px; width: 100%; height: auto }
+.logos figcaption { font-size: .85rem; color: var(--muted) }
+
+/* Modal component */
+/* Modal container (backdrop) */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;               /* shown by JS */
+  align-items: center;
+  justify-content: center;
+  padding: 16px;               /* breathing room on small screens */
+  background: rgba(0,0,0,.4);
+  z-index: 1000;
+}
+.modal[aria-hidden="false"] { display: flex; }
+
+/* Modal panel */
+.modal-content {
+  background: #fff;
+  border-radius: 16px;
+  width: min(90%,1024px);
+  max-height: 100vh;    /* never exceed viewport */
+  display: flex;                      /* stack children vertically */
+  flex-direction: column;
+  overflow: auto;                   /* clip inner overflow to this box */
+  position: relative; 
+  margin: 16px 16px 16px 16px;
+  padding: 24px 28px;  /* ⭐ 新增 padding 讓內部元素更寬鬆 */
+
+}
+
+/* Title / controls / actions spacing */
+.modal-content h3 { margin: 4px 4px 8px; }
+.pdf-controls { margin: 4px 4px 8px; }
+.actions { margin-top: 10px; }
+
+/* The PDF itself flexes to fill remaining space */
+.modal-content object[type="application/pdf"] {
+  flex: 1 1 auto;                    /* grow to available height */
+  width: 100%;
+  min-height: 57.5vh;
+  max-height: 80vh;                  /* reasonable minimum height */
+  border: none;
+  border-radius: 24px;
+  display: block;
+}
+
+/* If you want inner scrolling instead of resizing the PDF: */
+/* .modal-content { overflow: hidden; } */
+/* .modal-content object { height: 100%; } */
+
+.modal img {
+ flex: 1 1 auto;
+ width: 100%;
+ min-height: 70vh;
+ border-radius: 12px;
+ border: 2px solid #eef2ff;
+ display: block;
+ }
+/* Close button pinned to inside top-right */
+.modal .close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 6px 6px;
+  cursor: pointer;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Utilities */
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 12px;
+  border-radius: 12px; border: 1px solid #e5e7eb; background: #ffffff;
+  text-decoration: none; font-weight: 700; cursor: pointer
+}
+.btn:hover { box-shadow: 0 6px 18px #00000012 }
+
+.logos a {
+  display: inline-block;
+}
+.logos a:hover img {
+  filter: brightness(0.9);
+  transform: scale(1.02);
+  transition: all 0.2s ease;
+}
+
+.pdf-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0 12px;
+}
+.pdf-status { font-weight: 600; }
+.pdf-status .pdf-pages::before { content: " of "; }
+
+/* Publication summary toggles */
+.pub { cursor: pointer; position: relative }
+.pub:focus { outline: 3px solid var(--ring) }
+.summary-slide {
+  display: none; margin-top: 10px; padding: 12px;
+  border: 1px dashed #c7d2fe; background: #f8fafc; border-radius: 10px
+}
+.pub.open .summary-slide { display: block }

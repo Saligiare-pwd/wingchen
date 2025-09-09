@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wing Chen | Portfolio — ASIAA · HITS · NTU</title>
+  <meta name="description" content="Portfolio of Wing Chen (ASIAA · HITS · NTU): publications, conferences, and DAAD Summer Institute program highlights." />
+  <meta property="og:title" content="Wing Chen | Portfolio" />
+  <meta property="og:description" content="Academic profile, publications, conferences, and DAAD Summer Institute program." />
+
+  <!-- Link CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site">
+    <div class="container navwrap">
+      <div class="brand">
+        <span>Wing Chen</span>
+        <span class="sub">ASIAA · HITS · NTU</span>
+      </div>
+      <nav aria-label="Primary">
+        <div class="navlinks">
+          <a href="#about">About</a>
+          <a href="#academic">Academic</a>
+	  <a href="#daad">DAAD Program</a>
+	  <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+<!-- Hero -->
+<section class="hero container" id="about">
+  <div class="card">
+    <div class="hero-grid">
+      <!-- Left: Name + info -->
+      <div class="hero-text">
+        <h1 class="name">陳文翊 Wing Chen</h1>
+      <figure class="portrait">
+        <img src="Figures/frog.HEIC" alt="Portrait of Wing Chen in woods">
+      </figure>
+        <p class="aff">
+	ASIAA, NTU, Taipei, Taiwan; 
+	HITS, Heidelberg, Germany
+        </p>
+        <div class="row">
+          <a class="btn" href="#academic">Publications</a>
+          <a class="btn" href="#daad">DAAD Summer</a>
+          <a class="btn open-modal" data-target="modal-cv">CV</a>
+        </div>
+	</div>
+      <!-- Right: -->
+<div class="hero-text">
+        <h1 class="name">     </h1>
+      <figure class="portrait">
+        <img src="Figures/batch.gif" alt="Batch figure">
+      </figure>
+
+<div class="badges" role="list" aria-label="Research focus">
+  <span class="badge pub" role="button" tabindex="0" aria-expanded="false">
+    Supernova Shock Breakout
+    <div class="summary-slide">
+<object data="slides/3-slide.pdf" data-src="slides/3-slide.pdf" type="application/pdf"></object>
+    </div>
+  </span>
+
+  <span class="badge pub" role="button" tabindex="0" aria-expanded="false">
+    Rad-Hydro
+    <div class="summary-slide">
+      <p>
+        Radiation hydrodynamics (RHD) couples fluid dynamics and radiation transport.
+        In my work I use <strong>CASTRO</strong> (AMR radiation-hydro), with coding
+        in <strong>C++</strong> for solvers and <strong>Python</strong> for analysis
+        and visualization.
+      </p>
+    </div>
+  </span>
+
+  <span class="badge pub" role="button" tabindex="0" aria-expanded="false">
+    Multi-D
+    <div class="summary-slide">
+      <figure>
+        <img src="Figures/multidimensional.png" alt="Multidimensional simulation figure">
+        <figcaption>Figure: Example 2D RHD simulation highlighting SBO instabilities just before breakout.</figcaption>
+      </figure>
+    </div>
+  </span>
+
+  <span class="badge pub" role="button" tabindex="0" aria-expanded="false">
+    Circumstellar Medium
+    <div class="summary-slide">
+      <figure>
+        <img src="Figures/CSM.png" alt="Circumstellar medium profile figure">
+        <figcaption>Figure: Schematic plot of radiation precursor and the general shock structures of SN breakout.</figcaption>
+      </figure>
+    </div>
+  </span>
+</div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Academic Section -->
+    <section class="container" id="academic" aria-labelledby="academic-head">
+      <h2 class="section-title" id="academic-head">Academic</h2>
+      <div class="panel grid two">
+        <div>
+          <h3>Publications</h3>
+          <div class="grid">
+            <!-- Publication card -->
+            <article class="item pub" role="button" tabindex="0" aria-expanded="false">
+              <h4>2D RHD Simulations: Shock Breakout in SN 1987A-like BSG</h4>
+              <div class="meta">Chen, W.-Y., et al. | 2024 | The Astrophysical Journal</div>
+              <p>Multi-group FLD simulations exploring breakout signatures and early light-curve diagnostics. <em>(Click to view summary)</em></p>
+              <div class="row">
+                <a class="btn" href="https://iopscience.iop.org/article/10.3847/1538-4357/ad7de3" target="_blank" rel="noopener">ApJ (IOPscience)</a>
+              </div>
+              <div class="summary-slide">
+                <h5>Summary</h5>
+                <ul>
+                  <li><strong>Goal:</strong> Model SBO from SN 1987A-like BSG in 2D and quantify early LCs.</li>
+                  <li><strong>Method:</strong> CASTRO + MGFLD, OPAL opacities; angle-integrated & angle-resolved LCs.</li>
+                  <li><strong>Key findings:</strong> Viewing-angle dependence of peak L and rise time; diffusion→free-streaming imprints color-T; multi-group essential.</li>
+                </ul>
+              </div>
+            </article>
+<article class="item pub" role="button" tabindex="0" aria-expanded="false">
+  <h4>Preprint: Shock Breakout in Red Supergiants with Confined CSM</h4>
+  <div class="meta">Chen, W.-Y., et al. | 2025 | In Prep.</div>
+  <p>2D RHD of SBO in RSG progenitors with confined circumstellar shells. <em>(Click to view summary)</em></p>
+  <div class="row">
+    <a class="btn" href="https://ui.adsabs.harvard.edu/abs/2024sros.confE..42C/abstract" target="_blank" rel="noopener">arXiv Preprint</a>
+  </div>
+  <div class="summary-slide">
+    <h5>Summary</h5>
+    <ul>
+      <li><strong>Goal:</strong> Explore shock breakout in RSGs surrounded by confined CSM shells.</li>
+      <li><strong>Method:</strong> CASTRO 2D MGFLD with OPAL opacities; variation in CSM density and thickness.</li>
+      <li><strong>Key findings:</strong> CSM strongly delays breakout and enhances luminosity; multi-D instabilities imprint observable LC differences.</li>
+      <li><strong>Implication:</strong> Distinguishes confined-shell environments from steady winds; informs early SN survey strategies.</li>
+    </ul>
+  </div>
+</article>
+          </div>
+        </div>
+        <aside>
+          <h3>Conferences & Talks</h3>
+          <div class="grid">
+            <article class="item pub" role="button" tabindex="0" aria-expanded="false">
+              <h4>Oral: East Asian Meeting on Astronomy (EAMA11)</h4>
+              <div class="meta">NAOJ · 2025 — HE-6C · Abstract No. 113</div>
+              <p>Supernovae SBO with Confined-Shell CSM in Two Dimensions. <em>(Click to view summary)</em></p>
+              <div class="row">
+                <a class="btn" href="https://naoj-global.mtk.nao.ac.jp/eama11/" target="_blank" rel="noopener">Conference Website</a>
+              </div>
+              <div class="summary-slide">
+                <h5>Summary</h5>
+                <p>2D RHD breakout in RSGs with confined shells (CASTRO MGFLD). CSM structure shapes observable signals; diagnostics for mass-loss history and explosion dynamics.</p>
+              </div>
+            </article>
+            <article class="item pub" role="button" tabindex="0" aria-expanded="false">
+              <h4>Oral Fast:Supernova Remnants III: AN Odyssey In Space After Stellar Death </h4>
+              <div class="meta">NAOJ · 2025 — HE-6C · Abstract No. 113</div>
+              <p>Supernovae SBO with Confined-Shell CSM in Two Dimensions. <em>(Click to view summary)</em></p>
+              <div class="row">
+                <a class="btn" href="https://snr2024.astro.noa.gr" target="_blank" rel="noopener">Conference Website</a>
+              </div>
+              <div class="summary-slide">
+                <h5>Summary</h5>
+                <p>2D MGFLD Shock Breakout for SN1987A and RSG. The LCs of different CSM profiles aare discussed with multi-D effects prolonging breakout durations and peak luminosities.</p>
+              </div>
+            </article>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+<!-- DAAD Section -->
+    <section class="container" id="daad" aria-labelledby="daad-head">
+      <h2 class="section-title" id="daad-head">DAAD Summer Institute Program</h2>
+      <div class="panel daad">
+        <div role="tablist" class="tabs">
+          <button class="tabbtn" aria-selected="true" aria-controls="slide-1" id="tab-1">Project</button>
+          <button class="tabbtn" aria-selected="false" aria-controls="slide-2" id="tab-2">Results</button>
+          <button class="tabbtn" aria-selected="false" aria-controls="slide-3" id="tab-3">Future</button>
+        </div>
+        <div class="slides">
+          <article id="slide-1" class="slide active" data-target="modal-project">
+            <h3>Project: NSTC-DAAD Summer Institute Programme</h3>
+	  <div class="row">
+	    <button class="slidebtn open-modal" data-target="modal-project"><strong>1</strong><br>HITS News</button>
+	    <button class="slidebtn open-modal" data-target="modal-coffee"><strong>2</strong><br>Coffee Break</button>
+	    <button class="slidebtn open-modal" data-target="modal-Heidelberg"><strong>3</strong><br>Heidelberg</button>
+	  </div>
+          </article>
+          <article id="slide-2" class="slide" data-target="modal-results"> <!-- now the slide does not have to go modal --!>
+            <h3>Results: Rad-Hydro Shock Breakout on Supernovae</h3>
+	  <div class="row">
+	    <button class="slidebtn open-modal" data-target="modal-results1"><strong>BSG</strong><br>SN 1987a</button>
+	    <button class="slidebtn open-modal" data-target="modal-results2"><strong>RSG</strong><br>Longer and Larger</button>
+	    <button class="slidebtn open-modal" data-target="modal-results3"><strong>CSM</strong><br>Confined-Shell</button>
+	    <button class="slidebtn open-modal" data-target="modal-results4"><strong>LCs</strong><br>3D SEDONA</button>
+	  </div>
+          </article>
+          <article id="slide-3" class="slide" data-target="modal-future">
+	  <div class="row">
+	    <button class="slidebtn open-modal" data-target="modal-future1"><strong>Talk</strong><br>Bonn Uni</button>
+	    <button class="slidebtn open-modal" data-target="modal-future2"><strong>Talk</strong><br>München MPA</button>
+	    <button class="slidebtn open-modal" data-target="modal-future3"><strong>Mont.</strong><br>Proposed Study</button>
+	  </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modals -->
+<!-- Slide1 Modal -->
+<div id="modal-project" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-content" tabindex="-1">
+    <button class="close" aria-label="Close">×</button>
+    <h3>DAAD Project</h3>
+
+    <img id="project-image"
+         src="slides/project.png"
+         alt="Project slide illustration"
+         style="width:100%; object-fit:contain; border-radius:12px;">
+	<figcaption>Figure: We are reported on the HITS news, also a strange experience to come along with supervisor.</figcaption>
+    <div class="actions" style="display:flex; justify-content:space-between; gap:10px;">
+      <!-- 左邊 -->
+      <a class="btn" href="https://www.h-its.org/2025/07/29/humboldt-fellow-25/" 
+         target="_blank" rel="noopener">HITS News</a>
+      <!-- 右邊 -->
+      <a class="btn" id="toggle-image">Show OPS</a>
+    </div>
+  </div>
+</div>
+<div id="modal-coffee" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-content" tabindex="-1">
+    <button class="close" aria-label="Close">×</button>
+    <h3>DAAD Project</h3>
+    <img src="Figures/coffee.HEIC" alt="Project slide illustration"
+         style="width:100%; object-fit:contain; border-radius:12px;">
+    <figcaption>Figure: Every morning, lunch, afternoon people disucuss their life and researches in the coffee corner.</figcaption>
+    <div class="actions">
+      <a class="btn" href="https://www.h-its.org/2025/07/29/humboldt-fellow-25/" target="_blank" rel="noopener">HITS News</a>
+    </div>
+  </div>
+</div>
+<div id="modal-Heidelberg" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-content" tabindex="-1">
+    <button class="close" aria-label="Close">×</button>
+    <h3>DAAD Project</h3>
+    <img src="Figures/徒子徒孫.HEIC" alt="Project slide illustration"
+         style="width:100%; object-fit:contain; border-radius:12px;">
+	<figcaption>Figure: Me and my supervisor and my supervisor's Ph.D. supervisor in the forest.</figcaption>
+    <div class="actions">
+      <a class="btn" href="https://www.h-its.org/2025/07/29/humboldt-fellow-25/" target="_blank" rel="noopener">HITS News</a>
+    </div>
+  </div>
+</div>
+
+<!-- Results Modal -->
+<div id="modal-results" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-content" tabindex="-1">
+    <button class="close" aria-label="Close">×</button>
+    <h3>HITS Results</h3>
+    <object data="slides/results.pdf#page=1&zoom=page-fit"
+            data-src="slides/results.pdf"
+            data-page="1"
+            type="application/pdf"></object>
+    <div class="actions">
+      <a class="btn" href="slides/results.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+    </div>
+  </div>
+</div>
+<div id="modal-results1" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-content" tabindex="-1">
+    <button class="close" aria-label="Close">×</button>
+    <h3>HITS Results</h3>
+    <object data="slides/results1.pdf#page=1&zoom=page-fit"
+            data-src="slides/results1.pdf"
+            data-page="1"
+            type="application/pdf"></object>
+    <div class="actions">
+      <a class="btn" href="slides/results1.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+    </div>
+  </div>
+</div>
+<div id="modal-results2" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-content" tabindex="-1">
+    <button class="close" aria-label="Close">×</button>
+    <h3>HITS Results</h3>
+    <object data="slides/results2.pdf#page=1&zoom=page-fit"
+            data-src="slides/results2.pdf"
+            data-page="1"
+            type="application/pdf"></object>
+    <div class="actions">
+      <a class="btn" href="slides/results2.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+    </div>
+  </div>
+</div>
+<div id="modal-results3" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-content" tabindex="-1">
+    <button class="close" aria-label="Close">×</button>
+    <h3>HITS Results</h3>
+    <object data="slides/results3.pdf#page=1&zoom=page-fit"
+            data-src="slides/results3.pdf"
+            data-page="1"
+            type="application/pdf"></object>
+    <div class="actions">
+      <a class="btn" href="slides/results3.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+    </div>
+  </div>
+</div>
+<div id="modal-results4" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-content" tabindex="-1">
+    <button class="close" aria-label="Close">×</button>
+    <h3>HITS Results</h3>
+    <object data="slides/results.pdf4#page=1&zoom=page-fit"
+            data-src="slides/results4.pdf"
+            data-page="1"
+            type="application/pdf"></object>
+    <div class="actions">
+      <a class="btn" href="slides/results4.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+    </div>
+  </div>
+</div>
+
+<!-- Future Modal -->
+<div id="modal-future" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-content" tabindex="-1">
+    <button class="close" aria-label="Close">×</button>
+    <h3>DAAD Future</h3>
+    <object data="slides/future.pdf#page=1&zoom=page-fit"
+            data-src="slides/future.pdf"
+            data-page="1"
+            type="application/pdf"></object>
+    <div class="actions">
+      <a class="btn" href="slides/future.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+    </div>
+  </div>
+</div>
+<div id="modal-future1" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-content" tabindex="-1">
+    <button class="close" aria-label="Close">×</button>
+    <h3>Bonn Prof. Norbert</h3>
+    <object data="Figures/Bonn1.pdf#page=1&zoom=page-fit"
+            data-src="Figures/Bonn1.pdf"
+            data-page="1"
+            type="application/pdf"></object>
+	<figcaption>Figure: Contributed Talk in University of Bonn, discussing the simulation geometry with the supervisor of my supervisor's supervisor, Prof. Norbert.</figcaption>
+    <div class="actions">
+      <a class="btn" href="Figures/Bonn1.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+    </div>
+  </div>
+</div>
+<div id="modal-future2" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-content" tabindex="-1">
+    <button class="close" aria-label="Close">×</button>
+    <h3>München MPA</h3>
+    <object data="Figures/MPA1.pdf#page=1&zoom=page-fit"
+            data-src="Figures/MPA1.pdf"
+            data-page="1"
+            type="application/pdf"></object>
+	<figcaption>Figure: Contributed Talk in MPA, with MPA director and also the poster of NTU-MPA cooperation.</figcaption>
+    <div class="actions">
+      <a class="btn" href="Figures/MPA1.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+    </div>
+  </div>
+</div>
+<div id="modal-future3" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-content" tabindex="-1">
+    <button class="close" aria-label="Close">×</button>
+    <h3>DAAD Project</h3>
+    <object data="slides/future.pdf#page=1&zoom=page-fit"
+            data-src="slides/future.pdf"
+            data-page="1"
+            type="application/pdf"></object>
+    <div class="actions">
+      <a class="btn" href="slides/future.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+    </div>
+  </div>
+</div>
+
+<!-- CV Modal -->
+<div id="modal-cv" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-content" tabindex="-1">
+    <button class="close" aria-label="Close">×</button>
+    <h3>Curriculum Vitae</h3>
+    <object data="Figures/WingChen_CV.pdf#page=1&zoom=page-fit"
+            data-src="Figures/WingChen_CV.pdf"
+            data-page="1"
+            type="application/pdf"></object>
+    <div class="actions">
+      <a class="btn" href="Figures/WingChen_CV.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- Contact -->
+    <section class="container" id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="panel contact-grid">
+        <form id="contactForm">
+          <label>Name <input name="name" required /></label>
+          <label>Email <input type="email" name="email" required /></label>
+          <label>Message <textarea name="message" rows="5"></textarea></label>
+          <button class="btn" type="submit">Send</button>
+        </form>
+<aside class="logos" aria-label="Affiliation logos">
+  <figure>
+    <a href="https://www.ntu.edu.tw/" target="_blank" rel="noopener">
+      <img src="logos/ntu.png" alt="National Taiwan University logo" />
+    </a>
+    <figcaption>NTU</figcaption>
+  </figure>
+
+  <figure>
+    <a href="https://www.asiaa.sinica.edu.tw/" target="_blank" rel="noopener">
+      <img src="logos/asiaa.svg" alt="Academia Sinica Institute of Astronomy and Astrophysics logo" />
+    </a>
+    <figcaption>ASIAA</figcaption>
+  </figure>
+
+  <figure>
+    <a href="https://www.h-its.org/" target="_blank" rel="noopener">
+      <img src="logos/hits.svg" alt="Heidelberg Institute for Theoretical Studies logo" />
+    </a>
+    <figcaption>HITS</figcaption>
+  </figure>
+</aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> Wing Chen — ASIAA · HITS · NTU</div>
+  </footer>
+
+  <!-- Link JS -->
+  <script src="app.js"></script>
+</body>
+</html>
