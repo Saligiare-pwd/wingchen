@@ -259,6 +259,16 @@ section { padding: 2rem 0 }
   .slide, .slide.active { transition: none; transform: none }
 }
 
+/* Publication summary toggles */
+.pub { cursor: pointer; position: relative }
+.pub:focus { outline: 3px solid var(--ring) }
+.summary-slide {
+  display: none; margin-top: .6rem; padding: .75rem;
+  border: 1px dashed #c7d2fe; background: #f8fafc; border-radius: 10px
+}
+.pub.open .summary-slide { display: block }
+
+
 /* ========== Responsive tweaks ========== */
 /* <= 900px */
 @media (max-width: 900px) {
