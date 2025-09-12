@@ -438,3 +438,64 @@ if (contact) {
     e.target.reset();
   });
 }
+
+/* ---------- Academic: hard reset + delegated toggle ---------- */
+(() => {
+  const acad = document.getElementById('academic');
+  if (!acad) return;
+
+  // 1) 進場保證全部關閉
+  acad.querySelectorAll('.item.pub').forEach(card => {
+    card.classList.remove('open');
+    card.setAttribute('aria-expanded', 'false');
+  });
+
+  // 2) 安全的只開一張 + 外點關閉
+  function closeAll() {
+    acad.querySelectorAll('.item.pub.open').forEach(c => {
+      c.classList.remove('open');
+      c.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  // 只在點到卡片本體（非連結、非內容）時切換
+  acad.addEventListener('click', (e) => {
+    const card = e.target.closest('.item.pub');
+    if (!card || !acad.contains(card)) return;
+
+    // 忽略在摘要內容/連結/按鈕列的點擊
+    if (e.target.closest('a, .summary-slide, .row, .btn')) return;
+
+    const willOpen = !card.classList.contains('open');
+    closeAll();
+    if (willOpen) {
+      card.classList.add('open');
+      card.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  // 鍵盤切換（在卡片上 Enter/Space）
+  acad.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const card = e.target.closest('.item.pub');
+    if (!card || !acad.contains(card)) return;
+    if (document.activeElement.closest('a, .summary-slide, .row, .btn')) return;
+
+    e.preventDefault();
+    const willOpen = !card.classList.contains('open');
+    closeAll();
+    if (willOpen) {
+      card.classList.add('open');
+      card.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  // 點外面或 Esc 關閉
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('#academic')) return;
+    closeAll();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAll();
+  });
+})();
