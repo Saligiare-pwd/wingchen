@@ -517,14 +517,33 @@ section { padding: 2rem 0 }
   object-fit: cover;
 }
 
-/* ========== 無障礙與小優化 ========== */
+/* PDF 外層容器：手機穩定滾動 + 高度用視窗單位 */
+.pdf-scroll {
+  width: 100%;
+  height: clamp(55svh, 70svh, 85svh);
+  max-height: 85svh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  border-radius: 12px;
+  background: #fff;            /* 避免透明邊緣錯覺 */
+}
 
-/* 如果使用者偏好減少動畫，關掉 slide 動畫 */
-@media (prefers-reduced-motion: reduce) {
-  .slide,
-  .slide.active {
-    transition: none;
-    transform: none;
-  }
+/* 內部 viewer 填滿容器 */
+.pdf-scroll object,
+.pdf-scroll iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Modal 內滾動時不要帶動背景頁 */
+.modal-content { overscroll-behavior: contain; }
+
+/* 若之前對 modal 的 <object> 有 min/max-height，請取消以免衝突 */
+.modal-content object[type="application/pdf"] {
+  min-height: unset !important;
+  max-height: none !important;
 }
 
