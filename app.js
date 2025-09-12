@@ -312,36 +312,6 @@ if (toggleBtn) {
   });
 }
 
-<script>
-(function () {
-  const ua = navigator.userAgent;
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(ua);
-
-  // 1) Auto-wrap <object> in .pdf-scroll if not already wrapped
-  document.querySelectorAll('object[type="application/pdf"]').forEach(obj => {
-    if (!obj.parentElement.classList.contains('pdf-scroll')) {
-      const wrap = document.createElement('div');
-      wrap.className = 'pdf-scroll';
-      obj.replaceWith(wrap);
-      wrap.appendChild(obj);
-    }
-  });
-
-  if (!isMobile) return;
-
-  // 2) Replace <object> with <iframe> on mobile for stable behavior
-  document.querySelectorAll('.pdf-scroll object[type="application/pdf"]').forEach(obj => {
-    const src = obj.getAttribute('data') || obj.getAttribute('src');
-    if (!src) return;
-    const hasHash = src.includes('#');
-    const iframe = document.createElement('iframe');
-    iframe.src = hasHash ? src : (src + '#zoom=page-width');
-    iframe.title = 'PDF';
-    iframe.loading = 'lazy';
-    obj.replaceWith(iframe);
-  });
-})();
-</script>
 
 /* -----------------------------
    Contact form (demo)
