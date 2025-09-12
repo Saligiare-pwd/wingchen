@@ -275,33 +275,25 @@ section { padding: 2rem 0 }
 /* PDF 容器跟著卡片圓角，內容不外溢 */
 .pdf-scroll { border-radius: inherit; overflow: hidden; }
 
-/* 桌機滑鼠才套 hover 動效，避免手機誤觸 */
-@media (hover: hover) and (pointer: fine) {
-  /* 一般 hover */
-  .slides:hover {
-    box-shadow: 0 8px 24px #0000001f;
-    transform: translateY(-2px);
-  }
+/* 整張 slide 可點（有 data-target 的）→ 顯示手指 */
+.slide[data-target] { cursor: pointer; }
+/* 讓子元素沿用手指，不要又變回 default */
+.slide[data-target] * { cursor: inherit; }
 
-  /* ⭐ 即使滑鼠在子元素（按鈕、圖片、PDF 容器）上也觸發父層 hover */
-  .slides:has(:is(.slidebtn:hover, img:hover, .pdf-scroll:hover)) {
-    box-shadow: 0 8px 24px #0000001f;
-    transform: translateY(-2px);
-    z-index: 1;
-  }
+/* 容器層：當前 active slide 可點時，整個 .slides 也顯示手指（支援 :has 的瀏覽器） */
+@supports (selector(:has(*))) {
+  .slides:has(.slide.active[data-target]) { cursor: pointer; }
 }
 
-/* 保險：避免上層容器把陰影裁掉（通常預設就是 visible，可按需開啟） */
-/* .slides, .panel, section { overflow: visible; } */
+/* JS 後援會加上 .is-clickable；這裡接手改游標 */
+.slides.is-clickable { cursor: pointer; }
 
-/* JS 後備的 hover 樣式 */
-@media (hover: hover) and (pointer: fine) {
-  .slides.is-hover {
-    box-shadow: 0 8px 24px #0000001f;
-    transform: translateY(-2px);
-    z-index: 1;
-  }
-}
+/* 保險：本來就可點的元素也統一手指游標 */
+.item.pub,
+.badge.pub,
+.open-modal,
+.tabbtn,
+.slidebtn { cursor: pointer; }
 
 /* ========== Responsive tweaks ========== */
 /* <= 900px */
