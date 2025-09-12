@@ -269,16 +269,16 @@ section { padding: 2rem 0 }
 .pub.open .summary-slide { display: block }
 
 /* 讓 slide 的陰影不會被相鄰元素吃掉 */
-.slide { z-index: 0; transition: box-shadow .2s ease, transform .2s ease; }
-.slide:hover { z-index: 1; }
+.slides { z-index: 0; transition: box-shadow .2s ease, transform .2s ease; }
+.slides:hover { z-index: 1; }
 
 /* PDF 容器跟著卡片圓角，內容不外溢 */
 .pdf-scroll { border-radius: inherit; overflow: hidden; }
 
 /* 整張 slide 可點（有 data-target 的）→ 顯示手指 */
-.slide[data-target] { cursor: pointer; }
+.slides[data-target] { cursor: pointer; }
 /* 讓子元素沿用手指，不要又變回 default */
-.slide[data-target] * { cursor: inherit; }
+.slides[data-target] * { cursor: inherit; }
 
 /* 容器層：當前 active slide 可點時，整個 .slides 也顯示手指（支援 :has 的瀏覽器） */
 @supports (selector(:has(*))) {
