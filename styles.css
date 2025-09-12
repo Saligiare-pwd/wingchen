@@ -502,17 +502,6 @@ section { padding: 2rem 0 }
   border-radius: 12px;
 }
 
-/* Modal 裡的 PDF：用 vh 控高度，不拉伸寬高比 */
-.modal-content object[type="application/pdf"] {
-  width: 100%;
-  height: clamp(52vh, 70vh, 85vh);  /* 視窗越高顯示越多 */
-  min-height: unset;                 /* 取消舊的 min-height */
-  max-height: 85vh;
-  border: none;
-  border-radius: 16px;
-  display: block;
-}
-
 /* Modal 圖片：維持比例、以 contain 呈現 */
 .modal img {
   width: 100%;
