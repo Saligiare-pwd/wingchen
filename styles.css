@@ -412,3 +412,119 @@ section { padding: 2rem 0 }
   .modal-content { padding: 1rem; border-radius: 14px; }
   .modal .close { top: .5rem; right: .5rem; }
 }
+
+/* ========== Slides 自動撐高 + 按鈕換行 ========== */
+
+/* 讓 slides 容器依 active slide 的實際高度自動撐高 */
+.slides {
+  min-height: unset;           /* 取消固定最小高度 */
+  height: auto;
+  position: relative;
+}
+
+/* 預設 slides 裡的頁面都疊放（不佔高度） */
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .25s, transform .25s;
+  pointer-events: none;
+}
+
+/* 啟用中的那頁，改為參與正常排版（撐高容器） */
+.slide.active {
+  position: relative;          /* ⭐ 關鍵：回到文流，讓容器長高 */
+  inset: auto;
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+
+  display: flex;
+  flex-wrap: wrap;             /* 讓內容（含按鈕）可換行 */
+  justify-content: center;
+  gap: .75rem;
+  padding: 1rem;
+}
+
+/* Slide 內的按鈕：預設 80% 或 100% */
+.slide .slidebtn {
+  flex: 0 1 80%;        /* ⭐ 預設佔容器 80% */
+  max-width: 80%;
+  margin: 0 auto;       /* 置中 */
+  padding: .9rem 1rem;
+  font-size: 1.05rem;
+}
+
+/* 如果你想要全部一列（100%），用這個版本 */
+/*
+.slide .slidebtn {
+  flex: 0 1 100%;       
+  max-width: 100%;
+  margin: 0;
+}
+*/
+
+/* 小螢幕時每排 1 顆，避免過度擠壓 */
+@media (max-width: 480px) {
+  .slide .slidebtn {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+/* ========== 圖片 / PDF 比例修正 ========== */
+
+/* 通用：slide 內圖片不拉伸，維持原比例 */
+.slide img {
+  width: 100%;
+  height: auto;                /* ⭐ 不要固定高度 */
+  object-fit: contain;         /* 以整張顯示為主 */
+  border-radius: 10px;
+}
+
+/* badges 摘要區塊裡的 PDF 高度以視窗為基準，避免溢出 */
+.badges .summary-slide object[type="application/pdf"] {
+  width: 100%;
+  height: clamp(40vh, 55vh, 70vh);  /* 可依需要微調中間值 */
+  border: none;
+  border-radius: 12px;
+}
+
+/* Modal 裡的 PDF：用 vh 控高度，不拉伸寬高比 */
+.modal-content object[type="application/pdf"] {
+  width: 100%;
+  height: clamp(52vh, 70vh, 85vh);  /* 視窗越高顯示越多 */
+  min-height: unset;                 /* 取消舊的 min-height */
+  max-height: 85vh;
+  border: none;
+  border-radius: 16px;
+  display: block;
+}
+
+/* Modal 圖片：維持比例、以 contain 呈現 */
+.modal img {
+  width: 100%;
+  height: auto;                      /* ⭐ 關鍵：不要固定 min-height */
+  max-height: 85vh;
+  object-fit: contain;               /* 盡量完整顯示 */
+  border-radius: 12px;
+  border: 2px solid #eef2ff;
+}
+
+/* Hero 大頭照仍保留裁切（cover），不動你原本設計 */
+.portrait img {
+  object-fit: cover;
+}
+
+/* ========== 無障礙與小優化 ========== */
+
+/* 如果使用者偏好減少動畫，關掉 slide 動畫 */
+@media (prefers-reduced-motion: reduce) {
+  .slide,
+  .slide.active {
+    transition: none;
+    transform: none;
+  }
+}
+
