@@ -278,13 +278,13 @@ section { padding: 2rem 0 }
 /* 桌機滑鼠才套 hover 動效，避免手機誤觸 */
 @media (hover: hover) and (pointer: fine) {
   /* 一般 hover */
-  .slide:hover {
+  .slides:hover {
     box-shadow: 0 8px 24px #0000001f;
     transform: translateY(-2px);
   }
 
   /* ⭐ 即使滑鼠在子元素（按鈕、圖片、PDF 容器）上也觸發父層 hover */
-  .slide:has(:is(.slidebtn:hover, img:hover, .pdf-scroll:hover)) {
+  .slides:has(:is(.slidebtn:hover, img:hover, .pdf-scroll:hover)) {
     box-shadow: 0 8px 24px #0000001f;
     transform: translateY(-2px);
     z-index: 1;
@@ -296,7 +296,7 @@ section { padding: 2rem 0 }
 
 /* JS 後備的 hover 樣式 */
 @media (hover: hover) and (pointer: fine) {
-  .slide.is-hover {
+  .slides.is-hover {
     box-shadow: 0 8px 24px #0000001f;
     transform: translateY(-2px);
     z-index: 1;
