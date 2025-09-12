@@ -312,6 +312,29 @@ if (toggleBtn) {
   });
 }
 
+// ----- Slides 游標控制：當 active slide 可點，容器顯示手指 -----
+(() => {
+  const root = document.querySelector('.slides');
+  if (!root) return;
+
+  function updateSlidesCursor() {
+    const clickable = !!root.querySelector('.slide.active[data-target]');
+    root.classList.toggle('is-clickable', clickable);
+  }
+
+  // 1) 進場先判斷一次
+  updateSlidesCursor();
+
+  // 2) 監看 slide 的 class 變化（tabs 切換會改 .active）
+  const mo = new MutationObserver(() => updateSlidesCursor());
+  mo.observe(root, { subtree: true, attributes: true, attributeFilter: ['class'] });
+
+  // 3) 保險：tab 按鈕點擊後也跑一次（鍵盤左右切換也會被 MutationObserver 捕捉）
+  document.querySelectorAll('.tabbtn').forEach(btn => {
+    btn.addEventListener('click', updateSlidesCursor);
+  });
+})();
+
 /* -----------------------------
    Contact form (demo)
 ----------------------------- */
