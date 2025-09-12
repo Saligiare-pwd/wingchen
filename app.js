@@ -1,3 +1,5 @@
+const UA = navigator.userAgent;
+const IS_MOBILE = /iPhone|iPad|iPod|Android/i.test(UA);
 /* -----------------------------
    Utilities
 ----------------------------- */
@@ -292,6 +294,89 @@ function initPdfControls(modal) {
     console.warn('[initPdfControls] failed:', err);
   }
 }
+
+// Ensure <object> is wrapped for reliable mobile scroll
+function ensurePdfScrollWrap(root = document) {
+  root.querySelectorAll('object[type="application/pdf"]').forEach(obj => {
+    if (!obj.parentElement || obj.parentElement.classList.contains('pdf-scroll')) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'pdf-scroll';
+    obj.replaceWith(wrap);
+    wrap.appendChild(obj);
+  });
+}
+
+// Swap <object> -> <iframe> on mobile for stable zoom/scroll
+function swapObjectsToIframes(root = document) {
+  if (!IS_MOBILE) return;
+  root.querySelectorAll('.pdf-scroll object[type="application/pdf"]').forEach(obj => {
+    const src = obj.getAttribute('data') || obj.getAttribute('src') ||
+                obj.getAttribute('data-src');
+    if (!src) return;
+    const iframe = document.createElement('iframe');
+    // prefer page-width fit
+    iframe.src = src.includes('#') ? src : (src + '#zoom=page-width');
+    iframe.title = 'PDF';
+    iframe.loading = 'lazy';
+
+    // carry over indicative attrs
+    ['data-src','data-page','data-pages'].forEach(a=>{
+      if (obj.hasAttribute(a)) iframe.setAttribute(a, obj.getAttribute(a));
+    });
+
+    obj.replaceWith(iframe);
+  });
+}
+
+// Call once on load for any inline PDFs already in DOM
+ensurePdfScrollWrap(document);
+swapObjectsToIframes(document);
+
+function refreshInlinePdfs(container) {
+  if (!container) return;
+  ensurePdfScrollWrap(container);
+
+  // Mobile: just swap and bail (iframe handles itself)
+  if (IS_MOBILE) {
+    swapObjectsToIframes(container);
+    return;
+  }
+
+  container.querySelectorAll('object[type="application/pdf"]').forEach(oldObj => {
+    const base = oldObj.getAttribute('data-src') || oldObj.getAttribute('data') || '';
+    if (!base) return;
+    const url = base.replace(/#.*$/, '') + '#view=FitH&ts=' + Date.now();
+    const fresh = oldObj.cloneNode(false);
+    for (const {name, value} of Array.from(oldObj.attributes)) {
+      if (name !== 'data') fresh.setAttribute(name, value);
+    }
+    fresh.setAttribute('data', url);
+    oldObj.replaceWith(fresh);
+  });
+}
+
+function rebuildPdfs(modal) {
+  if (!modal) return;
+  ensurePdfScrollWrap(modal);
+
+  if (IS_MOBILE) {
+    swapObjectsToIframes(modal);
+    return;
+  }
+
+  modal.querySelectorAll('object[type="application/pdf"]').forEach(oldObj => {
+    const base = oldObj.getAttribute('data-src') || oldObj.getAttribute('data') || '';
+    if (!base) return;
+    const url = base.replace(/#.*$/, '') + '#view=FitH&ts=' + Date.now();
+    const fresh = oldObj.cloneNode(false);
+    for (const {name, value} of Array.from(oldObj.attributes)) {
+      if (name !== 'data') fresh.setAttribute(name, value);
+    }
+    fresh.setAttribute('data', url);
+    oldObj.replaceWith(fresh);
+  });
+}
+
 
 // 切換 project.png <-> ops.png
 const toggleBtn = document.getElementById('toggle-image');
