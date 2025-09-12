@@ -336,13 +336,137 @@ if (toggleBtn) {
 })();
 
 /* -----------------------------
-   Contact form (demo)
+   Contact form → Google Sheets (via GAS)
 ----------------------------- */
-const contact = document.getElementById('contactForm');
-if (contact) {
-  contact.addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('Message captured locally for demo.');
-    e.target.reset();
+(() => {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+
+  const submitBtn = document.getElementById('cf-submit');
+  const status = document.getElementById('contact-status');
+  const draftKey = form.dataset.autosave || 'contact-draft';
+  const endpoint = form.action;  // GAS Web App URL
+  const SECRET_TOKEN = '';       // 可選：填寫後需同步到 GAS 的 expectedToken
+
+  const setBusy = (on) => {
+    if (!submitBtn) return;
+    submitBtn.setAttribute('aria-busy', on ? 'true' : 'false');
+  };
+  const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+  // 簡易錯誤顯示
+  function ensureErrorBox(input) {
+    if (input.nextElementSibling && input.nextElementSibling.classList?.contains('form-error')) return input.nextElementSibling;
+    const box = document.createElement('div');
+    box.className = 'form-error';
+    box.setAttribute('aria-live', 'polite');
+    input.insertAdjacentElement('afterend', box);
+    return box;
+  }
+
+  // 自動存草稿
+  function saveDraft() {
+    const data = new FormData(form);
+    const obj = Object.fromEntries(data.entries());
+    try { localStorage.setItem(draftKey, JSON.stringify(obj)); } catch {}
+  }
+  function restoreDraft() {
+    try {
+      const raw = localStorage.getItem(draftKey);
+      if (!raw) return;
+      const obj = JSON.parse(raw);
+      for (const [k, v] of Object.entries(obj)) {
+        const field = form.querySelector(`[name="${k}"]`);
+        if (field && 'value' in field) field.value = v;
+      }
+    } catch {}
+  }
+  restoreDraft();
+  form.addEventListener('input', saveDraft);
+
+  // 即時驗證
+  ['input', 'blur'].forEach(evt => {
+    form.addEventListener(evt, (e) => {
+      const t = e.target;
+      if (!(t instanceof HTMLElement)) return;
+      if (!['INPUT','TEXTAREA'].includes(t.tagName)) return;
+      const el = /** @type {HTMLInputElement|HTMLTextAreaElement} */(t);
+      const box = ensureErrorBox(el); box.textContent = '';
+      if (el.hasAttribute('required') && !el.value.trim()) {
+        box.textContent = 'This field is required.';
+      } else if (el.id === 'cf-email' && el.value && !emailOk(el.value.trim())) {
+        box.textContent = 'Please enter a valid email.';
+      } else if (el.minLength > 0 && el.value.length > 0 && el.value.length < el.minLength) {
+        box.textContent = `Please enter at least ${el.minLength} characters.`;
+      }
+    }, true);
   });
-}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // 蜜罐（隱藏欄位）— 有值表示機器人，靜默中止
+    const hp = form.querySelector('input[name="website"]');
+    if (hp && hp.value) return;
+
+    // 本地驗證
+    const name = /** @type {HTMLInputElement} */(form.querySelector('#cf-name'));
+    const email = /** @type {HTMLInputElement} */(form.querySelector('#cf-email'));
+    const message = /** @type {HTMLTextAreaElement} */(form.querySelector('#cf-message'));
+    const consent = /** @type {HTMLInputElement} */(form.querySelector('#cf-consent'));
+    const fields = [name, email, message, consent].filter(Boolean);
+
+    let hasError = false;
+    fields.forEach(f => {
+      const box = ensureErrorBox(f); box.textContent = '';
+      if (f === consent && !consent.checked) { box.textContent = 'Please provide consent.'; hasError = true; return; }
+      if (f.hasAttribute('required') && !f.value.trim()) { box.textContent = 'This field is required.'; hasError = true; }
+      else if (f === email && !emailOk(email.value.trim())) { box.textContent = 'Please enter a valid email.'; hasError = true; }
+      else if (f === message && message.value.trim().length < 10) { box.textContent = 'Please write a bit more (≥ 10 chars).'; hasError = true; }
+    });
+    if (hasError) { status.textContent = 'Please fix the highlighted fields.'; return; }
+
+    setBusy(true);
+    status.textContent = '';
+
+    try {
+      // 用 x-www-form-urlencoded 避免 CORS 預檢（Apps Script 無法處理 OPTIONS）
+      const payload = new URLSearchParams({
+        name: name.value.trim(),
+        email: email.value.trim(),
+        message: message.value.trim(),
+        referrer: location.href,
+        userAgent: navigator.userAgent,
+        token: SECRET_TOKEN || '',
+        website: '' // 蜜罐
+      });
+
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+        body: payload.toString()
+      });
+
+      // Apps Script web app 回傳 200/200-like；解析文字再嘗試 JSON
+      const text = await res.text();
+      let ok = res.ok;
+      try { const j = JSON.parse(text || '{}'); ok = ok && j.ok !== false; } catch {}
+      if (!ok) throw new Error('Submit failed');
+
+      form.reset();
+      try { localStorage.removeItem(draftKey); } catch {}
+      const okBox = document.createElement('div');
+      okBox.className = 'form-banner';
+      okBox.textContent = 'Thanks! Your message was sent successfully.';
+      form.appendChild(okBox);
+    } catch (err) {
+      const fail = document.createElement('div');
+      fail.className = 'form-banner error';
+      fail.textContent = 'Sorry, something went wrong. Please try again or email me directly.';
+      form.appendChild(fail);
+      console.warn('[contact→sheets] error:', err);
+    } finally {
+      setBusy(false);
+    }
+  });
+})();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
