@@ -268,6 +268,40 @@ section { padding: 2rem 0 }
 }
 .pub.open .summary-slide { display: block }
 
+/* 讓 slide 的陰影不會被相鄰元素吃掉 */
+.slide { z-index: 0; transition: box-shadow .2s ease, transform .2s ease; }
+.slide:hover { z-index: 1; }
+
+/* PDF 容器跟著卡片圓角，內容不外溢 */
+.pdf-scroll { border-radius: inherit; overflow: hidden; }
+
+/* 桌機滑鼠才套 hover 動效，避免手機誤觸 */
+@media (hover: hover) and (pointer: fine) {
+  /* 一般 hover */
+  .slide:hover {
+    box-shadow: 0 8px 24px #0000001f;
+    transform: translateY(-2px);
+  }
+
+  /* ⭐ 即使滑鼠在子元素（按鈕、圖片、PDF 容器）上也觸發父層 hover */
+  .slide:has(:is(.slidebtn:hover, img:hover, .pdf-scroll:hover)) {
+    box-shadow: 0 8px 24px #0000001f;
+    transform: translateY(-2px);
+    z-index: 1;
+  }
+}
+
+/* 保險：避免上層容器把陰影裁掉（通常預設就是 visible，可按需開啟） */
+/* .slides, .panel, section { overflow: visible; } */
+
+/* JS 後備的 hover 樣式 */
+@media (hover: hover) and (pointer: fine) {
+  .slide.is-hover {
+    box-shadow: 0 8px 24px #0000001f;
+    transform: translateY(-2px);
+    z-index: 1;
+  }
+}
 
 /* ========== Responsive tweaks ========== */
 /* <= 900px */
@@ -300,5 +334,4 @@ section { padding: 2rem 0 }
   .modal-content { padding: 1rem; border-radius: 14px }
   .modal .close { top: .5rem; right: .5rem }
 }
-
 html.no-scroll, body.no-scroll { overflow: hidden; }
