@@ -239,6 +239,45 @@ section { padding: 2rem 0 }
   padding: .4rem; cursor: pointer; font-weight: 700; line-height: 1;
 }
 
+/* Scrollable PDF wrapper */
+.pdf-scroll {
+  width: 100%;
+  height: clamp(50svh, 72svh, 88svh);   /* mobile-safe */
+  max-height: 88svh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;     /* iOS momentum scroll */
+  overscroll-behavior: contain;          /* prevent background scroll */
+  border-radius: 12px;
+  background: #fff;                      /* avoid “transparent border” illusion */
+}
+
+/* PDF viewers fill the wrapper */
+.pdf-scroll object,
+.pdf-scroll iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* In modals: use dvh so address bar changes don’t jump */
+.modal .pdf-scroll {
+  height: clamp(55dvh, 72dvh, 88dvh);
+  max-height: 88dvh;
+}
+
+/* Make sure outer containers don’t clip the shadow/scroll */
+.slides, .panel, section { overflow: visible; }
+
+/* If you previously set min-heights on modal media, neutralize on mobile */
+@media (max-width: 700px) {
+  .modal-content object[type="application/pdf"],
+  .modal img { min-height: unset; }
+}
+
+/* Prevent your global touch handlers from blocking inner scroll (visual hint only) */
+.modal-content { overscroll-behavior: contain; }
+
 /* ========== Utilities ========== */
 .row { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center }
 .btn {
