@@ -3,13 +3,13 @@
   --panel: #ffffff;
   --ink: #111827;
   --muted: #6b7280;
-  --brand: #4f46e5; /* indigo-600 */
-  --brand-2: #22d3ee; /* cyan-400 */
+  --brand: #4f46e5;
+  --brand-2: #22d3ee;
   --ring: rgba(79,70,229,.45);
   --maxw: 1100px;
   --radius: 16px;
 
-  /* 尺寸基準 */
+  /* spacing scale */
   --space-1: .25rem;
   --space-2: .5rem;
   --space-3: .75rem;
@@ -19,6 +19,7 @@
   --space-8: 2rem;
 }
 
+/* ========== Base ========== */
 * { box-sizing: border-box }
 html, body { height: 100% }
 
@@ -30,13 +31,13 @@ body {
     radial-gradient(1200px 800px at 10% 0%, #0ea5e90f, transparent 50%),
     radial-gradient(1200px 800px at 90% 10%, #6366f11a, transparent 60%),
     #f3f4f6;
-  -webkit-text-size-adjust: 100%; /* iOS 縮放穩定 */
+  -webkit-text-size-adjust: 100%;
 }
 
 a { color: var(--brand); text-underline-offset: 3px }
 .container { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--space-4) }
 
-/* Header */
+/* ========== Header ========== */
 header.site {
   position: sticky; top: 0; z-index: 50;
   backdrop-filter: saturate(140%) blur(8px);
@@ -50,7 +51,7 @@ nav a { text-decoration: none; color: #111827; padding: var(--space-2) var(--spa
 nav a:hover, nav a:focus { background: #eef2ff; outline: none }
 .navlinks { display: flex; gap: var(--space-1); flex-wrap: wrap }
 
-/* Hero */
+/* ========== Hero ========== */
 .hero { padding: var(--space-6) 0 0 }
 .hero .card {
   background: var(--panel);
@@ -61,28 +62,19 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none }
   gap: var(--space-3);
 }
 
-/* Two-column hero layout (stacks on small screens) */
 .hero-grid {
   display: grid;
   gap: var(--space-3);
   align-items: center;
 }
-@media (min-width: 800px) {
-  .hero-grid { grid-template-columns: 1fr 1.5fr; }
-}
+@media (min-width: 800px) { .hero-grid { grid-template-columns: 1fr 1.5fr } }
 
-/* Constrain both GIF and badges to same width */
 .hero-grid > .grid .batch-figure,
-.hero-grid > .grid .badges {
-  width: 100%;
-  margin: 0 auto;
-}
+.hero-grid > .grid .badges { width: 100%; margin: 0 auto; }
 
-/* Tidy spacing for left column */
-.hero-text { display: grid; gap: var(--space-3); }
+.hero-text { display: grid; gap: var(--space-3) }
 
-/* Portrait sizing (square, cropped) */
-.portrait { display: grid; justify-items: center; margin: 0; }
+.portrait { display: grid; justify-items: center; margin: 0 }
 .portrait img {
   width: 100%; height: clamp(28vh, 35vh, 45vh); object-fit: cover;
   border-radius: 3.78%; border: 2px solid #e5e7eb; box-shadow: 0 6px 12px #00000022;
@@ -94,456 +86,207 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none }
   margin: 2px 0;
   text-align: center;
 }
+.aff { color: var(--muted); margin: 2px 0; text-align: center }
 
-.aff { color: var(--muted); margin: 2px 0; text-align: center; }
-
-/* Badges */
+/* ========== Badges ========== */
 .badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  align-items: flex-start;
+  display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: flex-start;
 }
-
 .badge {
-  padding: .4rem .65rem;
-  border-radius: 6px;
-  background: #eef2ff;
-  color: #1e293b;
-  border: 1px solid #e5e7eb;
+  padding: .4rem .65rem; border-radius: 6px;
+  background: #eef2ff; color: #1e293b; border: 1px solid #e5e7eb;
 }
+.badge.pub { position: relative; cursor: pointer; }
+.badge.pub.open { flex-basis: 100%; max-width: 100%; align-self: stretch; }
 
-/* Badge = a little pill; when open, it becomes a full-row container */
-.badge.pub {
-  position: relative;
-  cursor: pointer;
-}
-
-.badge.pub.open {
-  flex-basis: 100%;
-  max-width: 100%;
-  align-self: stretch;
-}
-
-/* The slide box under the badge */
 .badges .summary-slide {
-  display: none;
-  margin-top: var(--space-2);
-  padding: var(--space-3);
-  border: 1px solid #dbeafe;
-  background: #f8fafc;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px #00000012;
-  width: 100%;
-  text-align: left;
-  max-width: 900px;
+  display: none; margin-top: var(--space-2); padding: var(--space-3);
+  border: 1px solid #dbeafe; background: #f8fafc; border-radius: 10px;
+  box-shadow: 0 4px 10px #00000012; width: 100%; text-align: left; max-width: 900px;
 }
-
 .badge.pub.open .summary-slide { display: block; }
 
-/* PDF inside the slide */
 .badges .summary-slide object[type="application/pdf"] {
-  display: block;
-  width: 100%;
-  height: clamp(40vh, 55vh, 70vh);
-  border: none;
-  border-radius: 12px;
+  display: block; width: 100%; height: clamp(40vh, 55vh, 70vh);
+  border: none; border-radius: 12px;
 }
+.badges img { max-width: 100%; height: auto; border-radius: 4px }
+.badges .badge.pub[aria-selected="true"] { background: #eef2ff; border-color: #c7d2fe }
 
-.badges img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
-.badges .badge.pub { cursor: pointer; }
-.badges .badge.pub[aria-selected="true"] {
-  background: #eef2ff;
-  border-color: #c7d2fe;
-}
-
-/* Sections */
+/* ========== Sections / Panels / Lists ========== */
 section { padding: 2rem 0 }
 .section-title { font-size: clamp(22px, 3vw, 28px); margin: 1rem 0; line-height: 1.2 }
 .panel {
-  background: var(--panel);
-  border: 1px solid #e5e7eb;
-  border-radius: var(--radius);
-  padding: 1.4rem;
+  background: var(--panel); border: 1px solid #e5e7eb;
+  border-radius: var(--radius); padding: 1.4rem;
 }
 
-/* Academic lists */
 .grid { display: grid; gap: 1rem }
 @media (min-width: 900px) { .grid.two { grid-template-columns: 1.5fr 1.5fr } }
 .item { padding: .9rem; border: 1px solid #eef2ff; border-radius: 12px; background: #fafaff }
 .meta { color: var(--muted); font-size: .92rem }
 
-/* DAAD tabs */
+/* ========== Tabs (DAAD) ========== */
 .daad { display: grid; gap: 1rem }
-.tabs {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: .6rem;
-}
-@media (max-width: 900px) {
-  .tabs { grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); }
-}
-@media (max-width: 480px) {
-  .tabs { grid-template-columns: 1fr; }
-}
+.tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem }
+@media (max-width: 900px) { .tabs { grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)) } }
+@media (max-width: 480px) { .tabs { grid-template-columns: 1fr } }
+
 .tabbtn {
   position: relative; padding: .5rem .75rem; border-radius: 10px;
   border: 1px solid #e5e7eb; background: #ffffff; cursor: pointer;
   text-align: center; font-weight: 700; font-size: clamp(1rem, 2.8vw, 1.25rem);
 }
-.tabbtn[aria-selected="true"] { outline: 3px solid var(--ring); background: #eef2ff; }
+.tabbtn[aria-selected="true"] { outline: 3px solid var(--ring); background: #eef2ff }
 
-/* Slides */
-.slides { position: relative; min-height: 22.5rem }
+/* ========== Slides ========== */
+/* 讓容器依 active slide 的實際高度自動撐高 */
+.slides { position: relative; min-height: unset; height: auto }
+
+/* 預設頁面疊放（不佔高度） */
 .slide {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-
+  display: flex; flex-direction: column; align-items: center; gap: 1rem; padding: 1rem;
   position: absolute; inset: 0;
-  border: 1px solid #e5e7eb; background: #ffffff;
-  border-radius: 12px;
+  border: 1px solid #e5e7eb; background: #ffffff; border-radius: 12px;
   opacity: 0; transform: translateY(10px);
-  transition: opacity .25s, transform .25s;
-  pointer-events: none;
-}
-.slide.active { opacity: 1; transform: translateY(0); pointer-events: auto }
-
-/* slide 裡的按鈕 */
-.slide .slidebtn {
-  flex: 1 1 auto;              /* 不再強制佔滿 */
-  min-width: 8rem;             /* 每顆至少 8rem 寬 */
-  max-width: 14rem;            /* 不會超過這個寬度 */
-  padding: .9rem 1rem;
-  font-size: 1.05rem;
-  text-align: center;
-  background: #eef2ff;
-  border: 2px solid #e5e7eb;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background .2s, transform .2s;
+  transition: opacity .25s, transform .25s; pointer-events: none;
 }
 
-/* 容器允許換行 */
+/* 啟用中的頁面回到文流、可換行、置中 */
 .slide.active {
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: .75rem;   /* 每顆之間留空隙 */
+  position: relative; inset: auto; opacity: 1; transform: none; pointer-events: auto;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; padding: 1rem;
 }
 
-.slide.active { flex-wrap: wrap; justify-content: center; }
-.slidebtn:hover { background: #e0e7ff; transform: translateY(-2px); }
+/* Slide 內的按鈕：預設 80%，手機 100% */
+.slide .slidebtn {
+  flex: 0 1 80%;
+  max-width: 80%;
+  margin: 0 auto;
+  padding: .9rem 1rem; font-size: 1.05rem; text-align: center;
+  background: #eef2ff; border: 2px solid #e5e7eb; border-radius: 12px;
+  cursor: pointer; transition: background .2s, transform .2s;
+}
+.slidebtn:hover { background: #e0e7ff; transform: translateY(-2px) }
 
-/* Contact layout + logos */
-#contactForm {
-  display: grid;
-  gap: 1rem;
+@media (max-width: 480px) {
+  .slide .slidebtn { flex: 1 1 100%; max-width: 100% }
 }
-#contactForm label {
-  display: block;
-  font-weight: 600;
-  margin-bottom: .25rem;
-  color: var(--ink);
+
+/* Slide 內的圖片保持比例 */
+.slide img {
+  width: 100%; height: auto; object-fit: contain; border-radius: 10px;
 }
+
+/* ========== Contact + Logos ========== */
+#contactForm { display: grid; gap: 1rem }
+#contactForm label { display: block; font-weight: 600; margin-bottom: .25rem; color: var(--ink) }
 #contactForm input,
 #contactForm textarea {
-  display: block;
-  width: 100%;
-  font-size: 1.05rem;
-  padding: .65rem .85rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 10px;
-  margin-top: .25rem;
+  display: block; width: 100%; font-size: 1.05rem; padding: .65rem .85rem;
+  border: 1px solid #cbd5e1; border-radius: 10px; margin-top: .25rem;
 }
-#contactForm textarea {
-  resize: vertical;
-  min-height: 7.5rem;
-}
-#contactForm button {
-  justify-self: start;
-  font-size: 1rem;
-  padding: .6rem 1.1rem;
-}
+#contactForm textarea { resize: vertical; min-height: 7.5rem }
+#contactForm button { justify-self: start; font-size: 1rem; padding: .6rem 1.1rem }
 
 .contact-grid { display: grid; gap: 1rem }
 @media (min-width: 900px) { .contact-grid { grid-template-columns: 2fr 1fr } }
+
 .logos { display: grid; gap: .9rem; align-content: start }
 .logos figure {
   margin: 0; padding: .75rem; border: 1px solid #e5e7eb; border-radius: 12px;
-  background: #ffffff; display: grid; gap: .4rem; justify-items: center
+  background: #ffffff; display: grid; gap: .4rem; justify-items: center;
 }
 .logos img { max-width: 160px; width: 100%; height: auto }
 .logos figcaption { font-size: .85rem; color: var(--muted) }
 
-/* Modal */
+.logos a { display: inline-block }
+.logos a:hover img { filter: brightness(0.9); transform: scale(1.02); transition: all .2s ease }
+
+/* ========== Modal ========== */
 .modal {
-  position: fixed;
-  inset: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  background: rgba(0,0,0,.4);
-  z-index: 1000;
+  position: fixed; inset: 0; display: none;
+  align-items: center; justify-content: center;
+  padding: 1rem; background: rgba(0,0,0,.4); z-index: 1000;
 }
-.modal[aria-hidden="false"] { display: flex; }
+.modal[aria-hidden="false"] { display: flex }
 
 .modal-content {
-  background: #fff;
-  border-radius: 16px;
-  width: min(92%, 64rem);
-  max-height: 92vh;
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
-  position: relative;
-  margin: 0;
-  padding: 1.25rem 1.5rem;
+  background: #fff; border-radius: 16px;
+  width: min(92%, 64rem); max-height: 92vh;
+  display: flex; flex-direction: column; overflow: auto;
+  position: relative; margin: 0; padding: 1.25rem 1.5rem;
 }
-.modal-content h3 { margin: .25rem .25rem .5rem; }
-.pdf-controls { margin: .25rem .25rem .5rem; }
-.actions { margin-top: .6rem; }
+.modal-content h3 { margin: .25rem .25rem .5rem }
+.pdf-controls { margin: .25rem .25rem .5rem }
+.actions { margin-top: .6rem }
 
 .modal-content object[type="application/pdf"] {
-  flex: 1 1 auto;
-  width: 100%;
-  min-height: 57vh;
-  max-height: 80vh;
-  border: none;
-  border-radius: 16px;
-  display: block;
+  width: 100%; height: clamp(52vh, 70vh, 85vh);
+  min-height: unset; max-height: 85vh;
+  border: none; border-radius: 16px; display: block;
 }
 
 .modal img {
-  flex: 1 1 auto;
-  width: 100%;
-  min-height: 55vh;
-  border-radius: 12px;
-  border: 2px solid #eef2ff;
-  display: block;
+  width: 100%; height: auto; max-height: 85vh; object-fit: contain;
+  border-radius: 12px; border: 2px solid #eef2ff; display: block;
 }
 
 /* Close button */
 .modal .close {
-  position: absolute;
-  top: .6rem;
-  right: .75rem;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  padding: .4rem;
-  cursor: pointer;
-  font-weight: 700;
-  line-height: 1;
+  position: absolute; top: .6rem; right: .75rem;
+  background: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px;
+  padding: .4rem; cursor: pointer; font-weight: 700; line-height: 1;
 }
 
-/* Utilities */
+/* ========== Utilities ========== */
 .row { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center }
 .btn {
   display: inline-flex; align-items: center; gap: .5rem; padding: .75rem .75rem;
   border-radius: 12px; border: 1px solid #e5e7eb; background: #ffffff;
-  text-decoration: none; font-weight: 700; cursor: pointer
+  text-decoration: none; font-weight: 700; cursor: pointer;
 }
 .btn:hover { box-shadow: 0 6px 18px #00000012 }
 
-.logos a { display: inline-block; }
-.logos a:hover img {
-  filter: brightness(0.9);
-  transform: scale(1.02);
-  transition: all 0.2s ease;
-}
-
 .pdf-controls {
-  display: flex;
-  align-items: center;
-  gap: .6rem;
-  margin: .4rem 0 .75rem;
+  display: flex; align-items: center; gap: .6rem; margin: .4rem 0 .75rem;
 }
-.pdf-status { font-weight: 600; }
-.pdf-status .pdf-pages::before { content: " of "; }
+.pdf-status { font-weight: 600 }
+.pdf-status .pdf-pages::before { content: " of " }
 
-/* Publication summary toggles */
-.pub { cursor: pointer; position: relative }
-.pub:focus { outline: 3px solid var(--ring) }
-.summary-slide {
-  display: none; margin-top: .6rem; padding: .75rem;
-  border: 1px dashed #c7d2fe; background: #f8fafc; border-radius: 10px
+/* 偏好減少動畫 */
+@media (prefers-reduced-motion: reduce) {
+  .slide, .slide.active { transition: none; transform: none }
 }
-.pub.open .summary-slide { display: block }
 
-/* ---------- 響應式微調 ---------- */
-
-/* 900px 以下：壓縮邊界、讓兩欄轉單欄 */
+/* ========== Responsive tweaks ========== */
+/* <= 900px */
 @media (max-width: 900px) {
-  .container { padding: 0 var(--space-4); }
-  .navwrap { gap: .5rem; }
-  .hero .card { padding: var(--space-5); }
-  .grid.two { grid-template-columns: 1fr !important; }
-  .slides { min-height: 20rem; }
-  .modal-content { width: min(95%, 56rem); max-height: 92vh; }
+  .container { padding: 0 var(--space-4) }
+  .navwrap { gap: .5rem }
+  .hero .card { padding: var(--space-5) }
+  .grid.two { grid-template-columns: 1fr !important }
+  .modal-content { width: min(95%, 56rem); max-height: 92vh }
 }
 
-/* 700px 以下：導覽列堆疊、字級微縮、項目更易點 */
+/* <= 700px */
 @media (max-width: 700px) {
-  .navwrap { flex-direction: column; align-items: stretch; gap: .5rem; padding: .5rem 0; }
-  .navlinks { justify-content: center; gap: .25rem; }
-  nav a { padding: .45rem .6rem; }
-  .hero .card { padding: 1rem; }
-  .portrait img { height: 32vh; }
-  .badge { padding: .35rem .55rem; }
-  .slides { min-height: 18rem; }
-  .slide .slidebtn { font-size: 1rem; padding: .85rem .9rem; }
-  .modal-content object[type="application/pdf"] { min-height: 52vh; }
+  .navwrap { flex-direction: column; align-items: stretch; gap: .5rem; padding: .5rem 0 }
+  .navlinks { justify-content: center; gap: .25rem }
+  nav a { padding: .45rem .6rem }
+  .hero .card { padding: 1rem }
+  .portrait img { height: 32vh }
+  .badge { padding: .35rem .55rem }
+  .slide .slidebtn { font-size: 1rem; padding: .85rem .9rem }
+  .modal-content object[type="application/pdf"] { height: clamp(52vh, 65vh, 80vh) }
 }
 
-/* 480px 以下：縮排更大、按鈕與區塊更好點 */
+/* <= 480px */
 @media (max-width: 480px) {
-  .container { padding: 0 var(--space-4); }
-  .name { font-size: clamp(24px, 7vw, 32px); }
-  .section-title { font-size: clamp(20px, 5.5vw, 26px); }
-  .btn { padding: .7rem .8rem; }
-  .slide { padding: .75rem; }
-  .modal-content { padding: 1rem; border-radius: 14px; }
-  .modal .close { top: .5rem; right: .5rem; }
+  .name { font-size: clamp(24px, 7vw, 32px) }
+  .section-title { font-size: clamp(20px, 5.5vw, 26px) }
+  .btn { padding: .7rem .8rem }
+  .slide { padding: .75rem }
+  .modal-content { padding: 1rem; border-radius: 14px }
+  .modal .close { top: .5rem; right: .5rem }
 }
-
-/* ========== Slides 自動撐高 + 按鈕換行 ========== */
-
-/* 讓 slides 容器依 active slide 的實際高度自動撐高 */
-.slides {
-  min-height: unset;           /* 取消固定最小高度 */
-  height: auto;
-  position: relative;
-}
-
-/* 預設 slides 裡的頁面都疊放（不佔高度） */
-.slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity .25s, transform .25s;
-  pointer-events: none;
-}
-
-/* 啟用中的那頁，改為參與正常排版（撐高容器） */
-.slide.active {
-  position: relative;          /* ⭐ 關鍵：回到文流，讓容器長高 */
-  inset: auto;
-  opacity: 1;
-  transform: none;
-  pointer-events: auto;
-
-  display: flex;
-  flex-wrap: wrap;             /* 讓內容（含按鈕）可換行 */
-  justify-content: center;
-  gap: .75rem;
-  padding: 1rem;
-}
-
-/* Slide 內的按鈕：預設 80% 或 100% */
-.slide .slidebtn {
-  flex: 0 1 80%;        /* ⭐ 預設佔容器 80% */
-  max-width: 80%;
-  margin: 0 auto;       /* 置中 */
-  padding: .9rem 1rem;
-  font-size: 1.05rem;
-}
-
-/* 如果你想要全部一列（100%），用這個版本 */
-/*
-.slide .slidebtn {
-  flex: 0 1 100%;       
-  max-width: 100%;
-  margin: 0;
-}
-*/
-
-/* 小螢幕時每排 1 顆，避免過度擠壓 */
-@media (max-width: 480px) {
-  .slide .slidebtn {
-    flex: 1 1 100%;
-    max-width: 100%;
-  }
-}
-
-/* ========== 圖片 / PDF 比例修正 ========== */
-
-/* 通用：slide 內圖片不拉伸，維持原比例 */
-.slide img {
-  width: 100%;
-  height: auto;                /* ⭐ 不要固定高度 */
-  object-fit: contain;         /* 以整張顯示為主 */
-  border-radius: 10px;
-}
-
-/* Modal 裡的 PDF：用 vh 控高度，不拉伸寬高比 */
-.modal-content object[type="application/pdf"] {
-  width: 100%;
-  height: clamp(52vh, 70vh, 85vh);  /* 視窗越高顯示越多 */
-  min-height: unset;                 /* 取消舊的 min-height */
-  max-height: 85vh;
-  border: none;
-  border-radius: 16px;
-  display: block;
-}
-
-/* badges 摘要區塊裡的 PDF 高度以視窗為基準，避免溢出 */
-.badges .summary-slide object[type="application/pdf"] {
-  width: 100%;
-  height: clamp(40vh, 55vh, 70vh);  /* 可依需要微調中間值 */
-  border: none;
-  border-radius: 12px;
-}
-
-/* Modal 圖片：維持比例、以 contain 呈現 */
-.modal img {
-  width: 100%;
-  height: auto;                      /* ⭐ 關鍵：不要固定 min-height */
-  max-height: 85vh;
-  object-fit: contain;               /* 盡量完整顯示 */
-  border-radius: 12px;
-  border: 2px solid #eef2ff;
-}
-
-/* Hero 大頭照仍保留裁切（cover），不動你原本設計 */
-.portrait img {
-  object-fit: cover;
-}
-
-/* PDF 外層容器：手機穩定滾動 + 高度用視窗單位 */
-.pdf-scroll {
-  width: 100%;
-  height: clamp(55svh, 70svh, 85svh);
-  max-height: 85svh;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
-  border-radius: 12px;
-  background: #fff;            /* 避免透明邊緣錯覺 */
-}
-
-/* 內部 viewer 填滿容器 */
-.pdf-scroll object,
-.pdf-scroll iframe {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-/* Modal 內滾動時不要帶動背景頁 */
-.modal-content { overscroll-behavior: contain; }
-
-/* 若之前對 modal 的 <object> 有 min/max-height，請取消以免衝突 */
-.modal-content object[type="application/pdf"] {
-  min-height: unset !important;
-  max-height: none !important;
-}
-
