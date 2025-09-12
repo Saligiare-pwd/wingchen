@@ -290,3 +290,5 @@ section { padding: 2rem 0 }
   .modal-content { padding: 1rem; border-radius: 14px }
   .modal .close { top: .5rem; right: .5rem }
 }
+
+html.no-scroll, body.no-scroll { overflow: hidden; }
