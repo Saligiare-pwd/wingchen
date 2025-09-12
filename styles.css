@@ -483,6 +483,17 @@ section { padding: 2rem 0 }
   border-radius: 10px;
 }
 
+/* Modal 裡的 PDF：用 vh 控高度，不拉伸寬高比 */
+.modal-content object[type="application/pdf"] {
+  width: 100%;
+  height: clamp(52vh, 70vh, 85vh);  /* 視窗越高顯示越多 */
+  min-height: unset;                 /* 取消舊的 min-height */
+  max-height: 85vh;
+  border: none;
+  border-radius: 16px;
+  display: block;
+}
+
 /* badges 摘要區塊裡的 PDF 高度以視窗為基準，避免溢出 */
 .badges .summary-slide object[type="application/pdf"] {
   width: 100%;
