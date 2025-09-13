@@ -328,9 +328,9 @@ section { padding: 2rem 0 }
 .actions { margin-top: .6rem }
 
 .modal-content object[type="application/pdf"] {
-  width: 100%; height: clamp(52vh, 70vh, 85vh);
-  min-height: unset; max-height: 85vh;
-  border: none; border-radius: 16px; display: block;
+  width: 100%; height: auto;
+  min-height: 30vh; max-height: 85vh;object-fit: contain;
+  border: 2px; border-radius: 16px; display: block;
 }
 
 .modal img {
@@ -389,7 +389,7 @@ section { padding: 2rem 0 }
 .btn {
   display: inline-flex; align-items: center; gap: .5rem; padding: .75rem .75rem;
   border-radius: 12px; border: 1px solid #e5e7eb; background: #ffffff;
-  text-decoration: none; font-weight: 700; cursor: pointer;text-align: center;
+  font-weight: 700; cursor: pointer; text-align: center;
 }
 .btn:hover { box-shadow: 0 6px 18px #00000012 }
 
@@ -398,11 +398,6 @@ section { padding: 2rem 0 }
 }
 .pdf-status { font-weight: 600 }
 .pdf-status .pdf-pages::before { content: " of " }
-
-/* 偏好減少動畫 */
-@media (prefers-reduced-motion: reduce) {
-  .slide, .slide.active { transition: none; transform: none }
-}
 
 /* Publication summary toggles */
 .pub { cursor: pointer; position: relative }
