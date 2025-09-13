@@ -232,37 +232,6 @@ section { padding: 2rem 0 }
   .hero .portrait img { max-width: 520px; }
   .hero .row, .hero .badges { width: min(100%, 520px); }
 }
-
-/* Center-align action buttons and badges within hero columns */
-
-/* Buttons block (left) */
-.hero .row {
-  display: flex;
-  justify-content: center;   /* center horizontally */
-  flex-wrap: wrap;
-  gap: 12px;
-  margin: 0 auto;            /* center inside column */
-  width: 100%;
-  max-width: 560px;          /* match portrait width cap */
-  text-align: center;
-}
-
-/* Each button */
-.hero .btn {
-  min-width: 2rem;
-  text-align: center;
-  margin: 0 auto;
-}
-
-/* Right: badges block */
-.hero .badges {
-  align-content: start;       /* start at top under portrait */
-  gap: 8px;
-  width: min(100%, 560px);    /* same cap as left */
-  margin-inline: auto;text-align: center;
-}
-.hero .badge { padding: .45rem .65rem;text-align: center;}
-
 /* ========== Tabs (DAAD) ========== */
 .daad { display: grid; gap: 1rem }
 .tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem }
