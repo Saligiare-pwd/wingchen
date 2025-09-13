@@ -257,9 +257,10 @@ section { padding: 2rem 0 }
 }
 
 /* Each button */
-.hero .row .btn {
-  min-width: 8rem;
+.hero .btn {
+  min-width: 2rem;
   text-align: center;
+  margin: 0 auto;
 }
 
 /* Badges block (right) */
