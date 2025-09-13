@@ -173,6 +173,75 @@ section { padding: 2rem 0 }
 .item { padding: .9rem; border: 1px solid #eef2ff; border-radius: 12px; background: #fafaff }
 .meta { color: var(--muted); font-size: .92rem }
 
+/* === Hero: make both columns align and balance === */
+
+/* Let the two columns align from the top, and stretch equally */
+.hero-grid {
+  align-items: start;
+}
+
+/* Unify the inner layout of each column */
+.hero-text {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto; /* title (if any), portrait, flexible spacer, actions/badges */
+  gap: 12px;
+  height: 100%;
+}
+
+/* Constrain content width inside each column so they visually match */
+.hero-text > * {
+  max-width: 560px;          /* tune to taste; keeps both sides similar */
+  margin-inline: auto;
+}
+
+/* Portraits: same visual box on both sides */
+.hero .portrait img {
+  aspect-ratio: 1 / 1;       /* consistent square box */
+  width: 100%;
+  max-width: 560px;           /* same as content width cap */
+  height: auto;
+  object-fit: cover;          /* your original look */
+  border-radius: 3.78%;
+  border: 2px solid #e5e7eb;
+  box-shadow: 0 6px 12px #00000022;
+}
+
+/* Left: action buttons block */
+.hero .row {
+  justify-content: center;    /* center under portrait */
+  gap: 8px;
+  flex-wrap: wrap;
+  width: min(100%, 560px);    /* same cap as portrait/badges */
+  margin-inline: auto;
+}
+.hero .row .btn {
+  min-width: 9rem;            /* visually even buttons */
+  text-align: center;
+}
+
+/* Right: badges block */
+.hero .badges {
+  align-content: start;       /* start at top under portrait */
+  gap: 8px;
+  width: min(100%, 560px);    /* same cap as left */
+  margin-inline: auto;
+}
+.hero .badge { padding: .45rem .65rem; }
+
+/* Optional: make both columns the same height on desktop */
+@media (min-width: 800px) {
+  .hero-grid { grid-template-columns: 1fr 1fr; } /* symmetric */
+  .hero .card { height: 100%; }
+  .hero-text { height: 100%; }
+}
+
+/* Mobile polish: stack neatly and center */
+@media (max-width: 700px) {
+  .hero-text > * { max-width: 520px; }        /* slight shrink on phones */
+  .hero .portrait img { max-width: 520px; }
+  .hero .row, .hero .badges { width: min(100%, 520px); }
+}
+
 /* ========== Tabs (DAAD) ========== */
 .daad { display: grid; gap: 1rem }
 .tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem }
