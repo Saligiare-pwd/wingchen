@@ -219,15 +219,6 @@ section { padding: 2rem 0 }
   text-align: center;
 }
 
-/* Right: badges block */
-.hero .badges {
-  align-content: start;       /* start at top under portrait */
-  gap: 8px;
-  width: min(100%, 560px);    /* same cap as left */
-  margin-inline: auto;text-align: center;
-}
-.hero .badge { padding: .45rem .65rem; }
-
 /* Optional: make both columns the same height on desktop */
 @media (min-width: 800px) {
   .hero-grid { grid-template-columns: 1fr 1fr; } /* symmetric */
@@ -263,17 +254,14 @@ section { padding: 2rem 0 }
   margin: 0 auto;
 }
 
-/* Badges block (right) */
+/* Right: badges block */
 .hero .badges {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;   /* center badges */
-  gap: 10px;
-  margin: 0 auto;            /* center inside column */
-  width: 100%;
-  max-width: 560px;          /* same width cap as left */
-  text-align: center;
+  align-content: start;       /* start at top under portrait */
+  gap: 8px;
+  width: min(100%, 560px);    /* same cap as left */
+  margin-inline: auto;text-align: center;
 }
+.hero .badge { padding: .45rem .65rem;text-align: center;}
 
 /* ========== Tabs (DAAD) ========== */
 .daad { display: grid; gap: 1rem }
@@ -432,7 +420,7 @@ section { padding: 2rem 0 }
 .btn {
   display: inline-flex; align-items: center; gap: .5rem; padding: .75rem .75rem;
   border-radius: 12px; border: 1px solid #e5e7eb; background: #ffffff;
-  text-decoration: none; font-weight: 700; cursor: pointer;
+  text-decoration: none; font-weight: 700; cursor: pointer;text-align: center;
 }
 .btn:hover { box-shadow: 0 6px 18px #00000012 }
 
