@@ -328,7 +328,7 @@ section { padding: 2rem 0 }
 .actions { margin-top: .6rem }
 
 .modal-content object[type="application/pdf"] {
-  width: 100%; height: auto;
+  width: 100%; height: clamp(50svh, 72svh, 88svh);
   min-height: 30vh; max-height: 85vh;object-fit: contain;
   border: 2px; border-radius: 16px; display: block;
 }
