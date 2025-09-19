@@ -154,7 +154,7 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none }
 .badge.pub.open .summary-slide { display: block; }
 
 .badges .summary-slide object[type="application/pdf"] {
-  display: block; width: 100%; height: auto;
+  display: block; width: 100%; height:  clamp(50svh, 72svh, 88svh); min-height: 50vh;
   border: none; border-radius: 12px;
 }
 .badges img { max-width: 100%; height: auto; border-radius: 4px }
