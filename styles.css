@@ -144,7 +144,7 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none }
   background: #eef2ff; color: #1e293b; border: 1px solid #e5e7eb;text-align: center;
 }
 .badge.pub { position: relative; cursor: pointer; }
-.badge.pub.open { flex-basis: 100%; max-width: 100%; align-self: stretch; }
+.badge.pub.open { flex-basis: 100%; max-width: 100%; align-self: auto; }
 
 .badges .summary-slide {
   display: none; margin-top: var(--space-2); padding: var(--space-3);
