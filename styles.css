@@ -139,18 +139,42 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none }
 .badges {
   display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: flex-start;text-align: center;
 }
+/* Make each badge size to its own content (no baseline gap) */
 .badge {
-  padding: .4rem .65rem; border-radius: 6px;
-  background: #eef2ff; color: #1e293b; border: 1px solid #e5e7eb;text-align: center;
+  display: inline-flex;           /* was inline (browser default) */
+  align-items: center;
+  justify-content: center;
+  vertical-align: top;            /* avoid baseline gap in flex row */
 }
-.badge.pub { position: relative; cursor: pointer; }
-.badge.pub.open { flex-basis: 100%; max-width: 100%; align-self: auto; }
 
-.badges .summary-slide {
-  display: none; margin-top: var(--space-2); padding: var(--space-3);
-  border: 1px solid #dbeafe; background: #f8fafc; border-radius: 10px;
-  box-shadow: 0 4px 10px #00000012; width: 100%; text-align: left; max-width: 900px;
+/* When a badge is open, make it a normal block that wraps just its content */
+.badge.pub.open {
+  display: block;                 /* ← key: no inline baseline box */
+  flex: 1 1 100%;
+  max-width: 100%;
+  align-self: auto;
+  /* optional: center the expanded card and cap width */
+  max-inline-size: 900px;
+  margin-inline: auto;
 }
+
+/* The expanded summary box should only be as tall as it needs to be */
+.badges .summary-slide {
+  display: block;
+  width: 100%;
+  max-inline-size: 900px;
+  margin: var(--space-2) auto 0;
+  padding: var(--space-3);
+  border: 1px solid #dbeafe;
+  background: #f8fafc;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px #00000012;
+
+  /* Let the object define the height; don't add scrollbars here */
+  max-height: none;
+  overflow: visible;
+}
+
 .badge.pub.open .summary-slide { display: block; }
 
 /* One-page (landscape) view for PDFs inside badges */
