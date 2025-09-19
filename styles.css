@@ -144,9 +144,55 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none }
   padding: .4rem .65rem; border-radius: 6px;
   background: #eef2ff; color: #1e293b; border: 1px solid #e5e7eb;text-align: center;font-size: clamp(1rem, 2.8vw, 1.25rem)
 }
-.badge.pub { position: relative; cursor: pointer; }
-.badge.pub.open { flex-basis: 100%; max-width: 100%; align-self: stretch; }
 
+/* Badge container stays compact until opened */
+.badge.pub {
+  position: relative;
+  cursor: pointer;
+}
+
+/* When open: stretch full width, but only as tall as its content */
+.badge.pub.open {
+  flex: 1 1 100%;
+  max-width: 100%;
+  align-self: auto;
+}
+
+/* Summary box: hidden by default */
+.badges .summary-slide {
+  display: none;
+  margin-top: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid #dbeafe;
+  background: #f8fafc;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px #00000012;
+  width: 100%;
+  max-width: 900px;
+  text-align: left;
+}
+
+/* Show summary when open */
+.badge.pub.open .summary-slide {
+  display: block;
+}
+
+/* PDF-specific scroll area */
+.summary-slide .pdf-scroll {
+  height: 33vh;       /* one page tall */
+  overflow: auto;     /* scroll inside this box */
+  border-radius: 12px;
+  background: #fff;
+}
+
+/* PDF fills its scroll box */
+.summary-slide .pdf-scroll object[type="application/pdf"] {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 12px;
+}
 .badges .summary-slide {
   display: none; margin-top: var(--space-2); padding: var(--space-3);
   border: 1px solid #dbeafe; background: #f8fafc; border-radius: 10px;
