@@ -157,10 +157,10 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none }
 .badges .summary-slide object[type="application/pdf"] {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;   /* 16:9 slide; change to 4/3 or 297/210 for A4 landscape */
-  height: auto;           /* height derives from aspect ratio */
+  height: 30vh;           /* height derives from aspect ratio */
   border: none;
   border-radius: 12px;
+  overflow: hidden;
 }
 
 .badges img { max-width: 100%; height: auto; border-radius: 4px }
