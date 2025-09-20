@@ -136,73 +136,75 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none }
 .aff { color: var(--muted); margin: 2px 0; text-align: center }
 
 /* ========== Badges ========== */
-/* ========== Badges ========== */
 .badges {
-  display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: flex-start;text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: flex-start;
+  text-align: center;
 }
+
 .badge {
-  padding: .4rem .65rem; border-radius: 6px;
-  background: #eef2ff; color: #1e293b; border: 1px solid #e5e7eb;text-align: center;font-size: clamp(1rem, 2.8vw, 1.25rem)
+  padding: .4rem .65rem;
+  border-radius: 6px;
+  background: #eef2ff;
+  color: #1e293b;
+  border: 1px solid #e5e7eb;
+  text-align: center;
+  font-size: clamp(1rem, 2.8vw, 1.25rem);
 }
 
-/* Badge container stays compact until opened */
-.badge.pub {
-  position: relative;
-  cursor: pointer;
-}
-
-/* When open: stretch full width, but only as tall as its content */
+/* Toggleable badges */
+.badge.pub { position: relative; cursor: pointer; }
 .badge.pub.open {
   flex: 1 1 100%;
   max-width: 100%;
   align-self: auto;
 }
 
-/* Summary box: hidden by default */
+/* Summary card (hidden by default) */
 .badges .summary-slide {
   display: none;
-  margin-top: var(--space-2);
+  width: 100%;
+  max-width: 900px;
+  margin: var(--space-2) auto 0;
   padding: var(--space-3);
   border: 1px solid #dbeafe;
   background: #f8fafc;
   border-radius: 10px;
   box-shadow: 0 4px 10px #00000012;
-  width: 100%;
-  max-width: 900px;
   text-align: left;
 }
+.badge.pub.open .summary-slide { display: block; }
 
-/* Show summary when open */
-.badge.pub.open .summary-slide {
-  display: block;
-}
-
-/* PDF-specific scroll area */
+/* One-page tall scroll area for PDFs inside badges */
 .summary-slide .pdf-scroll {
-  height: 33vh;       /* one page tall */
-  overflow: auto;     /* scroll inside this box */
+  height: 33vh;                    /* one “page” on desktop */
+  max-height: 60vh;                /* safety cap */
+  overflow: auto;                  /* scroll INSIDE this box */
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;             /* allow vertical touch scrolling */
+  overscroll-behavior: contain;    /* prevent background scroll chaining */
   border-radius: 12px;
   background: #fff;
 }
 
-/* PDF fills its scroll box */
-.summary-slide .pdf-scroll object[type="application/pdf"] {
+/* PDF viewer fills the scroll box */
+.summary-slide .pdf-scroll object,
+.summary-slide .pdf-scroll iframe {
   display: block;
   width: 100%;
   height: 100%;
-  border: none;
+  border: 0;
   border-radius: 12px;
 }
-.badges .summary-slide {
-  display: none; margin-top: var(--space-2); padding: var(--space-3);
-  border: 1px solid #dbeafe; background: #f8fafc; border-radius: 10px;
-  box-shadow: 0 4px 10px #00000012; width: 100%; text-align: left; max-width: 900px;
-}
-.badge.pub.open .summary-slide { display: block; }
 
-.badges .summary-slide object[type="application/pdf"] {
-  display: block; width: 100%; height:  clamp(50svh, 72svh, 88svh); min-height: 33vh;
-  border: none; border-radius: 12px;overflow: auto
+/* Mobile tweak: use dvh for stable viewport when address bar collapses */
+@media (max-width: 640px) {
+  .summary-slide .pdf-scroll {
+    height: 50dvh;      /* roomier on phones, stable with dynamic viewport */
+    max-height: 70dvh;
+  }
 }
 .badges img { max-width: 100%; height: auto; border-radius: 4px }
 .badges .badge.pub[aria-selected="true"] { background: #eef2ff; border-color: #c7d2fe }
@@ -392,33 +394,6 @@ section { padding: 2rem 0 }
   position: absolute; top: .6rem; right: .75rem;
   background: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px;
   padding: .4rem; cursor: pointer; font-weight: 700; line-height: 1;
-}
-
-/* Scrollable PDF wrapper */
-.pdf-scroll {
-  width: 100%;
-  height: clamp(50svh, 72svh, 88svh);   /* mobile-safe */
-  max-height: 88svh;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;     /* iOS momentum scroll */
-  overscroll-behavior: contain;          /* prevent background scroll */
-  border-radius: 12px;
-  background: #fff;                      /* avoid “transparent border” illusion */
-}
-
-/* PDF viewers fill the wrapper */
-.pdf-scroll object,
-.pdf-scroll iframe {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-/* In modals: use dvh so address bar changes don’t jump */
-.modal .pdf-scroll {
-  height: clamp(55dvh, 72dvh, 88dvh);
-  max-height: 88dvh;
 }
 
 /* Make sure outer containers don’t clip the shadow/scroll */
