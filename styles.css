@@ -264,6 +264,8 @@ section { padding: 2rem 0 }
   flex-wrap: wrap;
   width: min(100%, 560px);    /* same cap as portrait/badges */
   margin-inline: auto;
+  text-align: center;
+  align-items: center;
 }
 .hero .row .btn {
   min-width: 9rem;            /* visually even buttons */
