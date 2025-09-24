@@ -335,6 +335,70 @@ if (toggleBtn) {
   });
 })();
 
+/* ========== Mobile PDF: wrap + iframe swap + page-width zoom ========== */
+(() => {
+  const IS_MOBILE = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || matchMedia('(max-width: 800px)').matches;
+
+  function ensurePdfScrollWrap(root = document) {
+    root.querySelectorAll('object[type="application/pdf"], iframe[data-pdf="true"]').forEach(el => {
+      const p = el.parentElement;
+      if (p && p.classList.contains('pdf-scroll')) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'pdf-scroll';
+      el.replaceWith(wrap);
+      wrap.appendChild(el);
+    });
+  }
+
+  function swapObjectsToIframes(root = document) {
+    if (!IS_MOBILE) return;
+    root.querySelectorAll('.pdf-scroll object[type="application/pdf"]').forEach(obj => {
+      const base = obj.getAttribute('data-src') || obj.getAttribute('data') || obj.getAttribute('src') || '';
+      if (!base) return;
+      const page = obj.getAttribute('data-page');
+      const hash = base.includes('#')
+        ? ''
+        : (page ? `#page=${page}&zoom=page-width` : '#zoom=page-width');
+
+      const iframe = document.createElement('iframe');
+      iframe.src = base + hash;
+      iframe.setAttribute('data-pdf', 'true');
+      iframe.title = obj.getAttribute('title') || 'PDF';
+      iframe.loading = 'lazy';
+      ['data-src','data-page','data-pages'].forEach(a => {
+        if (obj.hasAttribute(a)) iframe.setAttribute(a, obj.getAttribute(a));
+      });
+      obj.replaceWith(iframe);
+    });
+  }
+
+  function runAll(root = document) {
+    ensurePdfScrollWrap(root);
+    swapObjectsToIframes(root);
+  }
+
+  // 初次載入：處理頁面上所有 PDF
+  runAll(document);
+
+  // 若有 modal 開啟後載入 PDF：掛勾你現有的 openModalById
+  const originalOpen = window.openModalById;
+  if (typeof originalOpen === 'function') {
+    window.openModalById = function(id, opener) {
+      const modal = document.getElementById(id);
+      originalOpen.call(this, id, opener);
+      if (modal) runAll(modal);
+    };
+  }
+
+  // badges 展開時也處理（你右側的小膠囊 PDF）
+  document.addEventListener('click', (e) => {
+    const badge = e.target.closest('.badge.pub');
+    if (!badge) return;
+    const slide = badge.querySelector('.summary-slide');
+    if (slide) runAll(slide);
+  });
+})();
+
 /* -----------------------------
    Contact form → Google Sheets (via GAS)
 ----------------------------- */
