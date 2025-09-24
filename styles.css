@@ -76,28 +76,6 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none }
   opacity: 0.7;
 }
 
-/* On narrow screens: center everything */
-@media (max-width: 700px) {
-  .container.navwrap {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-
-  .navlinks {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-  }
-
-  .navlinks a {
-    font-size: 1rem;
-    padding: 0.25rem 0.5rem;
-  }
-}
-
 /* ========== Hero ========== */
 .hero { padding: var(--space-6) 0 0 }
 .hero .card {
@@ -199,17 +177,8 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none }
   border-radius: 12px;
 }
 
-/* Mobile tweak: use dvh for stable viewport when address bar collapses */
-@media (max-width: 640px) {
-  .summary-slide .pdf-scroll {
-    height: 50dvh;      /* roomier on phones, stable with dynamic viewport */
-    max-height: 70dvh;
-  }
-}
 .badges img { max-width: 100%; height: auto; border-radius: 4px }
 .badges .badge.pub[aria-selected="true"] { background: #eef2ff; border-color: #c7d2fe }
-
-
 
 /* ========== Sections / Panels / Lists ========== */
 section { padding: 2rem 0 }
@@ -285,6 +254,41 @@ section { padding: 2rem 0 }
   .hero .portrait img { max-width: 520px; }
   .hero .row, .hero .badges { width: min(100%, 520px); }
 }
+/* On narrow screens: center everything */
+@media (max-width: 700px) {
+  .container.navwrap {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .navlinks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .navlinks a {
+    font-size: 1rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+.summary-slide .pdf-scroll {
+    height: 50dvh;      /* roomier on phones, stable with dynamic viewport */
+    max-height: 70dvh;
+  }
+
+  .hero .row .btn {
+    min-width: 7.5rem;        /* 可調，避免一行太短看起來不居中 */
+    padding: .7rem .9rem;
+    text-align: center;
+    white-space: nowrap;       /* 不要在奇怪位置換行 */
+  }
+  
+}
+
 /* ========== Tabs (DAAD) ========== */
 .daad { display: grid; gap: 1rem }
 .tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem }
