@@ -237,8 +237,9 @@ section { padding: 2rem 0 }
   align-items: center;
 }
 .hero .row .btn {
-  min-width: 9rem;            /* visually even buttons */
+  min-width: 5rem;            /* visually even buttons */
   text-align: center;
+
 }
 
 /* Optional: make both columns the same height on desktop */
