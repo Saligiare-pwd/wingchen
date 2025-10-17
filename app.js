@@ -535,7 +535,7 @@ if (toggleBtn) {
   });
 })();                          
 
-/* ---------- Starfield background ---------- */
+/* ---------- STARFIELD ANIMATION ---------- */
 const canvas = document.getElementById('starfield');
 const ctx = canvas.getContext('2d');
 let stars = [];
@@ -544,11 +544,11 @@ let w, h;
 function initStars() {
   w = canvas.width = window.innerWidth;
   h = canvas.height = window.innerHeight;
-  stars = Array.from({ length: 120 }, () => ({
+  stars = Array.from({ length: 150 }, () => ({
     x: Math.random() * w,
     y: Math.random() * h,
     z: Math.random() * 0.9 + 0.1,
-    o: Math.random() * 0.6 + 0.4,
+    o: Math.random() * 0.6 + 0.4
   }));
 }
 function drawStars() {
@@ -571,3 +571,20 @@ function animateStars() {
 window.addEventListener('resize', initStars);
 initStars();
 animateStars();
+
+/* ---------- TYPING EFFECT ---------- */
+document.addEventListener("DOMContentLoaded", () => {
+  const text = "陳文翊  Wing Chen  |  ASIAA · HITS · NTU";
+  const span = document.getElementById("typed-name");
+  let i = 0;
+  function type() {
+    if (i < text.length) {
+      span.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, 90);
+    } else {
+      span.style.borderRight = "none"; // remove cursor
+    }
+  }
+  setTimeout(type, 800);
+});
