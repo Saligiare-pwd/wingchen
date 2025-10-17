@@ -572,19 +572,34 @@ window.addEventListener('resize', initStars);
 initStars();
 animateStars();
 
-/* ---------- TYPING EFFECT ---------- */
+/* ---------- Dual typing for Chinese & English ---------- */
 document.addEventListener("DOMContentLoaded", () => {
-  const text = "陳文翊  Wing Chen  |  ASIAA · HITS · NTU";
-  const span = document.getElementById("typed-name");
-  let i = 0;
-  function type() {
-    if (i < text.length) {
-      span.textContent += text.charAt(i);
+  const zh = "陳文翊";
+  const en = "Wing Chen";
+  const zhSpan = document.getElementById("typed-zh");
+  const enSpan = document.getElementById("typed-en");
+  let i = 0, j = 0;
+
+  function typeZh() {
+    if (i < zh.length) {
+      zhSpan.textContent += zh.charAt(i);
       i++;
-      setTimeout(type, 90);
+      setTimeout(typeZh, 150);
     } else {
-      span.style.borderRight = "none"; // remove cursor
+      zhSpan.style.borderRight = "none";
+      setTimeout(typeEn, 400); // 延遲開始英文
     }
   }
-  setTimeout(type, 800);
+
+  function typeEn() {
+    if (j < en.length) {
+      enSpan.textContent += en.charAt(j);
+      j++;
+      setTimeout(typeEn, 90);
+    } else {
+      enSpan.style.borderRight = "none";
+    }
+  }
+
+  typeZh();
 });
