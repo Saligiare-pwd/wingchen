@@ -572,3 +572,51 @@ header.site { animation-delay: 0.3s; }
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+/* ---------- Name Typing Pair ---------- */
+.name-pair {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.name {
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  font-size: clamp(30px, 4.5vw, 44px);
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid rgba(0,0,0,0.6);
+  width: 0;
+  animation: typing 3s steps(40, end) forwards, blink 0.9s step-end infinite;
+}
+
+/* 中文、英文不同色調 */
+.name-zh { color: #111827; text-shadow: 0 0 6px rgba(79,70,229,0.1); }
+.name-en { color: #1e3a8a; text-shadow: 0 0 6px rgba(79,70,229,0.15); }
+
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes blink { 50% { border-color: transparent } }
+
+/* ---------- Badges (dark text style) ---------- */
+.badges {
+  display: flex; flex-wrap: wrap; gap: .4rem;
+  justify-content: center; margin-top: 10px;
+}
+.badge {
+  background: #f3f4f6;       /* 淺灰底 */
+  color: #111827;            /* 深字 */
+  border: 1px solid #d1d5db; /* 淡灰邊 */
+  border-radius: 6px;
+  padding: 6px 12px;
+  transition: background .25s, transform .2s;
+}
+.badge:hover {
+  background: #e0e7ff;
+  transform: translateY(-2px);
+}
+.badge.pub.open .summary-slide {
+  background: #ffffff;
+  border-color: #cbd5e1;
+}
