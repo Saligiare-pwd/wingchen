@@ -537,16 +537,6 @@ body { overflow-x: hidden; }
   color: #c7d2fe;
 }
 
-/* Badges (research focus) */
-.badge {
-  background: rgba(255,255,255,0.08);
-  color: #e0e7ff;
-  border-color: rgba(255,255,255,0.2);
-}
-.badge:hover {
-  background: rgba(255,255,255,0.15);
-}
-
 /* ========== SECTION TITLES ========== */
 .section-title {
   color: #f8fafc;
