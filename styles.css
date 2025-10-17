@@ -501,6 +501,7 @@ html.no-scroll, body.no-scroll { overflow: hidden; }
 
 /* ========== Entry Effects ========== */
 body { overflow-x: hidden; }
+/* ========== BACKGROUND STARFIELD ========== */
 #starfield {
   position: fixed;
   top: 0; left: 0;
@@ -509,7 +510,56 @@ body { overflow-x: hidden; }
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
 }
 
-/* Hero fade-in animation */
+/* ========== TYPING EFFECT ========== */
+.name {
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  font-size: clamp(32px, 5vw, 46px);
+  color: #e0e7ff;                     /* 柔白藍字 */
+  text-shadow: 0 0 8px rgba(99,102,241,0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid rgba(255,255,255,0.75);
+  width: 0;
+  animation: typing 3.2s steps(40, end) forwards, blink 0.9s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* Section subtitles (affiliation) */
+.hero .aff {
+  color: #c7d2fe;
+}
+
+/* Badges (research focus) */
+.badge {
+  background: rgba(255,255,255,0.08);
+  color: #e0e7ff;
+  border-color: rgba(255,255,255,0.2);
+}
+.badge:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* ========== SECTION TITLES ========== */
+.section-title {
+  color: #f8fafc;
+  text-shadow: 0 0 8px rgba(59,130,246,0.5);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 6px 14px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  display: inline-block;
+}
+
+/* Hero fade-in */
 .hero .card, header.site {
   opacity: 0;
   transform: translateY(20px);
