@@ -533,4 +533,41 @@ if (toggleBtn) {
       setBusy(false);
     }
   });
-})();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+})();                          
+
+/* ---------- Starfield background ---------- */
+const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+let stars = [];
+let w, h;
+
+function initStars() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+  stars = Array.from({ length: 120 }, () => ({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    z: Math.random() * 0.9 + 0.1,
+    o: Math.random() * 0.6 + 0.4,
+  }));
+}
+function drawStars() {
+  ctx.clearRect(0, 0, w, h);
+  for (const s of stars) {
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.z * 1.8, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${s.o})`;
+    ctx.fill();
+  }
+}
+function animateStars() {
+  for (const s of stars) {
+    s.y += s.z * 0.5;
+    if (s.y > h) s.y = 0;
+  }
+  drawStars();
+  requestAnimationFrame(animateStars);
+}
+window.addEventListener('resize', initStars);
+initStars();
+animateStars();
