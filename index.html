@@ -12,100 +12,99 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<!-- Starfield background -->
+
+<!-- 🌌 星空背景 -->
 <canvas id="starfield"></canvas>
-	
-  <header class="site">
-    <div class="container navwrap">
-      <div class="brand">
-        <span>Wing Chen</span>
-        <span class="sub">ASIAA · HITS · NTU</span>
-      </div>
-      <nav aria-label="Primary">
-        <div class="navlinks">
-          <a href="#about">About</a>
-          <a href="#academic">Academic</a>
-	  <a href="#daad">DAAD Program</a>
-	  <a href="#contact">Contact</a>
-        </div>
-      </nav>
+
+<!-- 🔹 Header -->
+<header class="site">
+  <div class="container navwrap">
+    <div class="brand">
+      <span>Wing Chen</span>
+      <span class="sub">ASIAA · HITS · NTU</span>
     </div>
-  </header>
+    <nav aria-label="Primary">
+      <div class="navlinks">
+        <a href="#about">About</a>
+        <a href="#academic">Academic</a>
+        <a href="#daad">DAAD Program</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </div>
+</header>
 
-  <main>
+<main>
 
-<!-- Hero -->
+<!-- 🪐 Hero -->
 <section class="hero container" id="about">
   <div class="card">
     <div class="hero-grid">
-      <!-- Left: Name + info -->
+
+      <!-- Left column -->
       <div class="hero-text">
-        <h1 class="name">陳文翊</h1>
-      <figure class="portrait">
-        <img src="Figures/frog.jpeg" alt="Portrait of Wing Chen in woods">
-      </figure>
+        <h1 class="name"><span id="typed-name"></span></h1>
+        <figure class="portrait">
+          <img src="Figures/frog.jpeg" alt="Portrait of Wing Chen in woods">
+        </figure>
         <div class="row">
           <a class="btn" href="#academic">Pub</a>
           <a class="btn" href="#daad">DAAD</a>
           <a class="btn open-modal" data-target="modal-cv">CV</a>
-		  <a class="btn" href="https://saligiare-pwd.github.io/travel-portfolio/" target="_blank" rel="noopener">
-    Travel Portfolio →
-  </a>
+          <a class="btn" href="https://saligiare-pwd.github.io/travel-portfolio/"
+             target="_blank" rel="noopener">Travel Portfolio →</a>
         </div>
-	</div>
-      <!-- Right: -->
-<div class="hero-text">
-	    <h1 class="name">Wing Chen</h1>
-
-      <figure class="portrait">
-        <img src="Figures/batch.gif" alt="Batch figure">
-      </figure>
-
-<div class="badges" role="list" aria-label="Research focus">
-  <span class="badge pub" role="button" tabindex="0" aria-expanded="false">
-    Shock Breakout
-    <div class="summary-slide">
-<div class="pdf-scroll">
-<object data="slides/3-slide.pdf" data-src="slides/3-slide.pdf" type="application/pdf"></object>
-    </div>
-	</div>
-  </span>
-
-  <span class="badge pub" role="button" tabindex="0" aria-expanded="false">
-    Rad-Hydro
-    <div class="summary-slide">
-      <p>
-        Radiation hydrodynamics (RHD) couples fluid dynamics and radiation transport.
-        In my work I use <strong>CASTRO</strong> (AMR radiation-hydro), with coding
-        in <strong>C++</strong> for solvers and <strong>Python</strong> for analysis
-        and visualization.
-      </p>
-    </div>
-  </span>
-
-  <span class="badge pub" role="button" tabindex="0" aria-expanded="false">
-    Multi-D
-    <div class="summary-slide">
-      <figure>
-        <img src="Figures/multidimensional.png" alt="Multidimensional simulation figure">
-        <figcaption>Figure: Example 2D RHD simulation highlighting SBO instabilities just before breakout.</figcaption>
-      </figure>
-    </div>
-  </span>
-
-  <span class="badge pub" role="button" tabindex="0" aria-expanded="false">
-    CSM
-    <div class="summary-slide">
-      <figure>
-        <img src="Figures/CSM.png" alt="Circumstellar medium profile figure">
-        <figcaption>Figure: Schematic plot of radiation precursor and the general shock structures of SN breakout.</figcaption>
-      </figure>
-    </div>
-  </span>
-</div>
-
       </div>
 
+      <!-- Right column -->
+      <div class="hero-text">
+        <figure class="batch-figure">
+          <img src="Figures/batch.gif" alt="Batch figure">
+        </figure>
+
+        <div class="badges" role="list" aria-label="Research focus">
+          <span class="badge pub" role="button" tabindex="0" aria-expanded="false">
+            Shock Breakout
+            <div class="summary-slide">
+              <div class="pdf-scroll">
+                <object data="slides/3-slide.pdf" data-src="slides/3-slide.pdf" type="application/pdf"></object>
+              </div>
+            </div>
+          </span>
+
+          <span class="badge pub" role="button" tabindex="0" aria-expanded="false">
+            Rad-Hydro
+            <div class="summary-slide">
+              <p>
+                Radiation hydrodynamics (RHD) couples fluid dynamics and radiation transport.
+                In my work I use <strong>CASTRO</strong> (AMR radiation-hydro), with coding
+                in <strong>C++</strong> for solvers and <strong>Python</strong> for analysis
+                and visualization.
+              </p>
+            </div>
+          </span>
+
+          <span class="badge pub" role="button" tabindex="0" aria-expanded="false">
+            Multi-D
+            <div class="summary-slide">
+              <figure>
+                <img src="Figures/multidimensional.png" alt="Multidimensional simulation figure">
+                <figcaption>Figure: Example 2D RHD simulation highlighting SBO instabilities just before breakout.</figcaption>
+              </figure>
+            </div>
+          </span>
+
+          <span class="badge pub" role="button" tabindex="0" aria-expanded="false">
+            CSM
+            <div class="summary-slide">
+              <figure>
+                <img src="Figures/CSM.png" alt="Circumstellar medium profile figure">
+                <figcaption>Figure: Schematic plot of radiation precursor and the general shock structures of SN breakout.</figcaption>
+              </figure>
+            </div>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
