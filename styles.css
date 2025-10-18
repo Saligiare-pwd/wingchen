@@ -610,3 +610,68 @@ header.site { animation-delay: 0.3s; }
   background: #ffffff;
   border-color: #cbd5e1;
 }
+
+/* ======= Intro Screen ======= */
+#intro-screen {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #1b2735 0%, #000 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow: hidden;
+  cursor: pointer;
+  animation: introFadeIn 1.2s ease-out forwards;
+}
+
+.intro-content { text-align: center; color: #f8fafc; }
+
+.intro-title {
+  font-size: clamp(32px, 6vw, 64px);
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #e0e7ff;
+  text-shadow: 0 0 12px rgba(99,102,241,0.9);
+  opacity: 0;
+  animation: titleAppear 1.8s ease forwards 0.8s;
+}
+
+.intro-hint {
+  font-size: 1rem;
+  color: #94a3b8;
+  opacity: 0;
+  animation: hintFade 2s ease forwards 2.2s;
+}
+
+@keyframes introFadeIn {
+  from { opacity: 0; transform: scale(1.05); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes titleAppear {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes hintFade {
+  from { opacity: 0; }
+  to   { opacity: 0.9; }
+}
+
+/* 爆炸光閃 */
+.explosion {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 2px; height: 2px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, transparent 70%);
+  transform: translate(-50%, -50%) scale(0);
+  animation: explode 1.2s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes explode {
+  0%   { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+  70%  { transform: translate(-50%, -50%) scale(60); opacity: 0.9; }
+  100% { transform: translate(-50%, -50%) scale(90); opacity: 0; }
+}
