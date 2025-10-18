@@ -603,3 +603,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   typeZh();
 });
+
+/* ---------- Intro Screen logic ---------- */
+document.addEventListener("DOMContentLoaded", () => {
+  const intro = document.getElementById("intro-screen");
+
+  // 點擊 anywhere → 爆炸 + 淡出
+  const exitIntro = () => {
+    // 建立爆炸光
+    const boom = document.createElement("div");
+    boom.className = "explosion";
+    intro.appendChild(boom);
+
+    // 播放動畫後移除 intro
+    setTimeout(() => {
+      intro.style.transition = "opacity 1s ease";
+      intro.style.opacity = "0";
+      setTimeout(() => intro.remove(), 1000);
+    }, 700);
+  };
+
+  intro.addEventListener("click", exitIntro);
+  // 自動 5 秒後也進入主畫面（備援）
+  setTimeout(() => { if (document.body.contains(intro)) exitIntro(); }, 5000);
+});
