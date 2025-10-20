@@ -31,7 +31,6 @@ body {
     radial-gradient(1200px 800px at 10% 0%, #0ea5e90f, transparent 50%),
     radial-gradient(1200px 800px at 90% 10%, #6366f11a, transparent 60%),
     #f3f4f6;
-  overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -44,18 +43,38 @@ header.site {
   backdrop-filter: saturate(140%) blur(8px);
   background: color-mix(in srgb, #ffffff 70%, transparent);
   border-bottom: 1px solid #e5e7eb;
-  opacity: 0; transform: translateY(20px);
-  animation: fadeSlideIn 1.4s ease forwards 0.3s;
 }
-.navwrap { display: flex; align-items: center; justify-content: space-between; padding: var(--space-3) 0; flex-wrap: wrap; gap: .5rem; }
-.brand { display: flex; flex-direction: column; align-items: center; font-weight: 700; font-size: 1.25rem; }
-.brand .sub { font-weight: 400; color: var(--muted); font-size: .9rem; opacity: .7; }
-.navlinks { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; }
-nav a {
-  text-decoration: none; color: #111827;
-  padding: .4rem .8rem; border-radius: 10px;
-}
+.navwrap { display: flex; align-items: center; justify-content: space-between; padding: var(--space-3) 0 }
+.brand { display: flex; align-items: baseline; gap: var(--space-2); font-weight: 700 }
+.brand .sub { font-weight: 500; color: var(--muted); font-size: .95rem }
+nav a { text-decoration: none; color: #111827; padding: var(--space-2) var(--space-3); border-radius: 10px }
 nav a:hover, nav a:focus { background: #eef2ff; outline: none }
+.navlinks { display: flex; gap: var(--space-1); flex-wrap: wrap }
+
+/* Default: desktop view, keep your current flex */
+.container.navwrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap; /* allow wrapping on small screens */
+  gap: 0.5rem;
+}
+
+/* Brand style */
+.brand {
+  font-weight: 700;
+  font-size: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* will center in mobile */
+}
+
+/* Sub text style */
+.brand .sub {
+  font-weight: 400;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
 
 /* ========== Hero ========== */
 .hero { padding: var(--space-6) 0 0 }
@@ -66,103 +85,63 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none }
   padding: var(--space-6);
   display: grid;
   gap: var(--space-3);
-  opacity: 0; transform: translateY(20px);
-  animation: fadeSlideIn 1.4s ease forwards 0.6s;
 }
 
 .hero-grid {
   display: grid;
   gap: var(--space-3);
-  align-items: start;
+  align-items: center;
 }
-@media (min-width: 800px) {
-  .hero-grid { grid-template-columns: 1fr 1fr; }
-}
+@media (min-width: 800px) { .hero-grid { grid-template-columns: 1fr 1.5fr } }
 
-.hero-text {
-  display: grid;
-  grid-template-rows: auto auto auto 1fr;
-  gap: 12px;
-  height: 100%;
-  text-align: center;
-}
-.hero-text > * {
-  max-width: 560px;
-  margin-inline: auto;
-}
+.hero-grid > .grid .batch-figure,
+.hero-grid > .grid .badges { width: 100%; margin: 0 auto; }
 
-/* --- Portrait & Batch GIF unified size --- */
+.hero-text { display: grid; gap: var(--space-3) }
+
+.portrait { display: grid; justify-items: center; margin: 0 }
 .portrait img,
 .batch-figure img {
-  aspect-ratio: 1 / 1;
-  width: 100%;
-  max-width: 560px;
-  height: auto;
-  object-fit: cover;
-  border-radius: 3.78%;
-  border: 2px solid #e5e7eb;
-  box-shadow: 0 6px 12px #00000022;
+  width: 100%; height: clamp(28vh, 35vh, 45vh); object-fit: cover;
+  border-radius: 3.78%; border: 2px solid #e5e7eb; box-shadow: 0 6px 12px #00000022;
 }
 
-/* --- Buttons --- */
-.hero .row {
-  display: flex; justify-content: center;
-  gap: 8px; flex-wrap: wrap;
-  width: min(100%, 560px);
-  margin-inline: auto;
-}
-.hero .btn {
-  display: inline-flex; align-items: center; gap: .5rem;
-  padding: .75rem .9rem;
-  border-radius: 12px; border: 1px solid #e5e7eb; background: #ffffff;
-  font-weight: 700; cursor: pointer;
-  min-width: 5rem; text-align: center;
-}
-.hero .btn:hover { box-shadow: 0 6px 18px #00000012 }
-
-/* ========== Name Typing ========== */
-.name-pair {
-  display: flex; justify-content: center; align-items: baseline;
-  gap: 1.2rem; flex-wrap: wrap;
-}
 .name {
-  font-family: 'Courier New', monospace;
-  font-weight: 700;
-  font-size: clamp(30px, 4.5vw, 44px);
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid rgba(0,0,0,0.6);
-  width: 0;
-  animation: typing 3s steps(40, end) forwards, blink 0.9s step-end infinite;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.1;
+  margin: 2px 0;
+  text-align: center;
 }
-.name-zh { color: #111827; text-shadow: 0 0 6px rgba(79,70,229,0.1); }
-.name-en { color: #1e3a8a; text-shadow: 0 0 6px rgba(79,70,229,0.15); }
-@keyframes typing { from { width: 0 } to { width: 100% } }
-@keyframes blink { 50% { border-color: transparent } }
+.aff { color: var(--muted); margin: 2px 0; text-align: center }
 
 /* ========== Badges ========== */
 .badges {
-  display: flex; flex-wrap: wrap; gap: .4rem;
-  justify-content: center; margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: flex-start;
+  text-align: center;
 }
+
 .badge {
-  background: #f3f4f6;
-  color: #111827;
-  border: 1px solid #d1d5db;
+  padding: .4rem .65rem;
   border-radius: 6px;
-  padding: 6px 12px;
-  transition: background .25s, transform .2s;
-  cursor: pointer;
+  background: #eef2ff;
+  color: #1e293b;
+  border: 1px solid #e5e7eb;
+  text-align: center;
+  font-size: clamp(1rem, 2.8vw, 1.25rem);
 }
-.badge:hover {
-  background: #e0e7ff;
-  transform: translateY(-2px);
-}
+
+/* Toggleable badges */
+.badge.pub { position: relative; cursor: pointer; }
 .badge.pub.open {
   flex: 1 1 100%;
   max-width: 100%;
   align-self: auto;
 }
+
+/* Summary card (hidden by default) */
 .badges .summary-slide {
   display: none;
   width: 100%;
@@ -177,18 +156,21 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none }
 }
 .badge.pub.open .summary-slide { display: block; }
 
-/* --- PDF scrollable area --- */
+/* One-page tall scroll area for PDFs inside badges */
 .summary-slide .pdf-scroll {
-  height: 33vh;
-  max-height: 60vh;
-  overflow: auto;
+  height: 33vh;                    /* one “page” on desktop */
+  max-height: 60vh;                /* safety cap */
+  overflow: auto;                  /* scroll INSIDE this box */
   -webkit-overflow-scrolling: touch;
-  touch-action: pan-y;
-  overscroll-behavior: contain;
+  touch-action: pan-y;             /* allow vertical touch scrolling */
+  overscroll-behavior: contain;    /* prevent background scroll chaining */
   border-radius: 12px;
   background: #fff;
 }
-.summary-slide .pdf-scroll object {
+
+/* PDF viewer fills the scroll box */
+.summary-slide .pdf-scroll object,
+.summary-slide .pdf-scroll iframe {
   display: block;
   width: 100%;
   height: 100%;
@@ -196,13 +178,441 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none }
   border-radius: 12px;
 }
 
-/* ========== Fade-in animations ========== */
+.badges img { max-width: 100%; height: auto; border-radius: 4px }
+.badges .badge.pub[aria-selected="true"] { background: #eef2ff; border-color: #c7d2fe }
+
+/* ========== Sections / Panels / Lists ========== */
+section { padding: 2rem 0 }
+.section-title { font-size: clamp(22px, 3vw, 28px); margin: 1rem 0; line-height: 1.2 }
+.panel {
+  background: var(--panel); border: 1px solid #e5e7eb;
+  border-radius: var(--radius); padding: 1.4rem;
+}
+
+.grid { display: grid; gap: 1rem }
+@media (min-width: 900px) { .grid.two { grid-template-columns: 1.5fr 1.5fr } }
+.item { padding: .9rem; border: 1px solid #eef2ff; border-radius: 12px; background: #fafaff }
+.meta { color: var(--muted); font-size: .92rem }
+
+/* === Hero: make both columns align and balance === */
+
+/* Let the two columns align from the top, and stretch equally */
+.hero-grid {
+  align-items: start;
+}
+
+/* Unify the inner layout of each column */
+.hero-text {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto; /* title (if any), portrait, flexible spacer, actions/badges */
+  gap: 12px;
+  height: 100%;
+}
+
+/* Constrain content width inside each column so they visually match */
+.hero-text > * {
+  max-width: 560px;          /* tune to taste; keeps both sides similar */
+  margin-inline: auto;
+}
+
+/* Portraits: same visual box on both sides */
+.hero .portrait img {
+  aspect-ratio: 1 / 1;       /* consistent square box */
+  width: 100%;
+  max-width: 560px;           /* same as content width cap */
+  height: auto;
+  object-fit: cover;          /* your original look */
+  border-radius: 3.78%;
+  border: 2px solid #e5e7eb;
+  box-shadow: 0 6px 12px #00000022;
+}
+
+/* Left: action buttons block */
+.hero .row {
+  justify-content: center;    /* center under portrait */
+  gap: 8px;
+  flex-wrap: wrap;
+  width: min(100%, 560px);    /* same cap as portrait/badges */
+  margin-inline: auto;
+  text-align: center;
+  align-items: center;
+}
+.hero .row .btn {
+  min-width: 5rem;            /* visually even buttons */
+  text-align: center;
+
+}
+
+/* Optional: make both columns the same height on desktop */
+@media (min-width: 800px) {
+  .hero-grid { grid-template-columns: 1fr 1fr; } /* symmetric */
+  .hero .card { height: 100%; }
+  .hero-text { height: 100%; }
+}
+
+/* Mobile polish: stack neatly and center */
+@media (max-width: 700px) {
+  .hero-text > * { max-width: 520px; }        /* slight shrink on phones */
+  .hero .portrait img { max-width: 520px; }
+  .hero .row, .hero .badges { width: min(100%, 520px); }
+}
+/* On narrow screens: center everything */
+@media (max-width: 700px) {
+  .container.navwrap {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .navlinks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .navlinks a {
+    font-size: 1rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+.summary-slide .pdf-scroll {
+    height: 50dvh;      /* roomier on phones, stable with dynamic viewport */
+    max-height: 70dvh;
+  }
+
+  .hero .row .btn {
+    min-width: 7.5rem;        /* 可調，避免一行太短看起來不居中 */
+    padding: .7rem .9rem;
+    text-align: center;
+    white-space: nowrap;       /* 不要在奇怪位置換行 */
+  }
+  
+}
+
+/* ========== Tabs (DAAD) ========== */
+.daad { display: grid; gap: 1rem }
+.tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem }
+@media (max-width: 900px) { .tabs { grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)) } }
+@media (max-width: 480px) { .tabs { grid-template-columns: 1fr } }
+
+.tabbtn {
+  position: relative; padding: .5rem .75rem; border-radius: 10px;
+  border: 1px solid #e5e7eb; background: #ffffff; cursor: pointer;
+  text-align: center; font-weight: 700; font-size: clamp(1rem, 2.8vw, 1.25rem);
+}
+.tabbtn[aria-selected="true"] { outline: 3px solid var(--ring); background: #eef2ff }
+
+/* ========== Slides ========== */
+/* 讓容器依 active slide 的實際高度自動撐高 */
+.slides { position: relative; min-height: unset; height: auto }
+
+/* 預設頁面疊放（不佔高度） */
+.slide {
+  display: flex; flex-direction: column; align-items: center; gap: 1rem; padding: 1rem;
+  position: absolute; inset: 0;
+  border: 1px solid #e5e7eb; background: #ffffff; border-radius: 12px;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity .25s, transform .25s; pointer-events: none;
+}
+
+/* 啟用中的頁面回到文流、可換行、置中 */
+.slide.active {
+  position: relative; inset: auto; opacity: 1; transform: none; pointer-events: auto;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; padding: 1rem;
+}
+
+/* Slide 內的按鈕：預設 80%，手機 100% */
+.slide .slidebtn {
+  flex: 0 1 80%;
+  max-width: 80%;
+  margin: 0 auto;
+  padding: .9rem 1rem; font-size: 1.05rem; text-align: center;
+  background: #eef2ff; border: 2px solid #e5e7eb; border-radius: 12px;
+  cursor: pointer; transition: background .2s, transform .2s;
+}
+.slidebtn:hover { background: #e0e7ff; transform: translateY(-2px) }
+
+@media (max-width: 480px) {
+  .slide .slidebtn { flex: 1 1 100%; max-width: 100% }
+}
+
+/* Slide 內的圖片保持比例 */
+.slide img {
+  width: 100%; height: auto; object-fit: contain; border-radius: 10px;
+}
+
+/* ========== Contact + Logos ========== */
+#contactForm { display: grid; gap: 1rem }
+#contactForm label { display: block; font-weight: 600; margin-bottom: .25rem; color: var(--ink) }
+#contactForm input,
+#contactForm textarea {
+  display: block; width: 100%; font-size: 1.05rem; padding: .65rem .85rem;
+  border: 1px solid #cbd5e1; border-radius: 10px; margin-top: .25rem;
+}
+#contactForm textarea { resize: vertical; min-height: 7.5rem }
+#contactForm button { justify-self: start; font-size: 1rem; padding: .6rem 1.1rem }
+
+.contact-grid { display: grid; gap: 1rem }
+@media (min-width: 900px) { .contact-grid { grid-template-columns: 2fr 1fr } }
+
+.logos { display: grid; gap: .9rem; align-content: start }
+.logos figure {
+  margin: 0; padding: .75rem; border: 1px solid #e5e7eb; border-radius: 12px;
+  background: #ffffff; display: grid; gap: .4rem; justify-items: center;
+}
+.logos img { max-width: 160px; width: 100%; height: auto }
+.logos figcaption { font-size: .85rem; color: var(--muted) }
+
+.logos a { display: inline-block }
+.logos a:hover img { filter: brightness(0.9); transform: scale(1.02); transition: all .2s ease }
+
+/* ========== Modal ========== */
+.modal {
+  position: fixed; inset: 0; display: none;
+  align-items: center; justify-content: center;
+  padding: 1rem; background: rgba(0,0,0,.4); z-index: 1000;
+}
+.modal[aria-hidden="false"] { display: flex }
+
+.modal-content {
+  background: #fff; border-radius: 16px;
+  width: min(92%, 64rem); max-height: 92vh;
+  display: flex; flex-direction: column; overflow: auto;
+  position: relative; margin: 0; padding: 1.25rem 1.5rem;
+}
+.modal-content h3 { margin: .25rem .25rem .5rem }
+.pdf-controls { margin: .25rem .25rem .5rem }
+.actions { margin-top: .6rem }
+
+.modal-content object[type="application/pdf"] {
+  width: 100%; height: clamp(50svh, 72svh, 88svh);
+  min-height: 50vh; max-height: 85vh;object-fit: contain;
+  border: 2px; border-radius: 16px; display: block;
+}
+
+.modal img {
+  width: 100%; height: auto; max-height: 85vh; object-fit: contain;
+  border-radius: 12px; border: 2px solid #eef2ff; display: block;
+}
+
+/* Close button */
+.modal .close {
+  position: absolute; top: .6rem; right: .75rem;
+  background: #ffffff; border: 1px solid #e5e7eb; border-radius: 10px;
+  padding: .4rem; cursor: pointer; font-weight: 700; line-height: 1;
+}
+
+/* Make sure outer containers don’t clip the shadow/scroll */
+.slides, .panel, section { overflow: visible; }
+
+/* If you previously set min-heights on modal media, neutralize on mobile */
+@media (max-width: 700px) {
+  .modal-content object[type="application/pdf"],
+  .modal img { min-height: unset; }
+}
+
+/* Prevent your global touch handlers from blocking inner scroll (visual hint only) */
+.modal-content { overscroll-behavior: contain; }
+
+/* ========== Utilities ========== */
+.row { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center }
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem; padding: .75rem .75rem;
+  border-radius: 12px; border: 1px solid #e5e7eb; background: #ffffff;
+  font-weight: 700; cursor: pointer; text-align: center;
+}
+.btn:hover { box-shadow: 0 6px 18px #00000012 }
+
+.pdf-controls {
+  display: flex; align-items: center; gap: .6rem; margin: .4rem 0 .75rem;
+}
+.pdf-status { font-weight: 600 }
+.pdf-status .pdf-pages::before { content: " of " }
+
+/* Publication summary toggles */
+.pub { cursor: pointer; position: relative }
+.pub:focus { outline: 3px solid var(--ring) }
+.summary-slide {
+  display: none; margin-top: .6rem; padding: .75rem;
+  border: 1px dashed #c7d2fe; background: #f8fafc; border-radius: 10px
+}
+.pub.open .summary-slide { display: block }
+
+/* 讓 slide 的陰影不會被相鄰元素吃掉 */
+.slides { z-index: 0; transition: box-shadow .2s ease, transform .2s ease; }
+.slides:hover { z-index: 1; }
+
+/* PDF 容器跟著卡片圓角，內容不外溢 */
+.pdf-scroll { border-radius: inherit; overflow: hidden; }
+
+/* 整張 slide 可點（有 data-target 的）→ 顯示手指 */
+.slides[data-target] { cursor: pointer; }
+/* 讓子元素沿用手指，不要又變回 default */
+.slides[data-target] * { cursor: inherit; }
+
+/* 容器層：當前 active slide 可點時，整個 .slides 也顯示手指（支援 :has 的瀏覽器） */
+@supports (selector(:has(*))) {
+  .slides:has(.slide.active[data-target]) { cursor: pointer; }
+}
+
+/* JS 後援會加上 .is-clickable；這裡接手改游標 */
+.slides.is-clickable { cursor: pointer; }
+
+/* 保險：本來就可點的元素也統一手指游標 */
+.item.pub,
+.badge.pub,
+.open-modal,
+.tabbtn,
+.slidebtn { cursor: pointer; }
+
+/* ========== Responsive tweaks ========== */
+/* <= 900px */
+@media (max-width: 900px) {
+  .container { padding: 0 var(--space-4) }
+  .navwrap { gap: .5rem }
+  .hero .card { padding: var(--space-5) }
+  .grid.two { grid-template-columns: 1fr !important }
+  .modal-content { width: min(95%, 56rem); max-height: 92vh }
+}
+
+/* <= 700px */
+@media (max-width: 700px) {
+  .navwrap { flex-direction: column; align-items: stretch; gap: .5rem; padding: .5rem 0 }
+  .navlinks { justify-content: center; gap: .25rem }
+  nav a { padding: .45rem .6rem }
+  .hero .card { padding: 1rem }
+  .portrait img { height: 32vh }
+  .badge { padding: .35rem .55rem }
+  .slide .slidebtn { font-size: 1rem; padding: .85rem .9rem }
+  .modal-content object[type="application/pdf"] { height: clamp(52vh, 65vh, 80vh) }
+}
+
+/* <= 480px */
+@media (max-width: 480px) {
+  .name { font-size: clamp(24px, 7vw, 32px) }
+  .section-title { font-size: clamp(20px, 5.5vw, 26px) }
+  .btn { padding: .7rem .8rem }
+  .slide { padding: .75rem }
+  .modal-content { padding: 1rem; border-radius: 14px }
+  .modal .close { top: .5rem; right: .5rem }
+}
+html.no-scroll, body.no-scroll { overflow: hidden; }
+
+/* ========== Entry Effects ========== */
+body { overflow-x: hidden; }
+/* ========== BACKGROUND STARFIELD ========== */
+#starfield {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: -1;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+}
+
+/* ========== TYPING EFFECT ========== */
+.name {
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  font-size: clamp(32px, 5vw, 46px);
+  color: #e0e7ff;                     /* 柔白藍字 */
+  text-shadow: 0 0 8px rgba(99,102,241,0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid rgba(255,255,255,0.75);
+  width: 0;
+  animation: typing 3.2s steps(40, end) forwards, blink 0.9s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* Section subtitles (affiliation) */
+.hero .aff {
+  color: #c7d2fe;
+}
+
+/* ========== SECTION TITLES ========== */
+.section-title {
+  color: #f8fafc;
+  text-shadow: 0 0 8px rgba(59,130,246,0.5);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 6px 14px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  display: inline-block;
+}
+
+/* Hero fade-in */
+.hero .card, header.site {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSlideIn 1.4s ease forwards;
+}
+header.site { animation-delay: 0.3s; }
+.hero .card { animation-delay: 0.6s; }
+
 @keyframes fadeSlideIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+/* ---------- Name Typing Pair ---------- */
+.name-pair {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
 
-/* ========== Intro Screen ========== */
+.name {
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  font-size: clamp(30px, 4.5vw, 44px);
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid rgba(0,0,0,0.6);
+  width: 0;
+  animation: typing 3s steps(40, end) forwards, blink 0.9s step-end infinite;
+}
+
+/* 中文、英文不同色調 */
+.name-zh { color: #111827; text-shadow: 0 0 6px rgba(79,70,229,0.1); }
+.name-en { color: #1e3a8a; text-shadow: 0 0 6px rgba(79,70,229,0.15); }
+
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes blink { 50% { border-color: transparent } }
+
+/* ---------- Badges (dark text style) ---------- */
+.badges {
+  display: flex; flex-wrap: wrap; gap: .4rem;
+  justify-content: center; margin-top: 10px;
+}
+.badge {
+  background: #f3f4f6;       /* 淺灰底 */
+  color: #111827;            /* 深字 */
+  border: 1px solid #d1d5db; /* 淡灰邊 */
+  border-radius: 6px;
+  padding: 6px 12px;
+  transition: background .25s, transform .2s;
+}
+.badge:hover {
+  background: #e0e7ff;
+  transform: translateY(-2px);
+}
+.badge.pub.open .summary-slide {
+  background: #ffffff;
+  border-color: #cbd5e1;
+}
+
+/* ======= Intro Screen ======= */
 #intro-screen {
   position: fixed;
   inset: 0;
@@ -216,7 +626,9 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none }
   cursor: pointer;
   animation: introFadeIn 1.2s ease-out forwards;
 }
+
 .intro-content { text-align: center; color: #f8fafc; }
+
 .intro-title {
   font-size: clamp(32px, 6vw, 64px);
   font-weight: 700;
@@ -226,12 +638,14 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none }
   opacity: 0;
   animation: titleAppear 1.8s ease forwards 0.8s;
 }
+
 .intro-hint {
   font-size: 1rem;
   color: #94a3b8;
   opacity: 0;
   animation: hintFade 2s ease forwards 2.2s;
 }
+
 @keyframes introFadeIn {
   from { opacity: 0; transform: scale(1.05); }
   to   { opacity: 1; transform: scale(1); }
@@ -244,6 +658,8 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none }
   from { opacity: 0; }
   to   { opacity: 0.9; }
 }
+
+/* 爆炸光閃 */
 .explosion {
   position: absolute;
   top: 50%; left: 50%;
@@ -254,20 +670,9 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none }
   animation: explode 1.2s ease-out forwards;
   pointer-events: none;
 }
+
 @keyframes explode {
   0%   { transform: translate(-50%, -50%) scale(0); opacity: 1; }
   70%  { transform: translate(-50%, -50%) scale(60); opacity: 0.9; }
   100% { transform: translate(-50%, -50%) scale(90); opacity: 0; }
-}
-
-/* ========== Responsive tweaks ========== */
-@media (max-width: 700px) {
-  .hero-text > * { max-width: 520px; }
-  .portrait img, .batch-figure img { max-width: 520px; }
-  .hero .row, .hero .badges { width: min(100%, 520px); }
-  .hero .row .btn {
-    min-width: 7rem;
-    padding: .7rem .9rem;
-    white-space: nowrap;
-  }
 }
