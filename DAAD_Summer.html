@@ -33,13 +33,53 @@
     <p><strong>Project:</strong> Confined-Shell Circumstellar Medium Shock Breakout using CASTRO MGFLD simulations.</p>
   </div>
 
-  <div class="panel">
-    <h3>Program Summary</h3>
-    <object data="slides/project.pdf" type="application/pdf"
-            style="width:100%; height:85vh; border:none; border-radius:12px;">
-      <p>Cannot display PDF. <a href="slides/project.pdf" target="_blank" rel="noopener">Open in new tab</a>.</p>
-    </object>
-  </div>
+  <main class="container">
+  <h2 class="section-title">DAAD Summer Institute Program</h2>
+
+  <!-- === Paste your interactive DAAD section here === -->
+  <section class="container" id="daad" aria-labelledby="daad-head">
+    <h2 class="section-title" id="daad-head">DAAD Summer Institute Program</h2>
+    <div class="panel daad">
+      <div role="tablist" class="tabs">
+        <button class="tabbtn" aria-selected="true" aria-controls="slide-1" id="tab-1">Project</button>
+        <button class="tabbtn" aria-selected="false" aria-controls="slide-2" id="tab-2">Results</button>
+        <button class="tabbtn" aria-selected="false" aria-controls="slide-3" id="tab-3">Future</button>
+      </div>
+
+      <div class="slides">
+        <!-- 你的三個 slide -->
+        <article id="slide-1" class="slide active" data-target="modal-HD">
+          <h3>Project: NSTC-DAAD Summer Institute Programme</h3>
+          <div class="row">
+            <button class="slidebtn open-modal" data-target="modal-project"><strong>1</strong><br>HITS News</button>
+            <button class="slidebtn open-modal" data-target="modal-coffee"><strong>2</strong><br>Coffee Break</button>
+            <button class="slidebtn open-modal" data-target="modal-Heidelberg"><strong>3</strong><br>Heidelberg</button>
+          </div>
+        </article>
+
+        <article id="slide-2" class="slide" data-target="modal-results">
+          <h3>Results: Rad-Hydro Shock Breakout on Supernovae</h3>
+          <div class="row">
+            <button class="slidebtn open-modal" data-target="modal-results1"><strong>BSG</strong><br>SN 1987a</button>
+            <button class="slidebtn open-modal" data-target="modal-results2"><strong>RSG</strong><br>Longer and Larger</button>
+            <button class="slidebtn open-modal" data-target="modal-results3"><strong>CSM</strong><br>Confined-Shell</button>
+            <button class="slidebtn open-modal" data-target="modal-results4"><strong>LCs</strong><br>3D SEDONA</button>
+          </div>
+        </article>
+
+        <article id="slide-3" class="slide" data-target="modal-future">
+          <h3>Future: In-person discussion and Cooperation</h3>
+          <div class="row">
+            <button class="slidebtn open-modal" data-target="modal-future1"><strong>Talk</strong><br>Bonn Uni</button>
+            <button class="slidebtn open-modal" data-target="modal-future2"><strong>Talk</strong><br>München MPA</button>
+            <button class="slidebtn open-modal" data-target="modal-future3"><strong>Talk</strong><br>ZAH</button>
+            <button class="slidebtn open-modal" data-target="modal-future4"><strong>Pres.</strong><br>Final Presentation</button>
+            <button class="slidebtn open-modal" data-target="modal-future5"><strong>Mont.</strong><br>Proposed Study</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
   <!-- ========== All Modals ========== -->
 
