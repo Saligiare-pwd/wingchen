@@ -561,6 +561,11 @@ if (toggleBtn) {
   });
 })();                          
 
+/* =====================================================
+   Wing Chen Portfolio — app.js
+   (Starfield + Intro Transition + Typing)
+===================================================== */
+
 /* ---------- STARFIELD ANIMATION ---------- */
 const canvas = document.getElementById('starfield');
 const ctx = canvas.getContext('2d');
@@ -598,58 +603,73 @@ window.addEventListener('resize', initStars);
 initStars();
 animateStars();
 
-/* ---------- Dual typing for Chinese & English ---------- */
+/* =====================================================
+   INTRO SCREEN & TYPING CONTROL
+===================================================== */
 document.addEventListener("DOMContentLoaded", () => {
-  const zh = "陳文翊";
-  const en = "Wing Chen";
+  const intro = document.getElementById("intro-screen");
   const zhSpan = document.getElementById("typed-zh");
   const enSpan = document.getElementById("typed-en");
-  let i = 0, j = 0;
+  const zhText = "陳文翊";
+  const enText = "Wing Chen";
 
+  // 初始狀態：清空內容
+  zhSpan.textContent = "";
+  enSpan.textContent = "";
+
+  // ---------- Typing animation ----------
   function typeZh() {
-    if (i < zh.length) {
-      zhSpan.textContent += zh.charAt(i);
-      i++;
-      setTimeout(typeZh, 150);
-    } else {
-      zhSpan.style.borderRight = "none";
-      setTimeout(typeEn, 400); // 延遲開始英文
+    let i = 0;
+    function next() {
+      if (i < zhText.length) {
+        zhSpan.textContent += zhText[i++];
+        setTimeout(next, 150);
+      } else {
+        zhSpan.style.borderRight = "none";
+        setTimeout(typeEn, 400);
+      }
     }
+    next();
   }
 
   function typeEn() {
-    if (j < en.length) {
-      enSpan.textContent += en.charAt(j);
-      j++;
-      setTimeout(typeEn, 90);
-    } else {
-      enSpan.style.borderRight = "none";
+    let j = 0;
+    function next() {
+      if (j < enText.length) {
+        enSpan.textContent += enText[j++];
+        setTimeout(next, 90);
+      } else {
+        enSpan.style.borderRight = "none";
+      }
     }
+    next();
   }
 
-  typeZh();
-});
-
-/* ---------- Intro Screen logic ---------- */
-document.addEventListener("DOMContentLoaded", () => {
-  const intro = document.getElementById("intro-screen");
-
-  // 點擊 anywhere → 爆炸 + 淡出
+  // ---------- Intro fade-out + explosion ----------
   const exitIntro = () => {
+    // 防止重複觸發
+    if (!document.body.contains(intro)) return;
+
     // 建立爆炸光
     const boom = document.createElement("div");
     boom.className = "explosion";
     intro.appendChild(boom);
 
-    // 播放動畫後移除 intro
+    // 延遲後淡出 intro
     setTimeout(() => {
       intro.style.transition = "opacity 1s ease";
       intro.style.opacity = "0";
-      setTimeout(() => intro.remove(), 1000);
+      setTimeout(() => {
+        intro.remove();
+        // 🚀 淡出後開始打字動畫
+        typeZh();
+      }, 1000);
     }, 700);
   };
 
+  // 點擊 anywhere → 啟動動畫
   intro.addEventListener("click", exitIntro);
-  // 自動 5 秒後也進入主畫面（備援）
+
+  // 備援：5 秒後自動播放（防止卡住）
   setTimeout(() => { if (document.body.contains(intro)) exitIntro(); }, 5000);
 });
