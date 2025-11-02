@@ -304,6 +304,30 @@ section { padding: 2rem 0 }
 }
 .tabbtn[aria-selected="true"] { outline: 3px solid var(--ring); background: #eef2ff }
 
+/* Project Application outer tabs */
+.project .tabs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: .75rem;
+  margin-bottom: 1rem;
+}
+.project .tabbtn {
+  padding: .75rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  font-weight: 700;
+  font-size: clamp(1rem, 2.8vw, 1.25rem);
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+.project .tabbtn[aria-selected="true"] {
+  background: #eef2ff;
+  outline: 3px solid var(--ring);
+}
+.project .tabbtn:hover { transform: translateY(-2px); }
+
+
 /* ========== Slides ========== */
 /* 讓容器依 active slide 的實際高度自動撐高 */
 .slides { position: relative; min-height: unset; height: auto }
