@@ -283,35 +283,84 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
 }
 
 /* =====================================================
-   Modals
+   MODAL RESTORE — full-screen overlay + clean layout
 ===================================================== */
 .modal {
-  position: fixed; inset: 0; display: none;
-  align-items: center; justify-content: center;
-  padding: 1rem; background: rgba(0,0,0,.4); z-index: 1000;
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);     /* ← 黑色半透明背景 */
+  backdrop-filter: blur(4px);          /* ← 模糊背景，營造浮出效果 */
+  z-index: 1000;
+  padding: 1.5rem;
+  overflow-y: auto;
 }
-.modal[aria-hidden="false"] { display: flex; }
-.modal-content {
-  background: #fff; border-radius: 16px;
-  width: min(92%, 64rem); max-height: 92vh;
-  display: flex; flex-direction: column;
-  overflow: auto; position: relative; padding: 1.5rem 2rem;
-}
-.modal-content object[type="application/pdf"] {
-  width: 100%; height: clamp(65vh,75vh,85vh);
-  border: none; border-radius: 16px; display: block;
-}
-.modal img {
-  width: 100%; height: auto; max-height: 85vh; object-fit: contain;
-  border-radius: 12px; border: 2px solid #eef2ff; display: block;
-}
-.modal .close {
-  position: absolute; top: .6rem; right: .75rem;
-  background: #fff; border: 1px solid #e5e7eb;
-  border-radius: 10px; padding: .4rem;
-  cursor: pointer; font-weight: 700; line-height: 1;
+.modal[aria-hidden="false"] {
+  display: flex;
 }
 
+/* Modal panel */
+.modal-content {
+  background: #ffffff;
+  border-radius: 16px;
+  width: min(90%, 64rem);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;                    /* clip internal overflow */
+  position: relative;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  animation: modalFade 0.4s ease;
+}
+
+/* Title / buttons spacing */
+.modal-content h3 {
+  margin: 0 0 0.8rem 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-align: center;
+}
+.actions {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* PDF or image inside */
+.modal-content object[type="application/pdf"],
+.modal-content img {
+  width: 100%;
+  height: 70vh;                      /* ← 原本太扁，這裡調整成適中高度 */
+  object-fit: contain;
+  border-radius: 12px;
+  border: none;
+}
+
+/* Close button */
+.modal .close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.8rem;
+  font-size: 1.5rem;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 0.25rem 0.55rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.modal .close:hover {
+  background: #f3f4f6;
+}
+
+/* Simple fade-in animation */
+@keyframes modalFade {
+  from { opacity: 0; transform: scale(0.98); }
+  to   { opacity: 1; transform: scale(1); }
+}
 /* =====================================================
    Contact
 ===================================================== */
@@ -360,6 +409,8 @@ footer .container {
   border-radius: 10px;
   background: rgba(255,255,255,0.08);
   display: inline-block;
+   text-align: center;
+   object-align: center;
 }
 /* Optional: semi-glass section background */
 section.container {
