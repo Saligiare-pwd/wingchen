@@ -152,7 +152,6 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
 /* =====================================================
    Academic Section — 2-column layout (Hero Grid style)
 ===================================================== */
-
 #academic .panel {
   background: var(--panel);
   border: 1px solid #e5e7eb;
@@ -161,265 +160,143 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   display: grid;
   gap: var(--space-3);
 }
-
-#academic .hero-grid {
-  display: grid;
-  gap: var(--space-3);
-  align-items: start;
-}
-
-@media (min-width: 800px) {
-  #academic .hero-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-#academic .hero-text {
-  display: grid;
-  gap: var(--space-4);
-}
-
-#academic .hero-text h3 {
-  text-align: center;
-  font-size: 1.4rem;
-  color: #1e3a8a;
-  text-shadow: 0 0 6px rgba(79,70,229,0.15);
-  margin-bottom: .5rem;
-}
-
+#academic .grid.two { display: grid; gap: 1.5rem; }
+@media (min-width: 900px){#academic .grid.two{grid-template-columns:1fr 1fr;}}
 #academic .item.pub {
-  position: relative;
-  cursor: pointer;
-  border: 1px solid #d1d5db;
-  border-radius: 10px;
-  background: #f9fafb;
-  padding: 1rem 1.25rem;
-  transition: background .25s, box-shadow .25s, transform .25s;
+  cursor:pointer;background:#f9fafb;border:1px solid #d1d5db;
+  border-radius:10px;padding:1rem 1.25rem;
+  transition:background .25s,box-shadow .25s,transform .25s;
 }
+#academic .item.pub:hover{background:#eef2ff;box-shadow:0 4px 12px rgba(0,0,0,0.08);transform:translateY(-3px);}
+#academic .summary-slide{
+  display:none;margin-top:.8rem;padding:1rem 1.25rem;background:#f8fafc;
+  border:1px solid #c7d2fe;border-radius:10px;
+  box-shadow:0 3px 10px rgba(0,0,0,0.06);text-align:left;
+}
+#academic .item.pub.open .summary-slide{display:block;}
 
-#academic .item.pub:hover {
-  background: #eef2ff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transform: translateY(-3px);
-}
-
-#academic .item.pub.open {
-  background: #ffffff;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-}
-
-#academic .summary-slide {
-  display: none;
-  margin-top: 0.8rem;
-  padding: 1rem 1.25rem;
-  background: #f8fafc;
-  border: 1px solid #c7d2fe;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
-  text-align: left;
-}
-#academic .item.pub.open .summary-slide { display: block; }
 /* =====================================================
    DAAD Section (Project Application buttons)
 ===================================================== */
-
 #daad {
   text-align: center;
   margin-top: 3rem;
   margin-bottom: 4rem;
   animation: fadeSlideIn 1.2s ease forwards;
 }
-
 #daad .panel {
   background: var(--panel);
   border: 1px solid #e5e7eb;
   border-radius: var(--radius);
   padding: 2.5rem 1.5rem;
   box-shadow: 0 6px 18px rgba(0,0,0,0.05);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.25rem;
 }
-
-/* 段落文字 */
 #daad .panel p {
-  margin: 0;
-  color: #374151;
-  font-size: 1.05rem;
+  margin: 0; color: #374151; font-size: 1.05rem;
 }
-
-/* 按鈕列 */
 #daad .panel .row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-top: 1.25rem;
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 1.5rem; margin-top: 1.25rem;
 }
-
-/* 按鈕樣式 */
 #daad .panel .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 15rem;
-  padding: 1rem 1.25rem;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  text-decoration: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 15rem; padding: 1rem 1.25rem;
+  font-size: 1.1rem; font-weight: 700; color: white;
+  border: none; border-radius: 12px; text-decoration: none;
   transition: transform .25s ease, box-shadow .25s ease;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
-
-/* Hover 效果：浮起並加光暈 */
 #daad .panel .btn:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 20px rgba(79,70,229,0.25);
 }
 
 /* =====================================================
-   MODAL RESTORE — full-screen overlay + clean layout
+   MODAL — overlay and content layout
 ===================================================== */
 .modal {
-  position: fixed;
-  inset: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.5);     /* ← 黑色半透明背景 */
-  backdrop-filter: blur(4px);          /* ← 模糊背景，營造浮出效果 */
-  z-index: 1000;
-  padding: 1.5rem;
-  overflow-y: auto;
+  position: fixed; inset: 0;
+  display: none; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+  z-index: 1000; padding: 1.5rem; overflow-y: auto;
 }
-.modal[aria-hidden="false"] {
-  display: flex;
-}
-
-/* Modal panel */
+.modal[aria-hidden="false"]{display:flex;}
 .modal-content {
-  background: #ffffff;
-  border-radius: 16px;
-  width: min(90%, 64rem);
-  max-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;                    /* clip internal overflow */
-  position: relative;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-  animation: modalFade 0.4s ease;
+  background:#fff;border-radius:16px;
+  width:min(90%,64rem);max-height:90vh;
+  display:flex;flex-direction:column;overflow:hidden;
+  position:relative;box-shadow:0 12px 30px rgba(0,0,0,0.3);
+  animation:modalFade .4s ease;
 }
-
-/* Title / buttons spacing */
 .modal-content h3 {
-  margin: 0 0 0.8rem 0;
-  font-size: 1.35rem;
-  font-weight: 700;
-  text-align: center;
+  margin:0 0 .8rem;font-size:1.35rem;
+  font-weight:700;text-align:center;
 }
 .actions {
-  margin-top: 0.75rem;
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
+  margin-top:.75rem;display:flex;justify-content:center;gap:1rem;
 }
-
-/* PDF or image inside */
 .modal-content object[type="application/pdf"],
 .modal-content img {
-  width: 100%;
-  height: 70vh;                      /* ← 原本太扁，這裡調整成適中高度 */
-  object-fit: contain;
-  border-radius: 12px;
-  border: none;
+  width:100%;height:75vh;object-fit:contain;
+  border-radius:12px;border:none;
 }
-
-/* Close button */
 .modal .close {
-  position: absolute;
-  top: 0.6rem;
-  right: 0.8rem;
-  font-size: 1.5rem;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
-  padding: 0.25rem 0.55rem;
-  cursor: pointer;
-  transition: background 0.2s;
+  position:absolute;top:.6rem;right:.8rem;
+  font-size:1.5rem;background:#fff;
+  border:1px solid #e5e7eb;border-radius:10px;
+  padding:.25rem .55rem;cursor:pointer;transition:background .2s;
 }
-.modal .close:hover {
-  background: #f3f4f6;
+.modal .close:hover {background:#f3f4f6;}
+@keyframes modalFade {
+  from{opacity:0;transform:scale(.98);}
+  to{opacity:1;transform:scale(1);}
 }
 
-/* Simple fade-in animation */
-@keyframes modalFade {
-  from { opacity: 0; transform: scale(0.98); }
-  to   { opacity: 1; transform: scale(1); }
-}
 /* =====================================================
    Contact
 ===================================================== */
-#contactForm { display: grid; gap: 1rem; text-align: left; }
-#contactForm label { display: block; font-weight: 600; margin-bottom: .25rem; color: var(--ink); }
-#contactForm input, #contactForm textarea {
-  display: block; width: 100%; font-size: 1.05rem; padding: .65rem .85rem;
-  border: 1px solid #cbd5e1; border-radius: 10px; margin-top: .25rem;
+#contactForm { display:grid;gap:1rem;text-align:left; }
+#contactForm label { font-weight:600;margin-bottom:.25rem;color:var(--ink); }
+#contactForm input,#contactForm textarea{
+  width:100%;font-size:1.05rem;padding:.65rem .85rem;
+  border:1px solid #cbd5e1;border-radius:10px;
 }
-#contactForm textarea { resize: vertical; min-height: 7.5rem; }
-#contactForm button { justify-self: start; font-size: 1rem; padding: .6rem 1.1rem; }
-
-.contact-grid { display: grid; gap: 1rem; text-align: center; }
-@media (min-width: 900px){.contact-grid{grid-template-columns:2fr 1fr;}}
-.logos { display: grid; gap: .9rem; align-content: start; }
-.logos figure {
-  margin: 0; padding: .75rem; border: 1px solid #e5e7eb;
-  border-radius: 12px; background: #ffffff;
-  display: grid; gap: .4rem; justify-items: center;
+#contactForm textarea{resize:vertical;min-height:7.5rem;}
+.contact-grid{display:grid;gap:1rem;text-align:center;}
+@media(min-width:900px){.contact-grid{grid-template-columns:2fr 1fr;}}
+.logos{display:grid;gap:.9rem;align-content:start;}
+.logos figure{
+  margin:0;padding:.75rem;border:1px solid #e5e7eb;
+  border-radius:12px;background:#fff;
+  display:grid;gap:.4rem;justify-items:center;
 }
-.logos img { max-width: 160px; width: 100%; height: auto; }
-.logos figcaption { font-size: .85rem; color: var(--muted); }
-.logos a:hover img { filter: brightness(0.9); transform: scale(1.02); transition: all .2s ease; }
+.logos img{max-width:160px;width:100%;height:auto;}
+.logos figcaption{font-size:.85rem;color:var(--muted);}
+.logos a:hover img{filter:brightness(.9);transform:scale(1.02);transition:all .2s ease;}
 
 /* =====================================================
    Footer
 ===================================================== */
-footer {
-  text-align: center;
-  padding: 2rem 0;
-  color: #6b7280;
-  font-size: 0.95rem;
-}
-footer .container {
-  border-top: 1px solid #e5e7eb;
-  padding-top: 1rem;
-}
+footer{text-align:center;padding:2rem 0;color:#6b7280;font-size:.95rem;}
+footer .container{border-top:1px solid #e5e7eb;padding-top:1rem;}
 
-/* ========== SECTION TITLES ========== */
+/* =====================================================
+   Section Titles & Container
+===================================================== */
 .section-title {
-  color: #f8fafc;
-  text-shadow: 0 0 8px rgba(59,130,246,0.5);
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  padding: 6px 14px;
-  border-radius: 10px;
-  background: rgba(255,255,255,0.08);
-  display: inline-block;
-   text-align: center;
-   object-align: center;
+  color:#f8fafc;text-shadow:0 0 8px rgba(59,130,246,.5);
+  font-weight:700;letter-spacing:.5px;
+  padding:6px 14px;border-radius:10px;
+  background:rgba(255,255,255,0.08);
+  display:inline-block;text-align:center;
 }
-/* Optional: semi-glass section background */
 section.container {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(8px) saturate(120%);
-  border-radius: 18px;
-  padding: 2rem 1.5rem;
-  margin: 2rem auto;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(8px) saturate(120%);
+  border-radius:18px;
+  padding:2rem 1.5rem;
+  margin:2rem auto;
+  box-shadow:0 6px 18px rgba(0,0,0,0.12);
 }
 
 /* =====================================================
@@ -429,14 +306,14 @@ section.container {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-#daad, #academic, #contact {
-  opacity: 0;
-  transform: translateY(20px);
+#daad,#academic,#contact {
+  opacity: 0; transform: translateY(20px);
   animation: fadeSlideIn 1.4s ease forwards;
   animation-delay: 0.4s;
 }
 #starfield {
-  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  position: fixed; top: 0; left: 0;
+  width: 100vw; height: 100vh;
   z-index: -1;
   background: radial-gradient(ellipse at bottom,#1b2735 0%,#090a0f 100%);
 }
@@ -444,7 +321,7 @@ section.container {
 /* Intro overlay */
 #intro-screen {
   position: fixed; inset: 0;
-  background: radial-gradient(circle at center, #1b2735 0%, #000 100%);
+  background: radial-gradient(circle at center,#1b2735 0%,#000 100%);
   display: flex; flex-direction: column;
   justify-content: center; align-items: center;
   z-index: 9999; overflow: hidden; cursor: pointer;
@@ -452,17 +329,15 @@ section.container {
 }
 .intro-title {
   font-size: clamp(32px,6vw,64px);
-  font-weight: 700; letter-spacing: 2px;
-  color: #e0e7ff;
-  text-shadow: 0 0 12px rgba(99,102,241,0.9);
-  opacity: 0;
-   justify-content: center; align-items: center;
-  animation: titleAppear 1.8s ease forwards 0.8s;
+  font-weight:700;letter-spacing:2px;color:#e0e7ff;
+  text-shadow:0 0 12px rgba(99,102,241,.9);
+  opacity:0;text-align:center;
+  animation:titleAppear 1.8s ease forwards .8s;
 }
 .intro-hint {
-  font-size: 1rem; color: #94a3b8;
-  opacity: 0; animation: hintFade 2s ease forwards 2.2s;
+  font-size:1rem;color:#94a3b8;opacity:0;
+  animation:hintFade 2s ease forwards 2.2s;
 }
-@keyframes introFadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes titleAppear { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
-@keyframes hintFade { from { opacity: 0; } to { opacity: 0.9; } }
+@keyframes introFadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes titleAppear{from{opacity:0;transform:scale(.8);}to{opacity:1;transform:scale(1);}}
+@keyframes hintFade{from{opacity:0;}to{opacity:.9;}}
