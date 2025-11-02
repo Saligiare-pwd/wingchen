@@ -196,46 +196,95 @@
     </section>
 
 <!-- DAAD Section -->
-    <section class="container" id="daad" aria-labelledby="daad-head">
-      <h2 class="section-title" id="daad-head">DAAD Summer Institute Program</h2>
-      <div class="panel daad">
-        <div role="tablist" class="tabs">
-          <button class="tabbtn" aria-selected="true" aria-controls="slide-1" id="tab-1">Project</button>
-          <button class="tabbtn" aria-selected="false" aria-controls="slide-2" id="tab-2">Results</button>
-          <button class="tabbtn" aria-selected="false" aria-controls="slide-3" id="tab-3">Future</button>
+<!-- ================= Project Application Section ================= -->
+<section class="container" id="project" aria-labelledby="project-head">
+  <h2 class="section-title" id="project-head">Project Application</h2>
+
+  <!-- Top tabs -->
+  <div class="panel project">
+    <div role="tablist" class="tabs">
+      <button class="tabbtn" aria-selected="true"
+              aria-controls="daad-summer"
+              id="tab-summer">DAAD Summer Institute</button>
+      <button class="tabbtn" aria-selected="false"
+              aria-controls="daad-sandwich"
+              id="tab-sandwich">DAAD Sandwich Program</button>
+    </div>
+
+    <!-- =================== Slides container =================== -->
+    <div class="slides">
+      <!-- DAAD Summer Institute -->
+      <article id="daad-summer" class="slide active">
+        <h3>DAAD Summer Institute Program</h3>
+        <div class="panel daad">
+          <div role="tablist" class="tabs inner">
+            <button class="tabbtn" aria-selected="true" aria-controls="slide-1" id="tab-1">Project</button>
+            <button class="tabbtn" aria-selected="false" aria-controls="slide-2" id="tab-2">Results</button>
+            <button class="tabbtn" aria-selected="false" aria-controls="slide-3" id="tab-3">Future</button>
+          </div>
+
+          <div class="slides">
+            <article id="slide-1" class="slide active" data-target="modal-project">
+              <h4>Project: NSTC-DAAD Summer Institute Programme</h4>
+              <p>1. Confined-Shell CSM SBO with CASTRO.</p>
+              <p>2. To HITS PSO, Heidelberg.</p>
+              <p>3. 114/07/02 – 114/09/24.</p>
+            </article>
+
+            <article id="slide-2" class="slide" data-target="modal-results">
+              <h4>Results</h4>
+              <p>1. Contributed 3 talks in HITS, Bonn and MPA.</p>
+              <p>2. Constructed RSG models with Confined-Shell CSM using HD.</p>
+              <p>3. Refined opacity and LCs with MGFLD.</p>
+            </article>
+
+            <article id="slide-3" class="slide" data-target="modal-future">
+              <h4>Future</h4>
+              <p>1. Continue cooperation with PSO.</p>
+              <p>2. Applied DAAD Sandwich Program with Fritz.</p>
+              <p>3. Co-Paper RSGs and CC-CSM SBO.</p>
+            </article>
+          </div>
         </div>
-        <div class="slides">
-          <article id="slide-1" class="slide active" data-target="modal-HD">
-            <h3>Project: NSTC-DAAD Summer Institute Programme</h3>
-	  <div class="row">
-	    <button class="slidebtn open-modal" data-target="modal-project"><strong>1</strong><br>HITS News</button>
-	    <button class="slidebtn open-modal" data-target="modal-coffee"><strong>2</strong><br>Coffee Break</button>
-	    <button class="slidebtn open-modal" data-target="modal-Heidelberg"><strong>3</strong><br>Heidelberg</button>
-	  </div>
-          </article>
-          <article id="slide-2" class="slide" data-target="modal-results"> 
-            <h3>Results: Rad-Hydro Shock Breakout on Supernovae</h3>
-	  <div class="row">
-	    <button class="slidebtn open-modal" data-target="modal-results1"><strong>BSG</strong><br>SN 1987a</button>
-	    <button class="slidebtn open-modal" data-target="modal-results2"><strong>RSG</strong><br>Longer and Larger</button>
-	    <button class="slidebtn open-modal" data-target="modal-results3"><strong>CSM</strong><br>Confined-Shell</button>
-	    <button class="slidebtn open-modal" data-target="modal-results4"><strong>LCs</strong><br>3D SEDONA</button>
-	  </div>
-          </article>
-          <article id="slide-3" class="slide" data-target="modal-future">
-			<h3>Future: In-person discussion and Cooperation</h3>
-	  <div class="row">
-	    <button class="slidebtn open-modal" data-target="modal-future1"><strong>Talk</strong><br>Bonn Uni</button>
-	    <button class="slidebtn open-modal" data-target="modal-future2"><strong>Talk</strong><br>München MPA</button>
-	    <button class="slidebtn open-modal" data-target="modal-future3"><strong>Talk</strong><br>ZAH</button>
-		<button class="slidebtn open-modal" data-target="modal-future4"><strong>Pres.</strong><br>Final Presentation</button>
-		<button class="slidebtn open-modal" data-target="modal-future5"><strong>Mont.</strong><br>Proposed Study</button>
-		  
-	  </div>
-          </article>
+      </article>
+
+      <!-- DAAD Sandwich Program (temporary copy of Summer) -->
+      <article id="daad-sandwich" class="slide">
+        <h3>DAAD Sandwich Program</h3>
+        <div class="panel daad">
+          <div role="tablist" class="tabs inner">
+            <button class="tabbtn" aria-selected="true" aria-controls="slide-1b" id="tab-1b">Project</button>
+            <button class="tabbtn" aria-selected="false" aria-controls="slide-2b" id="tab-2b">Results</button>
+            <button class="tabbtn" aria-selected="false" aria-controls="slide-3b" id="tab-3b">Future</button>
+          </div>
+
+          <div class="slides">
+            <article id="slide-1b" class="slide active" data-target="modal-project">
+              <h4>Project: DAAD Sandwich Program (temporary)</h4>
+              <p>1. Confined-Shell CSM SBO with CASTRO.</p>
+              <p>2. To HITS PSO, Heidelberg.</p>
+              <p>3. 114/07/02 – 114/09/24.</p>
+            </article>
+
+            <article id="slide-2b" class="slide" data-target="modal-results">
+              <h4>Results</h4>
+              <p>1. Contributed 3 talks in HITS, Bonn and MPA.</p>
+              <p>2. Constructed RSG models with Confined-Shell CSM using HD.</p>
+              <p>3. Refined opacity and LCs with MGFLD.</p>
+            </article>
+
+            <article id="slide-3b" class="slide" data-target="modal-future">
+              <h4>Future</h4>
+              <p>1. Continue cooperation with PSO.</p>
+              <p>2. Applied DAAD Sandwich Program with Fritz.</p>
+              <p>3. Co-Paper RSGs and CC-CSM SBO.</p>
+            </article>
+          </div>
         </div>
-      </div>
-    </section>
+      </article>
+    </div>
+  </div>
+</section>
 
     <!-- Modals -->
 <!-- Slide1 Modal -->
