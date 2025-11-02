@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DAAD Summer Institute | Wing Chen Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+<canvas id="starfield"></canvas>
+
+<header class="site">
+  <div class="container navwrap">
+    <div class="brand">
+      <span>Wing Chen</span>
+      <span class="sub">ASIAA · HITS · NTU</span>
+    </div>
+    <nav aria-label="Primary">
+      <div class="navlinks">
+        <a href="index.html">← Back to Portfolio</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <h2 class="section-title">DAAD Summer Institute Program</h2>
+
+  <div class="panel">
+    <p><strong>Duration:</strong> 2025/07/02 – 2025/09/24 (Heidelberg, Germany)</p>
+    <p><strong>Host Institution:</strong> Heidelberg Institute for Theoretical Studies (HITS)</p>
+    <p><strong>Project:</strong> Confined-Shell Circumstellar Medium Shock Breakout using CASTRO MGFLD simulations.</p>
+  </div>
+
+  <div class="panel">
+    <h3>Program Summary</h3>
+    <object data="slides/project.pdf" type="application/pdf"
+            style="width:100%; height:85vh; border:none; border-radius:12px;">
+      <p>Cannot display PDF. <a href="slides/project.pdf" target="_blank" rel="noopener">Open in new tab</a>.</p>
+    </object>
+  </div>
+
+  <!-- ========== All Modals ========== -->
+
+  <!-- Slide1 Modal -->
+  <div id="modal-HD" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content" tabindex="-1">
+      <button class="close" aria-label="Close">×</button>
+      <h3>Heidelberg</h3>
+      <div class="pdf-scroll">
+        <object data="slides/HD.pdf#page=1&zoom=page-width"
+                data-src="slides/HD.pdf"
+                data-page="1"
+                type="application/pdf"></object>
+      </div>
+      <div class="actions">
+        <a class="btn" href="slides/HD.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-project" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content" tabindex="-1">
+      <button class="close" aria-label="Close">×</button>
+      <h3>DAAD Project</h3>
+      <img id="project-image"
+           src="slides/project.png"
+           alt="Project slide illustration"
+           style="width:100%; object-fit:contain; border-radius:12px;">
+      <figcaption>Figure: We are reported on the HITS news, also a strange experience to come along with supervisor.</figcaption>
+      <div class="actions" style="display:flex; justify-content:space-between; gap:10px;">
+        <a class="btn" href="https://www.h-its.org/2025/07/29/humboldt-fellow-25/"
+           target="_blank" rel="noopener">HITS News</a>
+        <a class="btn" id="toggle-image">Show OPS</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-coffee" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content" tabindex="-1">
+      <button class="close" aria-label="Close">×</button>
+      <h3>DAAD Project</h3>
+      <img src="Figures/Coffee.jpeg" alt="Project slide illustration"
+           style="width:100%; object-fit:contain; border-radius:12px;">
+      <figcaption>Figure: Every morning, lunch, afternoon people disucuss their life and researches in the coffee corner.</figcaption>
+      <div class="actions">
+        <a class="btn" href="https://www.h-its.org/2025/07/29/humboldt-fellow-25/"
+           target="_blank" rel="noopener">HITS News</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-Heidelberg" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content" tabindex="-1">
+      <button class="close" aria-label="Close">×</button>
+      <h3>DAAD Project</h3>
+      <img src="Figures/徒子徒孫.jpeg" alt="Project slide illustration"
+           style="width:100%; object-fit:contain; border-radius:12px;">
+      <figcaption>Figure: Me and my supervisor and my supervisor's Ph.D. supervisor in the forest.</figcaption>
+      <div class="actions">
+        <a class="btn" href="https://www.h-its.org/2025/07/29/humboldt-fellow-25/"
+           target="_blank" rel="noopener">HITS News</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results Modals -->
+  <div id="modal-results" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content" tabindex="-1">
+      <button class="close" aria-label="Close">×</button>
+      <h3>HITS Results</h3>
+      <div class="pdf-scroll">
+        <object data="slides/results.pdf#page=1&zoom=page-width"
+                data-src="slides/results.pdf"
+                data-page="1"
+                type="application/pdf"></object>
+      </div>
+      <div class="actions">
+        <a class="btn" href="slides/results.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-results1" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content" tabindex="-1">
+      <button class="close" aria-label="Close">×</button>
+      <h3>HITS Results</h3>
+      <div class="pdf-scroll">
+        <object data="slides/results1.pdf#page=1&zoom=page-width"
+                data-src="slides/results1.pdf"
+                data-page="1"
+                type="application/pdf"></object>
+      </div>
+      <div class="actions">
+        <a class="btn" href="slides/results1.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-results2" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content" tabindex="-1">
+      <button class="close" aria-label="Close">×</button>
+      <h3>HITS Results</h3>
+      <div class="pdf-scroll">
+        <object data="slides/results2.pdf#page=1&zoom=page-width"
+                data-src="slides/results2.pdf"
+                data-page="1"
+                type="application/pdf"></object>
+      </div>
+      <div class="actions">
+        <a class="btn" href="slides/results2.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-results3" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content" tabindex="-1">
+      <button class="close" aria-label="Close">×</button>
+      <h3>HITS Results</h3>
+      <div class="pdf-scroll">
+        <object data="slides/results3.pdf#page=1&zoom=page-width"
+                data-src="slides/results3.pdf"
+                data-page="1"
+                type="application/pdf"></object>
+      </div>
+      <div class="actions">
+        <a class="btn" href="slides/results3.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-results4" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content" tabindex="-1">
+      <button class="close" aria-label="Close">×</button>
+      <h3>HITS Results</h3>
+      <div class="pdf-scroll">
+        <object data="slides/results4.pdf#page=1&zoom=page-width"
+                data-src="slides/results4.pdf"
+                data-page="1"
+                type="application/pdf"></object>
+      </div>
+      <div class="actions">
+        <a class="btn" href="slides/results4.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Future Modals -->
+  <div id="modal-future" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content" tabindex="-1">
+      <button class="close" aria-label="Close">×</button>
+      <h3>DAAD Future</h3>
+      <div class="pdf-scroll">
+        <object data="slides/Report.pdf#page=1&zoom=page-width"
+                data-src="slides/Report.pdf"
+                data-page="1"
+                type="application/pdf"></object>
+      </div>
+      <div class="actions">
+        <a class="btn" href="slides/Report.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-future1" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content" tabindex="-1">
+      <button class="close" aria-label="Close">×</button>
+      <h3>Bonn Prof. Norbert</h3>
+      <div class="pdf-scroll">
+        <object data="Figures/Bonn1.pdf#page=1&zoom=page-width"
+                data-src="Figures/Bonn1.pdf"
+                data-page="1"
+                type="application/pdf"></object>
+      </div>
+      <figcaption>Figure: Contributed Talk in University of Bonn, discussing simulation geometry with Prof. Norbert.</figcaption>
+      <div class="actions">
+        <a class="btn" href="Figures/Bonn1.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-future2" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content" tabindex="-1">
+      <button class="close" aria-label="Close">×</button>
+      <h3>München MPA</h3>
+      <div class="pdf-scroll">
+        <object data="Figures/MPA1.pdf#page=1&zoom=page-width"
+                data-src="Figures/MPA1.pdf"
+                data-page="1"
+                type="application/pdf"></object>
+      </div>
+      <figcaption>Figure: Contributed Talk in MPA with Director Selma de Mink and the NTU-MPA cooperation poster.</figcaption>
+      <div class="actions">
+        <a class="btn" href="Figures/MPA1.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-future3" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content" tabindex="-1">
+      <button class="close" aria-label="Close">×</button>
+      <h3>ZAH</h3>
+      <div class="pdf-scroll">
+        <object data="slides/ZAH.pdf#page=1&zoom=page-width"
+                data-src="slides/ZAH.pdf"
+                data-page="1"
+                type="application/pdf"></object>
+      </div>
+      <figcaption>Figure: Contributed Talk in ZAH with Ralf Klessen, new ZAH director.</figcaption>
+      <div class="actions">
+        <a class="btn" href="slides/ZAH.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-future4" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content" tabindex="-1">
+      <button class="close" aria-label="Close">×</button>
+      <h3>Final Presentation</h3>
+      <div class="pdf-scroll">
+        <object data="slides/Final.pdf#page=1&zoom=page-width"
+                data-src="slides/Final.pdf"
+                data-page="1"
+                type="application/pdf"></object>
+      </div>
+      <figcaption>Figure: Final Presentation at HITS, including piano performance.</figcaption>
+      <div class="actions">
+        <a class="btn" href="slides/Final.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-future5" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content" tabindex="-1">
+      <button class="close" aria-label="Close">×</button>
+      <h3>DAAD Project</h3>
+      <div class="pdf-scroll">
+        <object data="slides/future.pdf#page=1&zoom=page-width"
+                data-src="slides/future.pdf"
+                data-page="1"
+                type="application/pdf"></object>
+      </div>
+      <div class="actions">
+        <a class="btn" href="slides/future.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
