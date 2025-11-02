@@ -66,6 +66,18 @@ nav a {
 }
 nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
 
+/* ========== SECTION TITLES ========== */
+.section-title {
+  color: #f8fafc;
+  text-shadow: 0 0 8px rgba(59,130,246,0.5);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 6px 14px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  display: inline-block;
+}
+
 /* =====================================================
    Hero Section
 ===================================================== */
@@ -388,6 +400,7 @@ footer .container {
   color: #e0e7ff;
   text-shadow: 0 0 12px rgba(99,102,241,0.9);
   opacity: 0;
+   justify-content: center; align-items: center;
   animation: titleAppear 1.8s ease forwards 0.8s;
 }
 .intro-hint {
