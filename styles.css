@@ -150,16 +150,43 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
 .summary-slide .pdf-scroll object{width:100%;height:100%;border:0;border-radius:12px;}
 
 /* =====================================================
-   Academic Section (using .item.pub)
+   Academic Section — 2-column layout (Hero Grid style)
 ===================================================== */
 
-/* 讓整體間距呼吸 */
 #academic .panel {
+  background: var(--panel);
+  border: 1px solid #e5e7eb;
+  border-radius: var(--radius);
+  padding: var(--space-6);
   display: grid;
-  gap: 1.5rem;
+  gap: var(--space-3);
 }
 
-/* === clickable items === */
+#academic .hero-grid {
+  display: grid;
+  gap: var(--space-3);
+  align-items: start;
+}
+
+@media (min-width: 800px) {
+  #academic .hero-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+#academic .hero-text {
+  display: grid;
+  gap: var(--space-4);
+}
+
+#academic .hero-text h3 {
+  text-align: center;
+  font-size: 1.4rem;
+  color: #1e3a8a;
+  text-shadow: 0 0 6px rgba(79,70,229,0.15);
+  margin-bottom: .5rem;
+}
+
 #academic .item.pub {
   position: relative;
   cursor: pointer;
@@ -169,22 +196,18 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   padding: 1rem 1.25rem;
   transition: background .25s, box-shadow .25s, transform .25s;
 }
+
 #academic .item.pub:hover {
   background: #eef2ff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   transform: translateY(-3px);
 }
 
-/* === 展開狀態 === */
 #academic .item.pub.open {
-  flex: 1 1 100%;
-  max-width: 900px;
-  margin: 0 auto;
   background: #ffffff;
   box-shadow: 0 6px 20px rgba(0,0,0,0.08);
 }
 
-/* === summary content (hidden by default) === */
 #academic .summary-slide {
   display: none;
   margin-top: 0.8rem;
@@ -196,20 +219,6 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   text-align: left;
 }
 #academic .item.pub.open .summary-slide { display: block; }
-
-/* === inner links/buttons === */
-#academic .item.pub .btn {
-  background: #eef2ff;
-  border: 1px solid #c7d2fe;
-  color: #1e3a8a;
-  font-weight: 700;
-  transition: all .2s ease;
-}
-#academic .item.pub .btn:hover {
-  background: #e0e7ff;
-  transform: translateY(-2px);
-}
-
 /* =====================================================
    DAAD Section (buttons)
 ===================================================== */
