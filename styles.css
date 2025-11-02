@@ -220,31 +220,70 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
 }
 #academic .item.pub.open .summary-slide { display: block; }
 /* =====================================================
-   DAAD Section (buttons)
+   DAAD Section (Project Application buttons)
 ===================================================== */
-#daad .panel {
+
+#daad {
   text-align: center;
-  padding: 2rem 1.5rem;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+  animation: fadeSlideIn 1.2s ease forwards;
 }
+
+#daad .section-title {
+  margin-bottom: 1.25rem;
+}
+
+#daad .panel {
+  background: var(--panel);
+  border: 1px solid #e5e7eb;
+  border-radius: var(--radius);
+  padding: 2.5rem 1.5rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+/* 段落文字 */
+#daad .panel p {
+  margin: 0;
+  color: #374151;
+  font-size: 1.05rem;
+}
+
+/* 按鈕列 */
 #daad .panel .row {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1.5rem;
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
 }
+
+/* 按鈕樣式 */
 #daad .panel .btn {
-  min-width: 14rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 15rem;
   padding: 1rem 1.25rem;
-  border-radius: 12px;
-  font-weight: 700;
   font-size: 1.1rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  transition: all 0.25s ease;
+  font-weight: 700;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: transform .25s ease, box-shadow .25s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
+
+/* Hover 效果：浮起並加光暈 */
 #daad .panel .btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(79,70,229,0.25);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(79,70,229,0.25);
 }
 
 /* =====================================================
