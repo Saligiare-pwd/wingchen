@@ -196,264 +196,28 @@
     </section>
 
 <!-- DAAD Section -->
-<!-- ================= Project Application ================= -->
-<section class="container" id="project" aria-labelledby="project-head">
-  <h2 class="section-title" id="project-head">Project Application</h2>
-
-  <div class="panel daad">
-    <p style="text-align:center; color:var(--muted)">
-      DAAD-related research collaborations and exchange programs.
-    </p>
-
-    <div class="project-links">
-      <a class="project-btn"
-         href="slides/project.pdf"
+<section class="container" id="daad" aria-labelledby="daad-head">
+  <h2 class="section-title" id="daad-head">Project Application</h2>
+  <div class="panel" style="text-align:center; padding:2rem;">
+    <p>Explore my DAAD research experiences:</p>
+    <div class="row" style="justify-content:center; margin-top:1rem; flex-wrap:wrap; gap:1rem;">
+      <a class="btn"
+         href="DAAD_Summer.html"
          target="_blank"
-         rel="noopener">DAAD Summer Institute</a>
-
-      <a class="project-btn"
-         href="slides/sandwich.pdf"
+         rel="noopener"
+         style="background:linear-gradient(90deg,#6366f1,#22d3ee);color:white;font-weight:700;">
+         DAAD Summer Institute →
+      </a>
+      <a class="btn"
+         href="sandwich.html"
          target="_blank"
-         rel="noopener">DAAD Sandwich Program</a>
+         rel="noopener"
+         style="background:linear-gradient(90deg,#7c3aed,#4f46e5);color:white;font-weight:700;">
+         DAAD Sandwich Program →
+      </a>
     </div>
   </div>
 </section>
-
-    <!-- Modals -->
-<!-- Slide1 Modal -->
-<div id="modal-HD" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="modal-content" tabindex="-1">
-    <button class="close" aria-label="Close">×</button>
-    <h3>Heidelberg</h3>
-    <div class="pdf-scroll">
-    <object data="slides/HD.pdf#page=1&zoom=page-width"
-            data-src="slides/HD.pdf"
-            data-page="1"
-            type="application/pdf"></object>
-    </div>
-<div class="actions">
-      <a class="btn" href="slides/HD.pdf" target="_blank" rel="noopener">Open in New Tab</a>
-    </div>
-  </div>
-</div>
-
-<div id="modal-project" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="modal-content" tabindex="-1">
-    <button class="close" aria-label="Close">×</button>
-    <h3>DAAD Project</h3>
-
-    <img id="project-image"
-         src="slides/project.png"
-         alt="Project slide illustration"
-         style="width:100%; object-fit:contain; border-radius:12px;">
-	<figcaption>Figure: We are reported on the HITS news, also a strange experience to come along with supervisor.</figcaption>
-    <div class="actions" style="display:flex; justify-content:space-between; gap:10px;">
-      <!-- 左邊 -->
-      <a class="btn" href="https://www.h-its.org/2025/07/29/humboldt-fellow-25/" 
-         target="_blank" rel="noopener">HITS News</a>
-      <!-- 右邊 -->
-      <a class="btn" id="toggle-image">Show OPS</a>
-    </div>
-  </div>
-</div>
-<div id="modal-coffee" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="modal-content" tabindex="-1">
-    <button class="close" aria-label="Close">×</button>
-    <h3>DAAD Project</h3>
-    <img src="Figures/Coffee.jpeg" alt="Project slide illustration"
-         style="width:100%; object-fit:contain; border-radius:12px;">
-    <figcaption>Figure: Every morning, lunch, afternoon people disucuss their life and researches in the coffee corner.</figcaption>
-    <div class="actions">
-      <a class="btn" href="https://www.h-its.org/2025/07/29/humboldt-fellow-25/" target="_blank" rel="noopener">HITS News</a>
-    </div>
-  </div>
-</div>
-<div id="modal-Heidelberg" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="modal-content" tabindex="-1">
-    <button class="close" aria-label="Close">×</button>
-    <h3>DAAD Project</h3>
-    <img src="Figures/徒子徒孫.jpeg" alt="Project slide illustration"
-         style="width:100%; object-fit:contain; border-radius:12px;">
-	<figcaption>Figure: Me and my supervisor and my supervisor's Ph.D. supervisor in the forest.</figcaption>
-    <div class="actions">
-      <a class="btn" href="https://www.h-its.org/2025/07/29/humboldt-fellow-25/" target="_blank" rel="noopener">HITS News</a>
-    </div>
-  </div>
-</div>
-
-<!-- Results Modal -->
-<div id="modal-results" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="modal-content" tabindex="-1">
-    <button class="close" aria-label="Close">×</button>
-    <h3>HITS Results</h3>
-    <div class="pdf-scroll">
-    <object data="slides/results.pdf#page=1&zoom=page-width"
-            data-src="slides/results.pdf"
-            data-page="1"
-            type="application/pdf"></object>
-    </div>
-    <div class="actions">
-      <a class="btn" href="slides/results.pdf" target="_blank" rel="noopener">Open in New Tab</a>
-    </div>
-  </div>
-</div>
-<div id="modal-results1" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="modal-content" tabindex="-1">
-    <button class="close" aria-label="Close">×</button>
-    <h3>HITS Results</h3>
-	<div class="pdf-scroll">
-    <object data="slides/results1.pdf#page=1&zoom=page-width"
-            data-src="slides/results1.pdf"
-            data-page="1"
-            type="application/pdf"></object>
-	</div>
-    <div class="actions">
-      <a class="btn" href="slides/results1.pdf" target="_blank" rel="noopener">Open in New Tab</a>
-    </div>
-  </div>
-</div>
-<div id="modal-results2" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="modal-content" tabindex="-1">
-    <button class="close" aria-label="Close">×</button>
-    <h3>HITS Results</h3>
-	<div class="pdf-scroll">
-    <object data="slides/results2.pdf#page=1&zoom=page-width"
-            data-src="slides/results2.pdf"
-            data-page="1"
-            type="application/pdf"></object>
-	</div>
-    <div class="actions">
-      <a class="btn" href="slides/results2.pdf" target="_blank" rel="noopener">Open in New Tab</a>
-    </div>
-  </div>
-</div>
-<div id="modal-results3" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="modal-content" tabindex="-1">
-    <button class="close" aria-label="Close">×</button>
-    <h3>HITS Results</h3>
-	<div class="pdf-scroll">  
-    <object data="slides/results3.pdf#page=1&zoom=page-width"
-            data-src="slides/results3.pdf"
-            data-page="1"
-            type="application/pdf"></object>
-	</div>
-    <div class="actions">
-      <a class="btn" href="slides/results3.pdf" target="_blank" rel="noopener">Open in New Tab</a>
-    </div>
-  </div>
-</div>
-<div id="modal-results4" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="modal-content" tabindex="-1">
-    <button class="close" aria-label="Close">×</button>
-    <h3>HITS Results</h3>
-	<div class="pdf-scroll">
-    <object data="slides/results4.pdf#page=1&zoom=page-width"
-            data-src="slides/results4.pdf"
-            data-page="1"
-            type="application/pdf"></object>
-	</div>
-    <div class="actions">
-      <a class="btn" href="slides/results4.pdf" target="_blank" rel="noopener">Open in New Tab</a>
-    </div>
-  </div>
-</div>
-
-<!-- Future Modal -->
-<div id="modal-future" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="modal-content" tabindex="-1">
-    <button class="close" aria-label="Close">×</button>
-    <h3>DAAD Future</h3>
-	<div class="pdf-scroll">
-    <object data="slides/Report.pdf#page=1&zoom=page-width"
-            data-src="slides/Report.pdf"
-            data-page="1"
-            type="application/pdf"></object>
-	</div>
-    <div class="actions">
-      <a class="btn" href="slides/Report.pdf" target="_blank" rel="noopener">Open in New Tab</a>
-    </div>
-  </div>
-</div>
-<div id="modal-future1" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="modal-content" tabindex="-1">
-    <button class="close" aria-label="Close">×</button>
-    <h3>Bonn Prof. Norbert</h3>
-	<div class="pdf-scroll">
-    <object data="Figures/Bonn1.pdf#page=1&zoom=page-width"
-            data-src="Figures/Bonn1.pdf"
-            data-page="1"
-            type="application/pdf"></object>
-	</div>
-	<figcaption>Figure: Contributed Talk in University of Bonn, discussing the simulation geometry with the supervisor of my supervisor's supervisor, Prof. Norbert.</figcaption>
-    <div class="actions">
-      <a class="btn" href="Figures/Bonn1.pdf" target="_blank" rel="noopener">Open in New Tab</a>
-    </div>
-  </div>
-</div>
-<div id="modal-future2" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="modal-content" tabindex="-1">
-    <button class="close" aria-label="Close">×</button>
-    <h3>München MPA</h3>
-	<div class="pdf-scroll">
-    <object data="Figures/MPA1.pdf#page=1&zoom=page-width"
-            data-src="Figures/MPA1.pdf"
-            data-page="1"
-            type="application/pdf"></object>
-	</div>
-	<figcaption>Figure: Contributed Talk in MPA, with de Mink, Selma E., MPA director and also the poster of NTU-MPA cooperation.</figcaption>
-    <div class="actions">
-      <a class="btn" href="Figures/MPA1.pdf" target="_blank" rel="noopener">Open in New Tab</a>
-    </div>
-  </div>
-</div>
-<div id="modal-future3" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="modal-content" tabindex="-1">
-    <button class="close" aria-label="Close">×</button>
-    <h3>DAAD Project</h3>
-	<div class="pdf-scroll">
-    <object data="slides/ZAH.pdf#page=1&zoom=page-width"
-            data-src="slides/ZAH.pdf"
-            data-page="1"
-            type="application/pdf"></object>
-	</div>
-	<figcaption>Figure: Contributed Talk in ZAH, with Ralf Klessen, new ZAH director.</figcaption>
-    <div class="actions">
-      <a class="btn" href="slides/ZAH.pdf" target="_blank" rel="noopener">Open in New Tab</a>
-    </div>
-  </div>
-</div>
-<div id="modal-future4" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="modal-content" tabindex="-1">
-    <button class="close" aria-label="Close">×</button>
-    <h3>Final Presentation</h3>
-	<div class="pdf-scroll">
-    <object data="slides/Final.pdf#page=1&zoom=page-width"
-            data-src="slides/Final.pdf"
-            data-page="1"
-            type="application/pdf"></object>
-	</div>
-	<figcaption>Figure: Contributed Talk in HITS final presentation, including piano examination.</figcaption>
-    <div class="actions">
-      <a class="btn" href="slides/Final.pdf" target="_blank" rel="noopener">Open in New Tab</a>
-    </div>
-  </div>
-</div>
-<div id="modal-future5" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="modal-content" tabindex="-1">
-    <button class="close" aria-label="Close">×</button>
-    <h3>DAAD Project</h3>
-	<div class="pdf-scroll">
-    <object data="slides/future.pdf#page=1&zoom=page-width"
-            data-src="slides/future.pdf"
-            data-page="1"
-            type="application/pdf"></object>
-	</div>
-    <div class="actions">
-      <a class="btn" href="slides/future.pdf" target="_blank" rel="noopener">Open in New Tab</a>
-    </div>
-  </div>
-</div>
-
 <!-- CV Modal -->
 <div id="modal-cv" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
   <div class="modal-content" tabindex="-1">
