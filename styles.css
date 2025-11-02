@@ -210,6 +210,33 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   transform: translateY(-4px);
   box-shadow: 0 8px 20px rgba(79,70,229,0.25);
 }
+/* ========== DAAD Slides (Tabs) ========== */
+.slides {
+  position: relative;
+  min-height: unset;
+  height: auto;
+}
+
+.slide {
+  display: none;                 /* 🔹 預設隱藏 */
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  border-radius: 12px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .25s, transform .25s;
+}
+
+.slide.active {
+  display: flex;                 /* 🔹 只顯示被選中頁 */
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
 
 /* =====================================================
    MODAL — overlay and content layout
