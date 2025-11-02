@@ -304,28 +304,40 @@ section { padding: 2rem 0 }
 }
 .tabbtn[aria-selected="true"] { outline: 3px solid var(--ring); background: #eef2ff }
 
-/* Project Application outer tabs */
-.project .tabs {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-  gap: .75rem;
-  margin-bottom: 1rem;
+/* ===== Project Application buttons ===== */
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
 }
-.project .tabbtn {
-  padding: .75rem 1rem;
-  border-radius: 10px;
-  border: 1px solid #e5e7eb;
-  background: #ffffff;
+
+.project-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 14rem;
+  padding: 1rem 1.25rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  font-size: clamp(1rem, 2.8vw, 1.25rem);
-  cursor: pointer;
-  transition: background .2s, transform .2s;
-}
-.project .tabbtn[aria-selected="true"] {
+  color: #1e293b;
   background: #eef2ff;
-  outline: 3px solid var(--ring);
+  border: 2px solid #c7d2fe;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all .25s ease;
 }
-.project .tabbtn:hover { transform: translateY(-2px); }
+
+.project-btn:hover {
+  background: #e0e7ff;
+  box-shadow: 0 4px 12px rgba(99,102,241,0.2);
+  transform: translateY(-3px);
+}
+
+@media (max-width: 600px) {
+  .project-btn { min-width: 100%; font-size: 1.05rem; }
+}
 
 
 /* ========== Slides ========== */
