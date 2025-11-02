@@ -42,6 +42,32 @@ if (y) y.textContent = new Date().getFullYear();
   });
 })();
 
+// ---------- Project Application (outer tabs) ----------
+(() => {
+  const outerTabs = Array.from(document.querySelectorAll('#project .tabbtn'));
+  const outerSlides = Array.from(document.querySelectorAll('#project .slide'));
+
+  if (!outerTabs.length) return;
+
+  const activate = (i) => {
+    outerTabs.forEach((t, idx) =>
+      t.setAttribute('aria-selected', idx === i ? 'true' : 'false')
+    );
+    outerSlides.forEach((s, idx) =>
+      s.classList.toggle('active', idx === i)
+    );
+  };
+
+  outerTabs.forEach((t, i) => {
+    t.addEventListener('click', () => activate(i));
+    t.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); activate((i + 1) % outerTabs.length); }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); activate((i - 1 + outerTabs.length) % outerTabs.length); }
+    });
+  });
+})();
+
+
 /* -----------------------------
    Academic: publications toggle
 ----------------------------- */
