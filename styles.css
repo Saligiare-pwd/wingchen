@@ -203,7 +203,7 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
 #academic .item.pub.open .summary-slide{display:block;}
 
 /* =====================================================
-   DAAD Section (Project Application buttons)
+   DAAD Section (Project Application)
 ===================================================== */
 #daad {
   text-align: center;
@@ -211,45 +211,77 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   margin-bottom: 4rem;
   animation: fadeSlideIn 1.2s ease forwards;
 }
+
 #daad .panel {
   background: var(--panel);
   border: 1px solid #e5e7eb;
   border-radius: var(--radius);
   padding: 2.5rem 1.5rem;
   box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
 }
+
+/* 段落文字 */
 #daad .panel p {
-  margin: 0; color: #374151; font-size: 1.05rem;
+  margin: 0;
+  color: #374151;
+  font-size: 1.05rem;
 }
+
+/* 按鈕列 */
 #daad .panel .row {
-  display: flex; flex-wrap: wrap; justify-content: center;
-  gap: 1.5rem; margin-top: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
 }
+
+/* DAAD Section 按鈕樣式 */
 #daad .panel .btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  min-width: 15rem; padding: 1rem 1.25rem;
-  font-size: 1.1rem; font-weight: 700; color: white;
-  border: none; border-radius: 12px; text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 15rem;
+  padding: 1rem 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  text-decoration: none;
   transition: transform .25s ease, box-shadow .25s ease;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
+
 #daad .panel .btn:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 20px rgba(79,70,229,0.25);
 }
-/* ========== DAAD Slides (Tabs) ========== */
+
+/* =====================================================
+   DAAD Slides (Project / Results / Future)
+===================================================== */
+
+/* Slide 區塊容器 */
 .slides {
   position: relative;
   min-height: unset;
   height: auto;
+  margin-top: 1.5rem;
 }
 
+/* 單個 Slide 預設隱藏 */
 .slide {
-  display: none;                 /* 🔹 預設隱藏 */
+  display: none;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
   border: 1px solid #e5e7eb;
   background: #ffffff;
   border-radius: 12px;
@@ -259,51 +291,184 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
 }
 
 .slide.active {
-  display: flex;                 /* 🔹 只顯示被選中頁 */
+  display: flex;
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
 }
 
+/* Slide 標題 */
+.slide h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.35rem;
+  color: #1e3a8a;
+  text-align: center;
+  text-shadow: 0 0 4px rgba(79,70,229,0.15);
+}
+
+/* Slide 按鈕列 */
+.slide .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Slide 按鈕（與 modal 按鈕統一） */
+.slidebtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 1 auto;
+  min-width: 10rem;
+  padding: 0.8rem 1.25rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-align: center;
+  color: white;
+  background: linear-gradient(90deg, #6366f1, #22d3ee);
+  border: none;
+  border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+.slidebtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(79,70,229,0.25);
+}
+
+/* Slide Button 內的 strong 樣式 */
+.slidebtn strong {
+  display: block;
+  font-size: 1.15rem;
+  margin-bottom: 0.2rem;
+}
+
+/* RWD */
+@media (max-width: 600px) {
+  .slidebtn {
+    min-width: 100%;
+    font-size: 1rem;
+    padding: 0.85rem 1rem;
+  }
+}
+
 /* =====================================================
-   MODAL — overlay and content layout
+   MODAL — overlay and content layout (unified)
 ===================================================== */
 .modal {
-  position: fixed; inset: 0;
-  display: none; align-items: center; justify-content: center;
-  background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
-  z-index: 1000; padding: 1.5rem; overflow-y: auto;
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  padding: 1.5rem;
+  overflow-y: auto;
 }
-.modal[aria-hidden="false"]{display:flex;}
+.modal[aria-hidden="false"] { display: flex; }
+
 .modal-content {
-  background:#fff;border-radius:16px;
-  width:min(90%,64rem);max-height:90vh;
-  display:flex;flex-direction:column;overflow:hidden;
-  position:relative;box-shadow:0 12px 30px rgba(0,0,0,0.3);
-  animation:modalFade .4s ease;
+  background: #fff;
+  border-radius: 16px;
+  width: min(90%, 64rem);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+  animation: modalFade 0.4s ease;
+  padding: 1.25rem 1.5rem 1.75rem;
 }
+
+/* Modal 標題 */
 .modal-content h3 {
-  margin:0 0 .8rem;font-size:1.35rem;
-  font-weight:700;text-align:center;
+  margin: 0.5rem 0 1rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  color: #1e3a8a;
 }
-.actions {
-  margin-top:.75rem;display:flex;justify-content:center;gap:1rem;
-}
+
+/* PDF / Image */
 .modal-content object[type="application/pdf"],
 .modal-content img {
-  width:100%;height:75vh;object-fit:contain;
-  border-radius:12px;border:none;
+  width: 100%;
+  height: 72vh;
+  object-fit: contain;
+  border-radius: 12px;
+  border: none;
+  display: block;
+  margin: 0 auto;
 }
+
+/* Caption 對齊與邊距 */
+.modal-content figcaption {
+  font-size: 0.95rem;
+  color: #374151;
+  text-align: center;
+  margin: 0.6rem auto 0;
+  padding: 0 1rem;
+  max-width: 90%;
+  line-height: 1.5;
+}
+
+/* Modal 按鈕區 */
+.actions {
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Modal 按鈕樣式（統一為 DAAD 風格） */
+.modal-content .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 10rem;
+  padding: 0.8rem 1.2rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background: linear-gradient(90deg, #6366f1, #22d3ee);
+}
+
+.modal-content .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(79,70,229,0.25);
+}
+
+/* Close Button */
 .modal .close {
-  position:absolute;top:.6rem;right:.8rem;
-  font-size:1.5rem;background:#fff;
-  border:1px solid #e5e7eb;border-radius:10px;
-  padding:.25rem .55rem;cursor:pointer;transition:background .2s;
+  position: absolute;
+  top: 0.75rem;
+  right: 0.9rem;
+  font-size: 1.5rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 0.25rem 0.55rem;
+  cursor: pointer;
+  transition: background 0.2s;
 }
-.modal .close:hover {background:#f3f4f6;}
+.modal .close:hover { background: #f3f4f6; }
+
 @keyframes modalFade {
-  from{opacity:0;transform:scale(.98);}
-  to{opacity:1;transform:scale(1);}
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 /* =====================================================
