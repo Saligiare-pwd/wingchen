@@ -79,12 +79,22 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
 .hero-grid { display: grid; gap: var(--space-3); align-items: start; }
 @media (min-width: 800px){.hero-grid{grid-template-columns:1fr 1fr;}}
 
-/* Name typing animation */
+/* =====================================================
+   Name Typing Animation — Centered Version
+===================================================== */
 .name-pair {
-  display: flex; justify-content: center; align-items: baseline;
-  gap: 1.2rem; flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;           /* 垂直堆疊 */
+  align-items: center;              /* 水平置中 */
+  justify-content: center;          /* 垂直置中 */
+  text-align: center;
+  width: 100%;
+  margin: 0 auto 1rem auto;
+  gap: 0.5rem;
 }
+
 .name {
+  display: inline-block;
   font-family: 'Courier New', monospace;
   font-weight: 700;
   font-size: clamp(30px, 4.5vw, 44px);
@@ -92,12 +102,29 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   overflow: hidden;
   border-right: 3px solid rgba(255,255,255,0.75);
   width: 0;
+  text-align: center;               /* 文字居中 */
   animation: typing 3s steps(40, end) forwards, blink 0.9s step-end infinite;
+  margin-inline: auto;              /* 確保在 flex/grid 中置中 */
 }
-.name-zh { color: #111827; text-shadow: 0 0 6px rgba(79,70,229,0.1); }
-.name-en { color: #1e3a8a; text-shadow: 0 0 6px rgba(79,70,229,0.15); }
-@keyframes typing { from { width: 0 } to { width: 100% } }
-@keyframes blink { 50% { border-color: transparent } }
+
+.name-zh {
+  color: #f3f4f6;
+  text-shadow: 0 0 8px rgba(79,70,229,0.25);
+}
+
+.name-en {
+  color: #e0f2fe;
+  text-shadow: 0 0 8px rgba(37,99,235,0.35);
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
 
 .portrait img, .batch-figure img {
   width: 100%; max-width: 560px; height: 35vh; object-fit: cover;
@@ -283,7 +310,7 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
    Contact (White Fields + Dark Background)
 ===================================================== */
 #contact {
-  color: var(--ink);
+  color: #f3f4f6;
   background: rgba(255, 255, 255, 0.08);
   border-radius: 18px;
   padding: 2rem 1.5rem;
@@ -308,7 +335,7 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
 #contactForm .meta,
 #contactForm span {
   font-weight: 600;
-  color: #ffffff;
+  color: #f1f5f9;
 }
 
 /* 輸入框與文字框 — 維持白底深字 */
