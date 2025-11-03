@@ -705,7 +705,7 @@ section.container {
   top: 0; left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -1;                 /* ensure it stays below everything */
+  z-index: 0;                 /* ensure it stays below everything */
   pointer-events: none;
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
 }
@@ -723,7 +723,7 @@ section.container {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 9998; /* below explosion */
+  z-index: 10; /* below explosion */
   overflow: hidden;
   cursor: pointer;
   animation: introFadeIn 1.2s ease-out forwards;
@@ -766,7 +766,7 @@ section.container {
   border-radius: 50%;
   background: radial-gradient(circle, #fff 0%, transparent 70%);
   transform: translate(-50%, -50%) scale(0);
-  z-index: 9999; /* above everything else */
+  z-index: 15; /* above everything else */
   animation: explode 1.2s ease-out forwards;
   pointer-events: none;
 }
