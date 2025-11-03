@@ -108,13 +108,13 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
 }
 
 .name-zh {
-  color: #f3f4f6;
-  text-shadow: 0 0 8px rgba(79,70,229,0.25);
+  color: #111827; /* near-black for high contrast */
+  text-shadow: 0 0 4px rgba(79,70,229,0.15); /* subtle violet glow */
 }
 
 .name-en {
-  color: #e0f2fe;
-  text-shadow: 0 0 8px rgba(37,99,235,0.35);
+  color: #1e3a8a; /* deep indigo (visible on light background) */
+  text-shadow: 0 0 5px rgba(37,99,235,0.25);
 }
 
 @keyframes typing {
@@ -310,9 +310,13 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
 .slide .row {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
+  justify-content: center;     /* horizontally centered */
+  gap: 1.25rem;
+  width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;       /* prevents bottom gap */
 }
+
 
 /* Slide 按鈕（與 modal 按鈕統一） */
 .slidebtn {
@@ -632,30 +636,34 @@ section.container {
   animation: fadeSlideIn 1.4s ease forwards;
   animation-delay: 0.4s;
 }
+
 #starfield {
-  position: fixed; top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  z-index: -1;
-  background: radial-gradient(ellipse at bottom,#1b2735 0%,#090a0f 100%);
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;                 /* ensure it stays below everything */
+  pointer-events: none;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
 }
 
 /* =====================================================
    Intro Screen (Landing Overlay)
    — Fullscreen fade-in + centered title & hint
 ===================================================== */
+/* Intro overlay (on top of starfield, below explosion) */
 #intro-screen {
   position: fixed;
   inset: 0;
+  background: radial-gradient(circle at center, #1b2735 0%, #000 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle at center, #1b2735 0%, #000 100%);
-  z-index: 9999;
+  z-index: 9998; /* below explosion */
   overflow: hidden;
   cursor: pointer;
   animation: introFadeIn 1.2s ease-out forwards;
-  text-align: center;
 }
 
 /* Central content wrapper */
@@ -687,16 +695,15 @@ section.container {
   animation: hintFade 2s ease forwards 2.2s;
 }
 
-/* Explosion flash (optional visual effect) */
+/* Explosion overlay (always topmost) */
 .explosion {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 2px;
-  height: 2px;
+  position: fixed;
+  top: 50%; left: 50%;
+  width: 2px; height: 2px;
   border-radius: 50%;
   background: radial-gradient(circle, #fff 0%, transparent 70%);
   transform: translate(-50%, -50%) scale(0);
+  z-index: 9999; /* above everything else */
   animation: explode 1.2s ease-out forwards;
   pointer-events: none;
 }
@@ -715,7 +722,18 @@ section.container {
   to   { opacity: 0.9; }
 }
 @keyframes explode {
-  0%   { transform: translate(-50%, -50%) scale(0); opacity: 1; }
-  70%  { transform: translate(-50%, -50%) scale(60); opacity: 0.9; }
-  100% { transform: translate(-50%, -50%) scale(90); opacity: 0; }
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+    box-shadow: 0 0 20px 10px rgba(255,255,255,0.6);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(40);
+    opacity: 0.9;
+    box-shadow: 0 0 60px 30px rgba(255,255,255,0.8);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(90);
+    opacity: 0;
+  }
 }
