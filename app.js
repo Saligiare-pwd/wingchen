@@ -562,49 +562,89 @@ if (toggleBtn) {
 })();                          
 
 /* =====================================================
-   Wing Chen Portfolio — app.js
-   (Starfield + Intro Transition + Typing)
+   Wing Chen Portfolio — app.js (Clean Integrated)
 ===================================================== */
 
-/* ---------- STARFIELD ANIMATION ---------- */
+/* ---------- STARFIELD EXPLOSION ANIMATION ---------- */
 const canvas = document.getElementById('starfield');
 const ctx = canvas.getContext('2d');
 let stars = [];
-let w, h;
+let w, h, centerX, centerY;
+let exploding = false; // 是否處於爆炸階段
 
 function initStars() {
   w = canvas.width = window.innerWidth;
   h = canvas.height = window.innerHeight;
-  stars = Array.from({ length: 150 }, () => ({
-    x: Math.random() * w,
-    y: Math.random() * h,
-    z: Math.random() * 0.9 + 0.1,
-    o: Math.random() * 0.6 + 0.4
-  }));
+  centerX = w / 2;
+  centerY = h / 2;
+
+  stars = Array.from({ length: 180 }, () => {
+    const angle = Math.random() * Math.PI * 2;
+    const speed = Math.random() * 4 + 1; // 初始速度
+    return {
+      x: centerX,
+      y: centerY,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      size: Math.random() * 1.8 + 0.5,
+      opacity: Math.random() * 0.7 + 0.3,
+      color: `hsl(${Math.random() * 60 + 200}, 100%, 85%)`,
+    };
+  });
 }
+
 function drawStars() {
   ctx.clearRect(0, 0, w, h);
   for (const s of stars) {
     ctx.beginPath();
-    ctx.arc(s.x, s.y, s.z * 1.8, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(255,255,255,${s.o})`;
+    ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${s.opacity})`;
+    ctx.shadowColor = s.color;
+    ctx.shadowBlur = 15;
     ctx.fill();
   }
 }
+
 function animateStars() {
   for (const s of stars) {
-    s.y += s.z * 0.5;
-    if (s.y > h) s.y = 0;
+    if (exploding) {
+      // 向外爆炸運動
+      s.x += s.vx;
+      s.y += s.vy;
+      s.opacity *= 0.98; // 漸漸淡出
+    } else {
+      // 閃爍靜態背景（等待爆炸）
+      s.opacity = 0.4 + Math.random() * 0.4;
+    }
+
+    // 若超出畫面就重置
+    if (s.x < 0 || s.x > w || s.y < 0 || s.y > h) {
+      s.x = centerX;
+      s.y = centerY;
+      s.opacity = Math.random() * 0.6 + 0.4;
+    }
   }
   drawStars();
   requestAnimationFrame(animateStars);
 }
+
 window.addEventListener('resize', initStars);
 initStars();
 animateStars();
 
+/* Trigger explosion when clicking intro */
+document.getElementById("intro-screen").addEventListener("click", () => {
+  exploding = true;
+
+  // 2 秒後回歸靜態狀態
+  setTimeout(() => {
+    exploding = false;
+    initStars();
+  }, 2000);
+});
+
 /* =====================================================
-   INTRO SCREEN & TYPING CONTROL
+   INTRO SCREEN + TYPING CONTROL
 ===================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const intro = document.getElementById("intro-screen");
@@ -613,11 +653,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const zhText = "陳文翊";
   const enText = "Wing Chen";
 
-  // 初始狀態：清空內容
+  // 初始化：清空
   zhSpan.textContent = "";
   enSpan.textContent = "";
 
-  // ---------- Typing animation ----------
+  /* ---- Typing Animations ---- */
   function typeZh() {
     let i = 0;
     function next() {
@@ -645,17 +685,16 @@ document.addEventListener("DOMContentLoaded", () => {
     next();
   }
 
-  // ---------- Intro fade-out + explosion ----------
+  /* ---- Intro exit logic ---- */
   const exitIntro = () => {
-    // 防止重複觸發
-    if (!document.body.contains(intro)) return;
+    if (!document.body.contains(intro)) return; // 避免重複執行
 
-    // 建立爆炸光
+    // 建立爆炸特效
     const boom = document.createElement("div");
     boom.className = "explosion";
     intro.appendChild(boom);
 
-    // 延遲後淡出 intro
+    // 淡出
     setTimeout(() => {
       intro.style.transition = "opacity 1s ease";
       intro.style.opacity = "0";
@@ -667,9 +706,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 700);
   };
 
-  // 點擊 anywhere → 啟動動畫
   intro.addEventListener("click", exitIntro);
-
-  // 備援：5 秒後自動播放（防止卡住）
-  setTimeout(() => { if (document.body.contains(intro)) exitIntro(); }, 5000);
+  // 備援：5 秒自動開始（避免卡住）
+  setTimeout(() => {
+    if (document.body.contains(intro)) exitIntro();
+  }, 5000);
 });
