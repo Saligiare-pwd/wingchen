@@ -563,14 +563,18 @@ if (toggleBtn) {
 
 /* =====================================================
    Wing Chen Portfolio — app.js (Clean Integrated)
+   ASIAA · HITS · NTU  |  2025
 ===================================================== */
 
-/* ---------- STARFIELD EXPLOSION ANIMATION ---------- */
-const canvas = document.getElementById('starfield');
-const ctx = canvas.getContext('2d');
+/* =====================================================
+   🌌 STARFIELD BACKGROUND + EXPLOSION EFFECT
+===================================================== */
+const canvas = document.getElementById("starfield");
+const ctx = canvas.getContext("2d");
+
 let stars = [];
 let w, h, centerX, centerY;
-let exploding = false; // 是否處於爆炸階段
+let exploding = false; // explosion trigger
 
 function initStars() {
   w = canvas.width = window.innerWidth;
@@ -580,7 +584,7 @@ function initStars() {
 
   stars = Array.from({ length: 180 }, () => {
     const angle = Math.random() * Math.PI * 2;
-    const speed = Math.random() * 4 + 1; // 初始速度
+    const speed = Math.random() * 4 + 1;
     return {
       x: centerX,
       y: centerY,
@@ -608,16 +612,16 @@ function drawStars() {
 function animateStars() {
   for (const s of stars) {
     if (exploding) {
-      // 向外爆炸運動
+      // outward explosion
       s.x += s.vx;
       s.y += s.vy;
-      s.opacity *= 0.98; // 漸漸淡出
+      s.opacity *= 0.98;
     } else {
-      // 閃爍靜態背景（等待爆炸）
+      // idle twinkling
       s.opacity = 0.4 + Math.random() * 0.4;
     }
 
-    // 若超出畫面就重置
+    // reset if star leaves screen
     if (s.x < 0 || s.x > w || s.y < 0 || s.y > h) {
       s.x = centerX;
       s.y = centerY;
@@ -628,15 +632,16 @@ function animateStars() {
   requestAnimationFrame(animateStars);
 }
 
-window.addEventListener('resize', initStars);
+window.addEventListener("resize", initStars);
 initStars();
 animateStars();
 
-/* Trigger explosion when clicking intro */
+/* =====================================================
+   💥 EXPLOSION TRIGGER (Intro Click)
+===================================================== */
 document.getElementById("intro-screen").addEventListener("click", () => {
   exploding = true;
-
-  // 2 秒後回歸靜態狀態
+  // revert to twinkling after 2s
   setTimeout(() => {
     exploding = false;
     initStars();
@@ -644,7 +649,7 @@ document.getElementById("intro-screen").addEventListener("click", () => {
 });
 
 /* =====================================================
-   INTRO SCREEN + TYPING CONTROL
+   ✍️ INTRO SCREEN + CONTROLLED TYPING SEQUENCE
 ===================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const intro = document.getElementById("intro-screen");
@@ -653,7 +658,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const zhText = "陳文翊";
   const enText = "Wing Chen";
 
-  // 初始化：清空
+  // reset initial text
   zhSpan.textContent = "";
   enSpan.textContent = "";
 
@@ -685,29 +690,31 @@ document.addEventListener("DOMContentLoaded", () => {
     next();
   }
 
-  /* ---- Intro exit logic ---- */
+  /* ---- Intro Exit Logic ---- */
   const exitIntro = () => {
-    if (!document.body.contains(intro)) return; // 避免重複執行
+    if (!document.body.contains(intro)) return; // prevent double trigger
 
-    // 建立爆炸特效
+    // create explosion overlay
     const boom = document.createElement("div");
     boom.className = "explosion";
-    intro.appendChild(boom);
+    document.body.appendChild(boom);  // ensure above starfield
+    setTimeout(() => boom.remove(), 1500);
 
-    // 淡出
+    // fade intro out
     setTimeout(() => {
       intro.style.transition = "opacity 1s ease";
       intro.style.opacity = "0";
       setTimeout(() => {
         intro.remove();
-        // 🚀 淡出後開始打字動畫
+        // start typing sequence after fade-out
         typeZh();
       }, 1000);
     }, 700);
   };
 
   intro.addEventListener("click", exitIntro);
-  // 備援：5 秒自動開始（避免卡住）
+
+  // fallback: auto-start if no click within 5s
   setTimeout(() => {
     if (document.body.contains(intro)) exitIntro();
   }, 5000);
