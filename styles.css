@@ -427,6 +427,7 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   box-shadow: 0 12px 30px rgba(0,0,0,0.3);
   animation: modalFade 0.4s ease;
   padding: 1.25rem 1.5rem 1.75rem;
+  padding-bottom: 1.5rem;
 }
 
 /* Modal 標題 */
