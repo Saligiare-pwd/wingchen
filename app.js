@@ -562,8 +562,8 @@ if (toggleBtn) {
 })();                          
 
 /* =====================================================
-   Wing Chen Portfolio — app.js (Clean Integrated)
-   ASIAA · HITS · NTU  |  2025
+   Wing Chen Portfolio — app.js (Cinematic Stable)
+   ASIAA · HITS · NTU | 2025
 ===================================================== */
 
 /* =====================================================
@@ -571,28 +571,26 @@ if (toggleBtn) {
 ===================================================== */
 const canvas = document.getElementById("starfield");
 const ctx = canvas.getContext("2d");
-
 let stars = [];
-let w, h, centerX, centerY;
-let exploding = false; // explosion trigger
+let w, h, cx, cy;
+let exploding = false;
 
 function initStars() {
   w = canvas.width = window.innerWidth;
   h = canvas.height = window.innerHeight;
-  centerX = w / 2;
-  centerY = h / 2;
-
+  cx = w / 2;
+  cy = h / 2;
   stars = Array.from({ length: 180 }, () => {
-    const angle = Math.random() * Math.PI * 2;
-    const speed = Math.random() * 4 + 1;
+    const a = Math.random() * Math.PI * 2;
+    const sp = Math.random() * 4 + 1;
     return {
-      x: centerX,
-      y: centerY,
-      vx: Math.cos(angle) * speed,
-      vy: Math.sin(angle) * speed,
+      x: cx,
+      y: cy,
+      vx: Math.cos(a) * sp,
+      vy: Math.sin(a) * sp,
       size: Math.random() * 1.8 + 0.5,
       opacity: Math.random() * 0.7 + 0.3,
-      color: `hsl(${Math.random() * 60 + 200}, 100%, 85%)`,
+      color: `hsl(${Math.random() * 60 + 200}, 100%, 85%)`
     };
   });
 }
@@ -612,19 +610,15 @@ function drawStars() {
 function animateStars() {
   for (const s of stars) {
     if (exploding) {
-      // outward explosion
       s.x += s.vx;
       s.y += s.vy;
-      s.opacity *= 0.98;
+      s.opacity *= 0.97;
     } else {
-      // idle twinkling
       s.opacity = 0.4 + Math.random() * 0.4;
     }
-
-    // reset if star leaves screen
     if (s.x < 0 || s.x > w || s.y < 0 || s.y > h) {
-      s.x = centerX;
-      s.y = centerY;
+      s.x = cx;
+      s.y = cy;
       s.opacity = Math.random() * 0.6 + 0.4;
     }
   }
@@ -637,19 +631,7 @@ initStars();
 animateStars();
 
 /* =====================================================
-   💥 EXPLOSION TRIGGER (Intro Click)
-===================================================== */
-document.getElementById("intro-screen").addEventListener("click", () => {
-  exploding = true;
-  // revert to twinkling after 2s
-  setTimeout(() => {
-    exploding = false;
-    initStars();
-  }, 2000);
-});
-
-/* =====================================================
-   ✍️ INTRO SCREEN + CONTROLLED TYPING SEQUENCE
+   ✍️ INTRO SCREEN → EXPLOSION → TYPING SEQUENCE
 ===================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const intro = document.getElementById("intro-screen");
@@ -657,65 +639,73 @@ document.addEventListener("DOMContentLoaded", () => {
   const enSpan = document.getElementById("typed-en");
   const zhText = "陳文翊";
   const enText = "Wing Chen";
+  let introPlayed = false;
 
-  // reset initial text
+  // 清空初始文字
   zhSpan.textContent = "";
   enSpan.textContent = "";
 
-  /* ---- Typing Animations ---- */
+  // ---- Typing Animations ----
   function typeZh() {
     let i = 0;
-    function next() {
+    function step() {
       if (i < zhText.length) {
         zhSpan.textContent += zhText[i++];
-        setTimeout(next, 150);
+        setTimeout(step, 150);
       } else {
         zhSpan.style.borderRight = "none";
         setTimeout(typeEn, 400);
       }
     }
-    next();
+    step();
   }
 
   function typeEn() {
     let j = 0;
-    function next() {
+    function step() {
       if (j < enText.length) {
         enSpan.textContent += enText[j++];
-        setTimeout(next, 90);
+        setTimeout(step, 90);
       } else {
         enSpan.style.borderRight = "none";
       }
     }
-    next();
+    step();
   }
 
-  /* ---- Intro Exit Logic ---- */
-  const exitIntro = () => {
-    if (!document.body.contains(intro)) return; // prevent double trigger
+  // ---- Sequence Controller ----
+  function exitIntro() {
+    if (introPlayed) return;
+    introPlayed = true;
 
-    // create explosion overlay
+    // 💥 Step 1: Explosion effect
+    exploding = true;
+
     const boom = document.createElement("div");
     boom.className = "explosion";
-    document.body.appendChild(boom);  // ensure above starfield
-    setTimeout(() => boom.remove(), 1500);
+    document.body.appendChild(boom);
 
-    // fade intro out
+    setTimeout(() => {
+      boom.remove();
+      exploding = false;
+      initStars();
+    }, 1500);
+
+    // 🌫 Step 2: Fade out intro
     setTimeout(() => {
       intro.style.transition = "opacity 1s ease";
       intro.style.opacity = "0";
+
+      // ✍️ Step 3: Start typing after intro gone
       setTimeout(() => {
         intro.remove();
-        // start typing sequence after fade-out
         typeZh();
       }, 1000);
-    }, 700);
-  };
+    }, 600);
+  }
 
+  // click anywhere
   intro.addEventListener("click", exitIntro);
-
-  // fallback: auto-start if no click within 5s
-  setTimeout(() => {
-    if (document.body.contains(intro)) exitIntro();
-  }, 5000);
+  // fallback auto-play after 6s
+  setTimeout(() => { if (!introPlayed) exitIntro(); }, 6000);
 });
