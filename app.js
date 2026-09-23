@@ -570,12 +570,13 @@ if (toggleBtn) {
    🌌 STARFIELD BACKGROUND + EXPLOSION EFFECT
 ===================================================== */
 const canvas = document.getElementById("starfield");
-const ctx = canvas.getContext("2d");
+const ctx = canvas?.getContext("2d");
 let stars = [];
 let w, h, cx, cy;
 let exploding = false;
 
 function initStars() {
+  if (!canvas || !ctx) return;
   w = canvas.width = window.innerWidth;
   h = canvas.height = window.innerHeight;
   cx = w / 2;
@@ -596,6 +597,7 @@ function initStars() {
 }
 
 function drawStars() {
+  if (!ctx) return;
   ctx.clearRect(0, 0, w, h);
   for (const s of stars) {
     ctx.beginPath();
@@ -608,6 +610,7 @@ function drawStars() {
 }
 
 function animateStars() {
+  if (!canvas || !ctx) return;
   for (const s of stars) {
     if (exploding) {
       s.x += s.vx;
@@ -642,11 +645,12 @@ document.addEventListener("DOMContentLoaded", () => {
   let introPlayed = false;
 
   // 清空初始文字
-  zhSpan.textContent = "";
-  enSpan.textContent = "";
+  if (zhSpan) zhSpan.textContent = "";
+  if (enSpan) enSpan.textContent = "";
 
   // ---- Typing Animations ----
   function typeZh() {
+    if (!zhSpan) return;
     let i = 0;
     function step() {
       if (i < zhText.length) {
@@ -661,6 +665,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function typeEn() {
+    if (!enSpan) return;
     let j = 0;
     function step() {
       if (j < enText.length) {
@@ -675,6 +680,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---- Sequence Controller ----
   function exitIntro() {
+    if (!intro) return;
     if (introPlayed) return;
     introPlayed = true;
 
@@ -705,7 +711,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // click anywhere
+  if (!intro) return;
+  intro.setAttribute('role', 'button');
+  intro.setAttribute('tabindex', '0');
+  intro.setAttribute('aria-label', 'Enter Wing Chen portfolio');
   intro.addEventListener("click", exitIntro);
+  intro.addEventListener("keydown", (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      exitIntro();
+    }
+  });
   // fallback auto-play after 6s
   setTimeout(() => { if (!introPlayed) exitIntro(); }, 6000);
 });

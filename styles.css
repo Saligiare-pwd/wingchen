@@ -28,6 +28,7 @@
 ===================================================== */
 * { box-sizing: border-box; }
 html, body { height: 100%; }
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
 body {
   margin: 0;
   font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
@@ -41,6 +42,7 @@ body {
 }
 a { color: var(--brand); text-underline-offset: 3px; }
 .container { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--space-4); }
+img { max-width: 100%; }
 
 /* =====================================================
    Header
@@ -127,9 +129,50 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
 }
 
 .portrait img, .batch-figure img {
-  width: 100%; max-width: 560px; height: 35vh; object-fit: cover;
+  width: 100%; max-width: 560px; height: clamp(15rem, 35vh, 24rem); object-fit: cover;
   border-radius: 3.78%; border: 2px solid #e5e7eb; box-shadow: 0 6px 12px #00000022;
 }
+
+/* =====================================================
+   Research Journey
+===================================================== */
+.section-heading { text-align: center; margin-bottom: 1.5rem; }
+.section-heading .section-title { margin: 0; }
+.eyebrow {
+  margin: 0 0 .35rem;
+  color: #a5b4fc;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.section-intro { margin: .65rem auto 0; max-width: 42rem; color: #e2e8f0; }
+.timeline-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.timeline-card {
+  position: relative;
+  min-width: 0;
+  padding: 1.4rem;
+  overflow: hidden;
+  background: rgba(255,255,255,.96);
+  border: 1px solid rgba(255,255,255,.5);
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.14);
+}
+.timeline-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: #64748b;
+}
+.timeline-card.current::before { background: linear-gradient(90deg, #4f46e5, #22d3ee); }
+.timeline-card.future::before { background: #8b5cf6; }
+.timeline-card h3 { margin: .35rem 0 .2rem; color: #172554; font-size: 1.25rem; }
+.timeline-card p { overflow-wrap: anywhere; }
+.timeline-label { margin: 0; color: #475569; font-size: .76rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.timeline-card.current .timeline-label { color: #4338ca; }
+.timeline-meta { margin: 0; color: #64748b; font-size: .9rem; }
+.text-link { display: inline-flex; gap: .35rem; align-items: center; font-weight: 750; }
 
 /* Hero buttons */
 .hero .row {
@@ -626,6 +669,43 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
 }
 @media (min-width: 900px) {
   .contact-grid { grid-template-columns: 2fr 1fr; }
+}
+
+@media (max-width: 799px) {
+  .container { width: min(100% - 1rem, var(--maxw)); padding-inline: .75rem; }
+  .navwrap { flex-direction: column; align-items: stretch; padding-block: .65rem; }
+  .brand { align-items: flex-start; padding-inline: .4rem; }
+  .navlinks {
+    flex-wrap: nowrap;
+    gap: .15rem;
+    overflow-x: auto;
+    padding-bottom: .2rem;
+    scrollbar-width: thin;
+  }
+  nav a { flex: 0 0 auto; padding: .5rem .65rem; font-size: .9rem; }
+  section.container { margin-block: 1rem; padding: 1.15rem .9rem; }
+  .hero { padding-top: 1rem; }
+  .hero .card, #academic .panel { padding: 1rem; }
+  .portrait, .batch-figure { margin-inline: 0; }
+  .portrait img, .batch-figure img { height: clamp(13rem, 58vw, 21rem); }
+  .timeline-grid { grid-template-columns: 1fr; }
+  .modal { padding: .5rem; }
+  .modal-content { width: 100%; max-height: 96dvh; padding: 1rem .75rem; }
+  .modal-content object[type="application/pdf"], .modal-content img { height: 65dvh; }
+  #daad .panel .row { width: 100%; gap: .75rem; }
+  #daad .panel .btn { min-width: 0; width: 100%; }
+  #contact { padding: 1.25rem .9rem; }
+}
+
+@media (max-width: 380px) {
+  body { font-size: 15px; }
+  .name { font-size: 1.75rem; }
+  .hero .row .btn { flex: 1 1 calc(50% - .5rem); min-width: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 
 /* === Logos 區 === */
