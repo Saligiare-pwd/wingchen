@@ -28,6 +28,9 @@ if (y) y.textContent = new Date().getFullYear();
   const activate = (i) => {
     tabs.forEach((t, idx) => t.setAttribute('aria-selected', idx === i ? 'true' : 'false'));
     slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+    if (document.body.classList.contains('program-current')) {
+      document.body.dataset.programPhase = slides[i].classList.contains('phase-future') ? 'future' : 'current';
+    }
     tabs[i].focus();
   };
 
@@ -40,6 +43,11 @@ if (y) y.textContent = new Date().getFullYear();
       if (e.key === 'End')        { e.preventDefault(); activate(tabs.length - 1); }
     });
   });
+
+  const selectedIndex = Math.max(0, tabs.findIndex(t => t.getAttribute('aria-selected') === 'true'));
+  if (document.body.classList.contains('program-current')) {
+    document.body.dataset.programPhase = slides[selectedIndex].classList.contains('phase-future') ? 'future' : 'current';
+  }
 })();
 
 // ---------- Project Application (outer tabs) ----------

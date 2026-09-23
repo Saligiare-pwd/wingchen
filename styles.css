@@ -27,6 +27,9 @@
   --asagi: #33a6b8;
   --fuji: #8b81c3;
   --shironeri: #fcfaf2;
+  --keshizumi: #434343;
+  --tetsukon: #0b346e;
+  --shikon: #3c2f41;
 }
 
 /* =====================================================
@@ -385,13 +388,29 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
 /* =====================================================
    Program pages: past, current, future atmosphere
 ===================================================== */
-.program-page { --program-accent: var(--ginnezumi); --program-accent-2: #c5c9cc; }
-.program-page.program-current { --program-accent: var(--hanada); --program-accent-2: var(--asagi); }
+.program-page {
+  --program-ink: var(--keshizumi);
+  --program-accent: var(--ginnezumi);
+  --program-soft: #f0f1f2;
+  --program-ring: rgba(67,67,67,.3);
+}
+.program-page.program-current {
+  --program-ink: var(--tetsukon);
+  --program-accent: var(--hanada);
+  --program-soft: #e8f4f6;
+  --program-ring: rgba(0,98,132,.3);
+}
+.program-page.program-current[data-program-phase="future"] {
+  --program-ink: var(--shikon);
+  --program-accent: #6f63a6;
+  --program-soft: #f0edf7;
+  --program-ring: rgba(111,99,166,.3);
+}
 .program-page .program-main { padding-block: 2rem 4rem; }
 .program-heading { text-align: center; margin: 1rem auto 1.5rem; }
 .program-kicker {
   margin: 0 0 .4rem;
-  color: var(--program-accent-2);
+  color: #dbe7ea;
   font-size: .78rem;
   font-weight: 800;
   letter-spacing: .14em;
@@ -402,12 +421,29 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
 .program-page .tabbtn[aria-selected="true"],
 .program-page .slidebtn,
 .program-page .modal-content .btn {
-  background: linear-gradient(135deg, var(--program-accent), var(--program-accent-2));
+  color: #fff;
+  background: var(--program-ink);
+  border-color: var(--program-ink);
+  box-shadow: 0 4px 12px var(--program-ring);
+}
+.program-page .tabbtn[aria-selected="true"]:hover,
+.program-page .slidebtn:hover,
+.program-page .modal-content .btn:hover {
+  color: #fff;
+  background: var(--program-accent);
+  box-shadow: 0 7px 18px var(--program-ring);
+}
+.program-page .tabbtn:focus-visible,
+.program-page .slidebtn:focus-visible,
+.program-page .modal-content .btn:focus-visible {
+  outline: 3px solid var(--program-accent);
+  outline-offset: 3px;
 }
 .program-page .slide h3 { color: var(--program-accent); }
 .program-page .slide {
   border-top: 3px solid var(--program-accent);
-  background: color-mix(in srgb, var(--shironeri) 94%, var(--program-accent));
+  color: #1f2937;
+  background: var(--program-soft);
 }
 .program-current .slide.phase-current {
   border-top-color: var(--hanada);
