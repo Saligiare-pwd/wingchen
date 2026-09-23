@@ -21,6 +21,12 @@
   --space-5: 1.25rem;
   --space-6: 1.5rem;
   --space-8: 2rem;
+  /* Nippon Colors-inspired program palette */
+  --ginnezumi: #91989f;
+  --hanada: #006284;
+  --asagi: #33a6b8;
+  --fuji: #8b81c3;
+  --shironeri: #fcfaf2;
 }
 
 /* =====================================================
@@ -165,12 +171,12 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   height: 4px;
   background: #64748b;
 }
-.timeline-card.current::before { background: linear-gradient(90deg, #4f46e5, #22d3ee); }
-.timeline-card.future::before { background: #8b5cf6; }
+.timeline-card.current::before { background: linear-gradient(90deg, var(--hanada), var(--asagi)); }
+.timeline-card.future::before { background: var(--fuji); }
 .timeline-card h3 { margin: .35rem 0 .2rem; color: #172554; font-size: 1.25rem; }
 .timeline-card p { overflow-wrap: anywhere; }
 .timeline-label { margin: 0; color: #475569; font-size: .76rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-.timeline-card.current .timeline-label { color: #4338ca; }
+.timeline-card.current .timeline-label { color: var(--hanada); }
 .timeline-meta { margin: 0; color: #64748b; font-size: .9rem; }
 .text-link { display: inline-flex; gap: .35rem; align-items: center; font-weight: 750; }
 
@@ -374,6 +380,60 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
+}
+
+/* =====================================================
+   Program pages: past, current, future atmosphere
+===================================================== */
+.program-page { --program-accent: var(--ginnezumi); --program-accent-2: #c5c9cc; }
+.program-page.program-current { --program-accent: var(--hanada); --program-accent-2: var(--asagi); }
+.program-page .program-main { padding-block: 2rem 4rem; }
+.program-heading { text-align: center; margin: 1rem auto 1.5rem; }
+.program-kicker {
+  margin: 0 0 .4rem;
+  color: var(--program-accent-2);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.program-lead { max-width: 44rem; margin: .8rem auto 0; color: #e2e8f0; }
+.program-summary { border-top: 4px solid var(--program-accent); }
+.program-page .tabbtn[aria-selected="true"],
+.program-page .slidebtn,
+.program-page .modal-content .btn {
+  background: linear-gradient(135deg, var(--program-accent), var(--program-accent-2));
+}
+.program-page .slide h3 { color: var(--program-accent); }
+.program-page .slide {
+  border-top: 3px solid var(--program-accent);
+  background: color-mix(in srgb, var(--shironeri) 94%, var(--program-accent));
+}
+.program-current .slide.phase-current {
+  border-top-color: var(--hanada);
+  background: linear-gradient(145deg, #f4fbfc, #e5f3f5);
+}
+.program-current .slide.phase-future {
+  border-top-color: var(--fuji);
+  background: linear-gradient(145deg, #faf8ff, #efecf8);
+}
+.program-current .slide.phase-future h3,
+.program-current .slide.phase-future .slide-status { color: #6f63a6; }
+.slide-status {
+  margin: 0;
+  color: var(--program-accent);
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.update-note {
+  margin: .25rem 0 0;
+  padding: .8rem 1rem;
+  color: #475569;
+  background: rgba(255,255,255,.7);
+  border-left: 3px solid var(--fuji);
+  border-radius: 0 8px 8px 0;
 }
 
 /* Slide 標題 */
