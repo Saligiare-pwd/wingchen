@@ -63,14 +63,40 @@
           <p class="slide-status">In progress</p>
           <h3>Simulation Development</h3>
           <p>Refining confined-shell CSM models and connecting multidimensional radiation-hydrodynamics results with spectral calculations.</p>
-          <p class="update-note">Add dated milestones here as simulations, talks, or figures become ready.</p>
+          <div class="milestone-card">
+            <div>
+              <p class="milestone-date">Research milestone · 2026</p>
+              <h4>AG Meeting: Shock Breakout</h4>
+              <p>Presented the multi-wavelength signatures of supernova shock breakout and strengthened collaboration across the Sandwich Program network.</p>
+            </div>
+            <button class="slidebtn open-modal" data-target="modal-ag-meeting"><strong>AG Meeting</strong><br>View Photo Report</button>
+          </div>
         </article>
 
         <article id="sandwich-next" class="slide phase-future">
           <p class="slide-status">Looking ahead</p>
-          <h3>Predictive Light Curves &amp; Spectra</h3>
-          <p>Build a reusable library of observables for comparison with early-time supernova measurements and future collaborations.</p>
-          <p class="update-note">This section should describe planned work only; completed items can later move into Current Progress.</p>
+          <h3>AMR Grid Stability &amp; Predictive Observables</h3>
+          <p>Use the evolving mesh structure to diagnose refinement behavior before building light-curve and spectral libraries for comparison with early-time supernova observations.</p>
+          <div class="amr-study-grid">
+            <figure class="amr-media">
+              <img src="assets/images/sandwich-2026/amr-grid-z-slice.png"
+                   alt="Z-axis density slice showing the nested adaptive mesh refinement grid"
+                   width="2226" height="1934" loading="lazy">
+              <figcaption>Z-axis density slice with AMR patch boundaries. A time-dependent video can be added here when available.</figcaption>
+            </figure>
+            <div class="amr-notes">
+              <h4>AMR &amp; MGFLD setup</h4>
+              <ul>
+                <li><strong>Base grid:</strong> 64 × 64 × 64 Cartesian cells</li>
+                <li><strong>Maximum refinement level:</strong> 3, with a factor of 2 per level</li>
+                <li><strong>Box size:</strong> to be confirmed</li>
+                <li><strong>Diagnostic:</strong> Z-axis slice of the AMR structure</li>
+                <li><strong>Observed issue:</strong> between 70 and 90 hours, the AMR regions change too frequently</li>
+                <li><strong>Next check:</strong> review refinement behavior and resolution close to the symmetry axis</li>
+              </ul>
+              <a class="inline-study-link" href="slides/future.pdf" target="_blank" rel="noopener">View the proposed study <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
         </article>
       </div>
     </div>
@@ -90,6 +116,24 @@
       </div>
       <div class="actions">
         <a class="btn" href="slides/future.pdf" target="_blank" rel="noopener">Open PDF in New Tab</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-ag-meeting" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="ag-meeting-title">
+    <div class="modal-content" tabindex="-1">
+      <button class="close" aria-label="Close">×</button>
+      <h3 id="ag-meeting-title">AG Meeting · Shock Breakout</h3>
+      <div class="pdf-scroll">
+        <object data="assets/documents/sandwich-2026/sandwich-2026-ag-meeting.pdf#page=1&zoom=page-width"
+                data-src="assets/documents/sandwich-2026/sandwich-2026-ag-meeting.pdf"
+                data-page="1"
+                type="application/pdf">
+          <p>PDF preview unavailable. <a href="assets/documents/sandwich-2026/sandwich-2026-ag-meeting.pdf" target="_blank" rel="noopener">Open the AG Meeting photo report</a>.</p>
+        </object>
+      </div>
+      <div class="actions">
+        <a class="btn" href="assets/documents/sandwich-2026/sandwich-2026-ag-meeting.pdf" target="_blank" rel="noopener">Open PDF in New Tab</a>
       </div>
     </div>
   </div>

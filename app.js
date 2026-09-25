@@ -691,6 +691,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!intro) return;
     if (introPlayed) return;
     introPlayed = true;
+    intro.classList.add('is-exiting');
 
     // 💥 Step 1: Explosion effect
     exploding = true;
