@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Future Research Program | Wing Chen Portfolio</title>
+  <meta name="description" content="Wing Chen's future ASIAA research program on three-dimensional and pulsating-star shock breakout." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="program-page program-future">
+<canvas id="starfield"></canvas>
+
+<header class="site">
+  <div class="container navwrap">
+    <div class="brand">
+      <span>Wing Chen</span>
+      <span class="sub">ASIAA · HITS · NTU</span>
+    </div>
+    <nav aria-label="Primary">
+      <div class="navlinks">
+        <a href="index.html">← Back to Portfolio</a>
+        <a href="sandwich.html">Current: Sandwich Program</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="container program-main">
+  <div class="program-heading">
+    <p class="program-kicker">Future program · ASIAA</p>
+    <h1 class="section-title">3D &amp; Pulsating-Star Shock Breakout</h1>
+    <p class="program-lead">Extending multidimensional radiation-hydrodynamics toward three-dimensional progenitors, asymmetric observables, and pulsation-shaped circumstellar environments.</p>
+  </div>
+
+  <div class="panel program-summary">
+    <p><strong>Program:</strong> 研發替代役 (R&amp;D Alternative Service)</p>
+    <p><strong>Duration:</strong> 2 years and 4 months</p>
+    <p><strong>Institution:</strong> Academia Sinica Institute of Astronomy and Astrophysics (ASIAA)</p>
+    <p><strong>Research focus:</strong> Three-dimensional and pulsating-star shock breakout, viewing-angle effects, and multi-wavelength light-curve diagnostics.</p>
+  </div>
+
+  <section class="container" id="future-program" aria-labelledby="future-tabs-heading">
+    <h2 class="program-section-title" id="future-tabs-heading">Future Research stages</h2>
+    <div class="panel daad">
+      <div role="tablist" class="tabs" aria-label="Future Research sections">
+        <button class="tabbtn" aria-selected="true" aria-controls="mi-service" id="mi-tab-service">1. 研發替代役</button>
+        <button class="tabbtn" aria-selected="false" aria-controls="mi-topic" id="mi-tab-topic">2. Research Topic</button>
+        <button class="tabbtn" aria-selected="false" aria-controls="mi-setting" id="mi-tab-setting">3. Current Setting</button>
+      </div>
+
+      <div class="slides">
+        <article id="mi-service" class="slide active">
+          <p class="slide-status">Program framework</p>
+          <h3>2 years and 4 months at ASIAA</h3>
+          <p>The R&amp;D Alternative Service period provides a longer research horizon for developing three-dimensional radiation-hydrodynamics models and connecting them with early-time transient observations.</p>
+          <div class="future-facts" role="list">
+            <div role="listitem"><span>Institution</span><strong>ASIAA</strong></div>
+            <div role="listitem"><span>Duration</span><strong>2 years 4 months</strong></div>
+            <div role="listitem"><span>Direction</span><strong>3D shock breakout</strong></div>
+          </div>
+        </article>
+
+        <article id="mi-topic" class="slide phase-future">
+          <p class="slide-status">Research direction</p>
+          <h3>From 3D structure to time-dependent progenitors</h3>
+          <div class="topic-grid">
+            <article>
+              <p class="topic-number">01</p>
+              <h4>Three-dimensional shock breakout</h4>
+              <p>Quantify how asymmetric structures, turbulent surfaces, and viewing angle change the breakout luminosity and spectral evolution.</p>
+            </article>
+            <article>
+              <p class="topic-number">02</p>
+              <h4>Pulsating-star shock breakout</h4>
+              <p>Explore how pulsation-driven density variations and episodic mass loss imprint time-dependent structure on the breakout signal.</p>
+            </article>
+          </div>
+        </article>
+
+        <article id="mi-setting" class="slide phase-future">
+          <p class="slide-status">Current numerical setting</p>
+          <h3>3D temperature structure &amp; light curves</h3>
+          <div class="future-media-grid">
+            <figure class="future-video">
+              <video controls playsinline preload="metadata" poster="assets/images/future-program/3d-temperature-poster.jpg"
+                     aria-label="Three-dimensional temperature structure evolution">
+                <source src="assets/videos/future-program/3d-temperature-evolution.mp4" type="video/mp4">
+                <p>Your browser cannot play this video. <a href="assets/videos/future-program/3d-temperature-evolution.mp4">Download the 3D temperature movie</a>.</p>
+              </video>
+              <figcaption>Three-dimensional temperature structure from the current simulation setup.</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/images/future-program/3d-luminosity-anisotropy.png"
+                   alt="Bolometric luminosity and polar-to-equatorial ratio versus time after explosion" width="2400" height="1994" loading="lazy">
+              <figcaption>Viewing-angle dependence of the bolometric luminosity, comparing polar, equatorial, and angle-integrated signals.</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/images/future-program/3d-multiband-light-curves.png"
+                   alt="Multi-wavelength flux light curves versus time" width="2700" height="1719" loading="lazy">
+              <figcaption>Multi-wavelength light curves from the current calculation, showing the evolving spectral energy distribution.</figcaption>
+            </figure>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

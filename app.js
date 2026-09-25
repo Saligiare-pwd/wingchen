@@ -581,7 +581,6 @@ const canvas = document.getElementById("starfield");
 const ctx = canvas?.getContext("2d");
 let stars = [];
 let w, h, cx, cy;
-let exploding = false;
 
 function initStars() {
   if (!canvas || !ctx) return;
@@ -620,13 +619,7 @@ function drawStars() {
 function animateStars() {
   if (!canvas || !ctx) return;
   for (const s of stars) {
-    if (exploding) {
-      s.x += s.vx;
-      s.y += s.vy;
-      s.opacity *= 0.97;
-    } else {
-      s.opacity = 0.4 + Math.random() * 0.4;
-    }
+    s.opacity = 0.4 + Math.random() * 0.4;
     if (s.x < 0 || s.x > w || s.y < 0 || s.y > h) {
       s.x = cx;
       s.y = cy;
@@ -639,10 +632,10 @@ function animateStars() {
 
 window.addEventListener("resize", initStars);
 initStars();
-animateStars();
+//animateStars();
 
 /* =====================================================
-   ✍️ INTRO SCREEN → EXPLOSION → TYPING SEQUENCE
+   ✍️ INTRO SCREEN → SHELL FADE → TYPING SEQUENCE
 ===================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const intro = document.getElementById("intro-screen");
@@ -650,7 +643,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const enSpan = document.getElementById("typed-en");
   const zhText = "陳文翊";
   const enText = "Wing Chen";
+  const introSessionKey = 'wing-portfolio-intro-seen-v1';
   let introPlayed = false;
+
+  let introSeen = false;
+  try { introSeen = sessionStorage.getItem(introSessionKey) === 'true'; } catch {}
+
+  if (introSeen) {
+    intro?.remove();
+    document.body.classList.add('intro-seen');
+    if (zhSpan) zhSpan.textContent = zhText;
+    if (enSpan) enSpan.textContent = enText;
+    return;
+  }
 
   // 清空初始文字
   if (zhSpan) zhSpan.textContent = "";
@@ -692,31 +697,19 @@ document.addEventListener("DOMContentLoaded", () => {
     if (introPlayed) return;
     introPlayed = true;
     intro.classList.add('is-exiting');
+    try { sessionStorage.setItem(introSessionKey, 'true'); } catch {}
 
-    // 💥 Step 1: Explosion effect
-    exploding = true;
-
-    const boom = document.createElement("div");
-    boom.className = "explosion";
-    document.body.appendChild(boom);
-
-    setTimeout(() => {
-      boom.remove();
-      exploding = false;
-      initStars();
-    }, 1500);
-
-    // 🌫 Step 2: Fade out intro
+    // Fade out the confined-shell scene without the former white-star explosion.
     setTimeout(() => {
       intro.style.transition = "opacity 1s ease";
       intro.style.opacity = "0";
 
-      // ✍️ Step 3: Start typing after intro gone
+      // Start typing after the first entry scene has finished.
       setTimeout(() => {
         intro.remove();
         typeZh();
       }, 1000);
-    }, 600);
+    }, 450);
   }
 
   // click anywhere

@@ -138,6 +138,11 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   color: #1e3a8a; /* deep indigo (visible on light background) */
   text-shadow: 0 0 5px rgba(37,99,235,0.25);
 }
+.intro-seen .name {
+  width: 100%;
+  border-right: 0;
+  animation: none;
+}
 
 @keyframes typing {
   from { width: 0; }
@@ -434,7 +439,13 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   --program-soft: #f0edf7;
   --program-ring: rgba(111,99,166,.3);
 }
-.program-page .program-main { padding-block: 2rem 4rem; }
+.program-page.program-future {
+  --program-ink: var(--shikon);
+  --program-accent: #6f63a6;
+  --program-soft: #f0edf7;
+  --program-ring: rgba(111,99,166,.3);
+}
+.program-page .program-main { position: relative; z-index: 1; padding-block: 2rem 4rem; }
 .program-heading { text-align: center; margin: 1rem auto 1.5rem; }
 .program-section-title {
   margin: 0 0 1.5rem;
@@ -454,7 +465,19 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   text-transform: uppercase;
 }
 .program-lead { max-width: 44rem; margin: .8rem auto 0; color: #e2e8f0; }
-.program-summary { border-top: 4px solid var(--program-accent); }
+.program-summary {
+  display: grid;
+  gap: .45rem;
+  margin: 0 auto 1.5rem;
+  padding: 1.25rem 1.4rem;
+  color: #1f2937;
+  background: rgba(252,250,242,.96);
+  border: 1px solid rgba(255,255,255,.7);
+  border-top: 4px solid var(--program-accent);
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.16);
+}
+.program-summary p { margin: 0; }
 .program-page .tabbtn[aria-selected="true"],
 .program-page .slidebtn,
 .program-page .modal-content .btn {
@@ -533,12 +556,64 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   text-align: left;
 }
 .amr-media { margin: 0; overflow: hidden; background: #fff; border: 1px solid #d8d3e7; border-radius: 12px; }
-.amr-media img { display: block; width: 100%; height: auto; aspect-ratio: 1.15 / 1; object-fit: contain; }
+.amr-media img,
+.amr-media video { display: block; width: 100%; height: auto; aspect-ratio: 1.15 / 1; object-fit: contain; background: #05070b; }
 .amr-media figcaption { padding: .7rem .85rem; color: #64748b; font-size: .82rem; line-height: 1.45; }
 .amr-notes { padding: 1rem 1.1rem; background: rgba(255,255,255,.76); border-left: 4px solid var(--fuji); border-radius: 0 10px 10px 0; }
 .amr-notes ul { margin: .65rem 0 1rem; padding-left: 1.15rem; }
 .amr-notes li + li { margin-top: .48rem; }
 .inline-study-link { font-weight: 800; }
+.future-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .85rem;
+  width: 100%;
+}
+.future-facts div {
+  display: grid;
+  gap: .25rem;
+  padding: 1rem;
+  background: rgba(255,255,255,.78);
+  border: 1px solid rgba(111,99,166,.22);
+  border-radius: 10px;
+  text-align: left;
+}
+.future-facts span { color: #64748b; font-size: .75rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.future-facts strong { color: var(--program-ink); }
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+.topic-grid article {
+  padding: 1.25rem;
+  background: rgba(255,255,255,.8);
+  border: 1px solid rgba(111,99,166,.22);
+  border-radius: 12px;
+  text-align: left;
+}
+.topic-grid h4 { margin: .25rem 0 .5rem; color: var(--program-ink); font-size: 1.08rem; }
+.topic-grid p { margin: 0; }
+.topic-number { color: var(--fuji); font-size: .76rem; font-weight: 900; letter-spacing: .12em; }
+.future-media-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+.future-media-grid figure {
+  margin: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #d8d3e7;
+  border-radius: 12px;
+}
+.future-media-grid .future-video { grid-column: 1 / -1; }
+.future-media-grid img,
+.future-media-grid video { display: block; width: 100%; height: auto; background: #05070b; object-fit: contain; }
+.future-media-grid video { max-height: 68vh; }
+.future-media-grid figcaption { padding: .75rem .9rem; color: #64748b; font-size: .84rem; line-height: 1.45; }
 
 /* Slide 標題 */
 .slide h3 {
@@ -959,7 +1034,7 @@ section.container {
    Intro Screen (Landing Overlay)
    — Fullscreen fade-in + centered title & hint
 ===================================================== */
-/* Intro overlay (on top of starfield, below explosion) */
+/* Intro overlay (on top of the starfield) */
 #intro-screen {
   position: fixed;
   inset: 0;
@@ -968,7 +1043,7 @@ section.container {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 10; /* below explosion */
+  z-index: 10;
   overflow: hidden;
   cursor: pointer;
   animation: introFadeIn 1.2s ease-out forwards;
@@ -1044,19 +1119,6 @@ section.container {
   animation: hintFade 2s ease forwards 2.2s;
 }
 
-/* Explosion overlay (always topmost) */
-.explosion {
-  position: fixed;
-  top: 50%; left: 50%;
-  width: 2px; height: 2px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #fff 0%, transparent 70%);
-  transform: translate(-50%, -50%) scale(0);
-  z-index: 15; /* above everything else */
-  animation: explode 1.2s ease-out forwards;
-  pointer-events: none;
-}
-
 /* ========== Keyframes ========== */
 @keyframes introFadeIn {
   from { opacity: 0; }
@@ -1082,30 +1144,15 @@ section.container {
   0%, 100% { opacity: .25; transform: scale(.94); }
   50% { opacity: .75; transform: scale(1.04); }
 }
-@keyframes explode {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 1;
-    box-shadow: 0 0 20px 10px rgba(255,255,255,0.6);
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(40);
-    opacity: 0.9;
-    box-shadow: 0 0 60px 30px rgba(255,255,255,0.8);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(90);
-    opacity: 0;
-  }
-}
-
 @media (max-width: 799px) {
   .intro-shell-wrap { width: clamp(12rem, 68vw, 20rem); }
   .intro-content { gap: .7rem; }
   .intro-title { font-size: clamp(1.8rem, 9vw, 3rem); }
   .milestone-card, .amr-study-grid { grid-template-columns: 1fr; }
+  .future-facts, .topic-grid, .future-media-grid { grid-template-columns: 1fr; }
+  .future-media-grid .future-video { grid-column: auto; }
   .milestone-card .slidebtn { width: 100%; min-width: 0; }
-  .amr-media img { aspect-ratio: auto; }
+  .amr-media img, .amr-media video { aspect-ratio: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
