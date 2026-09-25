@@ -10,8 +10,9 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="styles.css" />
+  <noscript><style>#intro-screen{display:none}body.intro-pending>header.site,body.intro-pending>main,body.intro-pending>footer{visibility:visible;opacity:1;pointer-events:auto}</style></noscript>
 </head>
-<body>
+<body class="intro-pending">
 
 <!-- ======= Intro Screen ======= -->
 <div id="intro-screen">
@@ -34,8 +35,11 @@
 <header class="site">
   <div class="container navwrap">
     <div class="brand">
-      <span>Wing Chen</span>
-      <span class="sub">ASIAA · HITS · NTU</span>
+      <img class="brand-shell" src="assets/images/sandwich-2026/confined-shell-shock-breakout.png" alt="" width="64" height="64">
+      <span class="brand-copy">
+        <span>Wing Chen</span>
+        <span class="sub">ASIAA · HITS · NTU</span>
+      </span>
     </div>
     <nav aria-label="Primary">
       <div class="navlinks">
@@ -54,77 +58,48 @@
 <!-- 🪐 Hero Section -->
 <section class="hero container" id="about">
   <div class="card">
-    <div class="hero-grid">
-
-      <!-- Left column -->
-      <div class="hero-text">
-        <div class="name-pair">
-          <h1 class="name name-zh"><span id="typed-zh"></span></h1>
-        </div>
+    <div class="hero-overview">
+      <div class="hero-visual">
         <figure class="portrait">
           <img src="Figures/frog.jpeg" alt="Wing Chen standing in a wooded landscape" width="1200" height="900" decoding="async">
+          <figcaption>Computational astrophysics across ASIAA, HITS, and NTU.</figcaption>
         </figure>
-        <div class="row">
-          <a class="btn" href="#academic">Pub</a>
-          <a class="btn" href="sandwich.html">Current Program</a>
-          <a class="btn open-modal" data-target="modal-cv">CV</a>
-          <a class="btn" href="https://saligiare-pwd.github.io/travel-portfolio/" target="_blank" rel="noopener">Travel Portfolio →</a>
-        </div>
       </div>
 
-      <!-- Right column -->
-      <div class="hero-text">
+      <div class="hero-intro">
         <div class="name-pair">
+          <h1 class="name name-zh"><span id="typed-zh"></span></h1>
           <h1 class="name name-en"><span id="typed-en"></span></h1>
         </div>
-        <figure class="batch-figure">
-          <img src="Figures/batch.gif" alt="Animation of a batch of radiation-hydrodynamics simulation results" width="1200" height="900" decoding="async">
-        </figure>
+        <p class="hero-kicker">Computational astrophysics · Radiation hydrodynamics</p>
+        <p class="hero-summary">I study multidimensional supernova shock breakout and how circumstellar environments shape the earliest observable signals.</p>
 
-        <div class="badges" role="list" aria-label="Research Focus Areas">
-          <span class="badge pub" role="button" tabindex="0" aria-expanded="false">
-            Shock Breakout
-            <div class="summary-slide">
-              <div class="pdf-scroll">
-                <object data="slides/3-slide.pdf" data-src="slides/3-slide.pdf" type="application/pdf"></object>
-              </div>
-            </div>
-          </span>
+        <div class="research-tags" aria-label="Research focus areas">
+          <span>Shock Breakout</span>
+          <span>Rad-Hydro</span>
+          <span>Multi-D</span>
+          <span>CSM</span>
+        </div>
 
-          <span class="badge pub" role="button" tabindex="0" aria-expanded="false">
-            Rad-Hydro
-            <div class="summary-slide">
-              <p>
-                Radiation hydrodynamics (RHD) couples fluid dynamics and radiation transport.
-                In my work I use <strong>CASTRO</strong> (AMR radiation-hydro), with coding
-                in <strong>C++</strong> for solvers and <strong>Python</strong> for analysis
-                and visualization.
-              </p>
-            </div>
-          </span>
-
-          <span class="badge pub" role="button" tabindex="0" aria-expanded="false">
-            Multi-D
-            <div class="summary-slide">
-              <figure>
-                <img src="Figures/multidimensional.png" alt="Multidimensional simulation figure">
-                <figcaption>Figure: Example 2D RHD simulation highlighting SBO instabilities just before breakout.</figcaption>
-              </figure>
-            </div>
-          </span>
-
-          <span class="badge pub" role="button" tabindex="0" aria-expanded="false">
-            CSM
-            <div class="summary-slide">
-              <figure>
-                <img src="Figures/CSM.png" alt="Circumstellar medium profile figure">
-                <figcaption>Figure: Schematic plot of radiation precursor and the general shock structures of SN breakout.</figcaption>
-              </figure>
-            </div>
-          </span>
+        <div class="hero-actions" aria-label="Portfolio destinations">
+          <a class="hero-action" href="#academic">
+            <strong>Publications</strong>
+            <span>Research papers and preprints</span>
+          </a>
+          <a class="hero-action" href="sandwich.html">
+            <strong>Current Program</strong>
+            <span>DAAD Sandwich research</span>
+          </a>
+          <button class="hero-action open-modal" type="button" data-target="modal-cv">
+            <strong>Curriculum Vitae</strong>
+            <span>Experience and background</span>
+          </button>
+          <a class="hero-action" href="https://saligiare-pwd.github.io/travel-portfolio/" target="_blank" rel="noopener">
+            <strong>Travel Portfolio</strong>
+            <span>Photography and journeys</span>
+          </a>
         </div>
       </div>
-
     </div>
   </div>
 </section>

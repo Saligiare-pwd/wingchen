@@ -646,12 +646,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const introSessionKey = 'wing-portfolio-intro-seen-v1';
   let introPlayed = false;
 
+  function revealSite() {
+    document.body.classList.remove('intro-pending');
+    document.body.classList.add('content-ready');
+  }
+
   let introSeen = false;
   try { introSeen = sessionStorage.getItem(introSessionKey) === 'true'; } catch {}
 
   if (introSeen) {
     intro?.remove();
     document.body.classList.add('intro-seen');
+    revealSite();
     if (zhSpan) zhSpan.textContent = zhText;
     if (enSpan) enSpan.textContent = enText;
     return;
@@ -707,13 +713,17 @@ document.addEventListener("DOMContentLoaded", () => {
       // Start typing after the first entry scene has finished.
       setTimeout(() => {
         intro.remove();
+        revealSite();
         typeZh();
       }, 1000);
     }, 450);
   }
 
   // click anywhere
-  if (!intro) return;
+  if (!intro) {
+    revealSite();
+    return;
+  }
   intro.setAttribute('role', 'button');
   intro.setAttribute('tabindex', '0');
   intro.setAttribute('aria-label', 'Enter Wing Chen portfolio');
