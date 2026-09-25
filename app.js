@@ -77,6 +77,45 @@ if (y) y.textContent = new Date().getFullYear();
 
 
 /* -----------------------------
+   Academic category tabs
+----------------------------- */
+(() => {
+  const tabs = Array.from(document.querySelectorAll('.academic-tab'));
+  if (!tabs.length) return;
+
+  const activate = (index, moveFocus = true) => {
+    tabs.forEach((tab, tabIndex) => {
+      const selected = tabIndex === index;
+      tab.setAttribute('aria-selected', selected ? 'true' : 'false');
+      tab.tabIndex = selected ? 0 : -1;
+      const panel = document.getElementById(tab.getAttribute('aria-controls'));
+      if (panel) panel.hidden = !selected;
+    });
+    if (moveFocus) tabs[index].focus();
+  };
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => activate(index, false));
+    tab.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+        event.preventDefault();
+        activate((index + 1) % tabs.length);
+      }
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+        event.preventDefault();
+        activate((index - 1 + tabs.length) % tabs.length);
+      }
+      if (event.key === 'Home') { event.preventDefault(); activate(0); }
+      if (event.key === 'End') { event.preventDefault(); activate(tabs.length - 1); }
+    });
+  });
+
+  const initial = Math.max(0, tabs.findIndex(tab => tab.getAttribute('aria-selected') === 'true'));
+  activate(initial, false);
+})();
+
+
+/* -----------------------------
    Academic: publications toggle
 ----------------------------- */
 document.querySelectorAll('.item.pub').forEach(card => {

@@ -64,6 +64,16 @@
           <img src="Figures/frog.jpeg" alt="Wing Chen standing in a wooded landscape" width="1200" height="900" decoding="async">
           <figcaption>Computational astrophysics across ASIAA, HITS, and NTU.</figcaption>
         </figure>
+        <div class="hero-actions hero-actions-secondary" aria-label="Personal portfolio links">
+          <button class="hero-action open-modal" type="button" data-target="modal-cv">
+            <strong>Curriculum Vitae</strong>
+            <span>Experience and background</span>
+          </button>
+          <a class="hero-action" href="https://saligiare-pwd.github.io/travel-portfolio/" target="_blank" rel="noopener">
+            <strong>Travel Portfolio</strong>
+            <span>Photography and journeys</span>
+          </a>
+        </div>
       </div>
 
       <div class="hero-intro">
@@ -74,30 +84,43 @@
         <p class="hero-kicker">Computational astrophysics · Radiation hydrodynamics</p>
         <p class="hero-summary">I study multidimensional supernova shock breakout and how circumstellar environments shape the earliest observable signals.</p>
 
-        <div class="research-tags" aria-label="Research focus areas">
-          <span>Shock Breakout</span>
-          <span>Rad-Hydro</span>
-          <span>Multi-D</span>
-          <span>CSM</span>
-        </div>
+        <p class="research-prompt">Select a research focus to learn more:</p>
+        <div class="badges research-disclosures" aria-label="Research focus areas">
+          <div class="badge pub" role="button" tabindex="0" aria-expanded="false">
+            Shock Breakout
+            <div class="summary-slide">
+              <div class="pdf-scroll">
+                <object data="slides/3-slide.pdf" data-src="slides/3-slide.pdf" type="application/pdf"></object>
+              </div>
+            </div>
+          </div>
 
-        <div class="hero-actions" aria-label="Portfolio destinations">
-          <a class="hero-action" href="#academic">
-            <strong>Publications</strong>
-            <span>Research papers and preprints</span>
-          </a>
-          <a class="hero-action" href="sandwich.html">
-            <strong>Current Program</strong>
-            <span>DAAD Sandwich research</span>
-          </a>
-          <button class="hero-action open-modal" type="button" data-target="modal-cv">
-            <strong>Curriculum Vitae</strong>
-            <span>Experience and background</span>
-          </button>
-          <a class="hero-action" href="https://saligiare-pwd.github.io/travel-portfolio/" target="_blank" rel="noopener">
-            <strong>Travel Portfolio</strong>
-            <span>Photography and journeys</span>
-          </a>
+          <div class="badge pub" role="button" tabindex="0" aria-expanded="false">
+            Rad-Hydro
+            <div class="summary-slide">
+              <p>Radiation hydrodynamics (RHD) couples fluid dynamics and radiation transport. In my work I use <strong>CASTRO</strong> (AMR radiation-hydro), with coding in <strong>C++</strong> for solvers and <strong>Python</strong> for analysis and visualization.</p>
+            </div>
+          </div>
+
+          <div class="badge pub" role="button" tabindex="0" aria-expanded="false">
+            Multi-D
+            <div class="summary-slide">
+              <figure>
+                <img src="Figures/multidimensional.png" alt="Multidimensional simulation figure">
+                <figcaption>Example 2D RHD simulation highlighting shock-breakout instabilities just before breakout.</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="badge pub" role="button" tabindex="0" aria-expanded="false">
+            CSM
+            <div class="summary-slide">
+              <figure>
+                <img src="Figures/CSM.png" alt="Circumstellar medium profile figure">
+                <figcaption>Schematic view of the radiation precursor and general shock structure of supernova breakout.</figcaption>
+              </figure>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -142,11 +165,14 @@
 <!-- 🎓 Academic Section -->
 <section class="container" id="academic" aria-labelledby="academic-head">
   <h2 class="section-title" id="academic-head">Academic</h2>
-  <div class="panel hero-grid">
+  <div class="panel academic-panel">
+    <div class="academic-tabs" role="tablist" aria-label="Academic categories">
+      <button class="academic-tab" id="academic-tab-publications" role="tab" aria-selected="true" aria-controls="academic-publications">Publications</button>
+      <button class="academic-tab" id="academic-tab-conferences" role="tab" aria-selected="false" aria-controls="academic-conferences" tabindex="-1">Conferences &amp; Talks</button>
+    </div>
 
     <!-- Publications -->
-    <div class="hero-text">
-      <h3>Publications</h3>
+    <div class="academic-pane active" id="academic-publications" role="tabpanel" aria-labelledby="academic-tab-publications">
       <div class="grid">
         <article class="item pub" role="button" tabindex="0" aria-expanded="false">
           <h4>Multidimensional Radiation Hydrodynamics Simulations of Supernova 1987A Shock Breakout</h4>
@@ -202,8 +228,7 @@
     </div>
 
     <!-- Conferences -->
-    <div class="hero-text">
-      <h3>Conferences & Talks</h3>
+    <div class="academic-pane" id="academic-conferences" role="tabpanel" aria-labelledby="academic-tab-conferences" hidden>
       <div class="grid">
         <article class="item pub" role="button" tabindex="0" aria-expanded="false">
           <h4>Oral: East Asian Meeting on Astronomy (AG2026)</h4>
