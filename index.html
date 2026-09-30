@@ -64,16 +64,6 @@
           <img src="Figures/frog.jpeg" alt="Wing Chen standing in a wooded landscape" width="1200" height="900" decoding="async">
           <figcaption>Computational astrophysics across ASIAA, HITS, and NTU.</figcaption>
         </figure>
-        <div class="hero-actions hero-actions-secondary" aria-label="Personal portfolio links">
-          <button class="hero-action open-modal" type="button" data-target="modal-cv">
-            <strong>Curriculum Vitae</strong>
-            <span>Experience and background</span>
-          </button>
-          <a class="hero-action" href="https://saligiare-pwd.github.io/travel-portfolio/" target="_blank" rel="noopener">
-            <strong>Travel Portfolio</strong>
-            <span>Photography and journeys</span>
-          </a>
-        </div>
       </div>
 
       <div class="hero-intro">
@@ -83,44 +73,15 @@
         </div>
         <p class="hero-kicker">Computational astrophysics · Radiation hydrodynamics</p>
         <p class="hero-summary">I study multidimensional supernova shock breakout and how circumstellar environments shape the earliest observable signals.</p>
-
-        <p class="research-prompt">Select a research focus to learn more:</p>
-        <div class="badges research-disclosures" aria-label="Research focus areas">
-          <div class="badge pub" role="button" tabindex="0" aria-expanded="false">
-            Shock Breakout
-            <div class="summary-slide">
-              <div class="pdf-scroll">
-                <object data="slides/3-slide.pdf" data-src="slides/3-slide.pdf" type="application/pdf"></object>
-              </div>
-            </div>
-          </div>
-
-          <div class="badge pub" role="button" tabindex="0" aria-expanded="false">
-            Rad-Hydro
-            <div class="summary-slide">
-              <p>Radiation hydrodynamics (RHD) couples fluid dynamics and radiation transport. In my work I use <strong>CASTRO</strong> (AMR radiation-hydro), with coding in <strong>C++</strong> for solvers and <strong>Python</strong> for analysis and visualization.</p>
-            </div>
-          </div>
-
-          <div class="badge pub" role="button" tabindex="0" aria-expanded="false">
-            Multi-D
-            <div class="summary-slide">
-              <figure>
-                <img src="Figures/multidimensional.png" alt="Multidimensional simulation figure">
-                <figcaption>Example 2D RHD simulation highlighting shock-breakout instabilities just before breakout.</figcaption>
-              </figure>
-            </div>
-          </div>
-
-          <div class="badge pub" role="button" tabindex="0" aria-expanded="false">
-            CSM
-            <div class="summary-slide">
-              <figure>
-                <img src="Figures/CSM.png" alt="Circumstellar medium profile figure">
-                <figcaption>Schematic view of the radiation precursor and general shock structure of supernova breakout.</figcaption>
-              </figure>
-            </div>
-          </div>
+        <div class="hero-actions hero-actions-secondary" aria-label="Personal portfolio links">
+          <button class="hero-action open-modal" type="button" data-target="modal-cv">
+            <strong>Curriculum Vitae</strong>
+            <span>Experience and background</span>
+          </button>
+          <a class="hero-action" href="https://saligiare-pwd.github.io/travel-portfolio/" target="_blank" rel="noopener">
+            <strong>Travel Portfolio</strong>
+            <span>Photography and journeys</span>
+          </a>
         </div>
       </div>
     </div>
@@ -135,6 +96,7 @@
     <div class="academic-tabs" role="tablist" aria-label="Academic categories">
       <button class="academic-tab" id="academic-tab-publications" role="tab" aria-selected="true" aria-controls="academic-publications">Publications</button>
       <button class="academic-tab" id="academic-tab-conferences" role="tab" aria-selected="false" aria-controls="academic-conferences" tabindex="-1">Conferences &amp; Talks</button>
+      <button class="academic-tab" id="academic-tab-focus" role="tab" aria-selected="false" aria-controls="academic-focus" tabindex="-1">Research Focus</button>
     </div>
 
     <!-- Publications -->
@@ -232,6 +194,60 @@
           <div class="summary-slide">
             <h5>Summary</h5>
             <p>Multi-D effects prolong breakout and increase luminosity; connects early SN observations to progenitor mass-loss histories.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Research focus -->
+    <div class="academic-pane" id="academic-focus" role="tabpanel" aria-labelledby="academic-tab-focus" hidden>
+      <p class="academic-pane-intro">Four connected ideas define my research. Select a card to see the scientific context, method, or simulation figure.</p>
+      <div class="grid research-focus-grid">
+        <article class="item pub research-focus-card" role="button" tabindex="0" aria-expanded="false">
+          <h4>Shock Breakout</h4>
+          <div class="meta">Physical phenomenon</div>
+          <p>The first radiation released when a supernova shock reaches the stellar surface or surrounding material. <em>(Click to learn more)</em></p>
+          <div class="summary-slide">
+            <h5>Shock breakout at a glance</h5>
+            <div class="pdf-scroll">
+              <object data="slides/3-slide.pdf" data-src="slides/3-slide.pdf" type="application/pdf" aria-label="Shock breakout overview slides"></object>
+            </div>
+          </div>
+        </article>
+
+        <article class="item pub research-focus-card" role="button" tabindex="0" aria-expanded="false">
+          <h4>Radiation Hydrodynamics</h4>
+          <div class="meta">Numerical method · CASTRO</div>
+          <p>Coupling radiation transport with fluid motion to follow the shock and escaping light together. <em>(Click to learn more)</em></p>
+          <div class="summary-slide">
+            <h5>Method</h5>
+            <p>Radiation hydrodynamics (RHD) couples fluid dynamics and radiation transport. I use <strong>CASTRO</strong> with adaptive mesh refinement and multi-group radiation transport, write solver components in <strong>C++</strong>, and use <strong>Python</strong> for analysis and visualization.</p>
+          </div>
+        </article>
+
+        <article class="item pub research-focus-card" role="button" tabindex="0" aria-expanded="false">
+          <h4>Multidimensional Structure</h4>
+          <div class="meta">2D and 3D simulations</div>
+          <p>Resolving asymmetric flows and instabilities that cannot appear in one-dimensional models. <em>(Click to learn more)</em></p>
+          <div class="summary-slide">
+            <h5>Why multiple dimensions matter</h5>
+            <figure>
+              <img src="Figures/multidimensional.png" alt="Multidimensional shock-breakout simulation showing fluid structure">
+              <figcaption>Example 2D RHD simulation highlighting shock-breakout instabilities just before breakout.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="item pub research-focus-card" role="button" tabindex="0" aria-expanded="false">
+          <h4>Circumstellar Material (CSM)</h4>
+          <div class="meta">Progenitor environment</div>
+          <p>Studying how nearby gas reshapes the breakout time, luminosity, spectrum, and viewing-angle dependence. <em>(Click to learn more)</em></p>
+          <div class="summary-slide">
+            <h5>Shock–CSM interaction</h5>
+            <figure>
+              <img src="Figures/CSM.png" alt="Profile of circumstellar material surrounding a supernova progenitor">
+              <figcaption>Schematic view of the radiation precursor and general shock structure of supernova breakout.</figcaption>
+            </figure>
           </div>
         </article>
       </div>

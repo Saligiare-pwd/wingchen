@@ -41,6 +41,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
 body {
   margin: 0;
   font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-size: clamp(.94rem, .25vw + .88rem, 1.04rem);
   color: var(--ink);
   background:
     radial-gradient(1200px 800px at 10% 0%, #0ea5e90f, transparent 50%),
@@ -137,7 +138,12 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   font-size: .86rem;
   text-align: center;
 }
-.hero-intro { min-width: 0; }
+.hero-intro {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 100%;
+}
 .hero-intro .name-pair { align-items: flex-start; gap: .12rem; text-align: left; margin-bottom: .65rem; }
 .hero-intro .name { margin-inline: 0; text-align: left; }
 .hero-kicker {
@@ -148,7 +154,12 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   letter-spacing: .1em;
   text-transform: uppercase;
 }
-.hero-summary { margin: .55rem 0 1rem; color: #334155; font-size: 1.03rem; }
+.hero-summary {
+  max-width: 38rem;
+  margin: .65rem 0 1.25rem;
+  color: #334155;
+  font-size: clamp(.98rem, .35vw + .9rem, 1.1rem);
+}
 .research-prompt { margin: 0 0 .55rem; color: #64748b; font-size: .84rem; font-weight: 700; }
 .research-tags { display: flex; flex-wrap: wrap; gap: .45rem; margin-bottom: 1.15rem; }
 .research-tags span {
@@ -161,7 +172,12 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   font-weight: 700;
 }
 .hero-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; }
-.hero-actions-secondary { width: 100%; grid-auto-rows: 1fr; margin-top: .85rem; }
+.hero-actions-secondary {
+  width: 100%;
+  grid-auto-rows: 1fr;
+  margin-top: auto;
+  padding-top: 1rem;
+}
 .hero-actions-secondary .hero-action { height: 100%; }
 .hero-action {
   display: grid;
@@ -178,8 +194,8 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   cursor: pointer;
   transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
 }
-.hero-action strong { font-size: .96rem; }
-.hero-action span { color: #64748b; font-size: .78rem; line-height: 1.35; }
+.hero-action strong { font-size: clamp(.91rem, .22vw + .87rem, 1rem); }
+.hero-action span { color: #64748b; font-size: clamp(.76rem, .18vw + .72rem, .84rem); line-height: 1.4; }
 .hero-action:hover,
 .hero-action:focus-visible {
   outline: none;
@@ -208,7 +224,7 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   display: inline-block;
   font-family: 'Courier New', monospace;
   font-weight: 700;
-  font-size: clamp(30px, 4.5vw, 44px);
+  font-size: clamp(1.9rem, 3.6vw, 2.75rem);
   white-space: nowrap;
   overflow: hidden;
   border-right: 3px solid rgba(255,255,255,0.75);
@@ -411,7 +427,7 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
 #academic .academic-panel { display: block; }
 .academic-tabs {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: .65rem;
   margin-bottom: 1rem;
   padding: .35rem;
@@ -427,6 +443,8 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   font: inherit;
   font-weight: 800;
   cursor: pointer;
+  font-size: clamp(.86rem, .25vw + .8rem, 1rem);
+  line-height: 1.3;
 }
 .academic-tab[aria-selected="true"] {
   color: #172554;
@@ -440,6 +458,13 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
 }
+.academic-pane-intro {
+  max-width: 48rem;
+  margin: .2rem auto 1rem;
+  color: #64748b;
+  text-align: center;
+}
+.academic-pane > .research-focus-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 #academic .item.pub {
   cursor:pointer;background:#f9fafb;border:1px solid #d1d5db;
   border-radius:10px;padding:1rem 1.25rem;
@@ -448,6 +473,13 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   flex-direction: column;
   min-height: 23rem;
 }
+#academic .item.pub h4 {
+  margin: 0 0 .55rem;
+  font-size: clamp(1rem, .35vw + .92rem, 1.17rem);
+  line-height: 1.35;
+}
+#academic .item.pub > p { font-size: clamp(.88rem, .2vw + .84rem, .96rem); }
+#academic .item.pub .meta { font-size: clamp(.76rem, .15vw + .73rem, .84rem); }
 #academic .item.pub:not(.open) { height: 23rem; }
 #academic .item.pub:not(.open) > h4 {
   display: -webkit-box;
@@ -470,6 +502,26 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
   box-shadow:0 3px 10px rgba(0,0,0,0.06);text-align:left;
 }
 #academic .item.pub.open .summary-slide{display:block;}
+#academic .research-focus-card:not(.open) { height: 13.5rem; min-height: 13.5rem; }
+#academic .research-focus-card .summary-slide figure { margin: 0; }
+#academic .research-focus-card .summary-slide img {
+  display: block;
+  width: 100%;
+  max-height: 26rem;
+  object-fit: contain;
+}
+#academic .research-focus-card .summary-slide figcaption {
+  margin-top: .6rem;
+  color: #64748b;
+  font-size: .84rem;
+}
+#academic .research-focus-card .pdf-scroll {
+  height: min(27rem, 58vh);
+  overflow: hidden;
+  border-radius: 10px;
+  background: #fff;
+}
+#academic .research-focus-card .pdf-scroll object { width: 100%; height: 100%; border: 0; }
 
 @media (min-width: 800px) {
   #academic .item.pub.open {
@@ -496,6 +548,22 @@ nav a:hover, nav a:focus { background: #eef2ff; outline: none; }
     margin-top: 0;
     overflow: auto;
   }
+}
+
+@media (max-width: 799px) {
+  .hero-actions-secondary { margin-top: .4rem; padding-top: 0; }
+  .academic-pane > .grid,
+  .academic-pane > .research-focus-grid { grid-template-columns: 1fr; }
+  #academic .item.pub,
+  #academic .item.pub:not(.open),
+  #academic .research-focus-card:not(.open) { height: auto; min-height: 0; }
+}
+
+@media (max-width: 560px) {
+  .academic-tabs { grid-template-columns: 1fr; }
+  .academic-tab { padding: .72rem .8rem; }
+  .hero-actions { grid-template-columns: 1fr; }
+  #academic .panel { padding: 1rem; }
 }
 
 /* =====================================================
@@ -1218,7 +1286,8 @@ footer .container{border-top:1px solid #e5e7eb;padding-top:1rem;}
 ===================================================== */
 .section-title {
   color:#f8fafc;text-shadow:0 0 8px rgba(59,130,246,.5);
-  font-weight:700;letter-spacing:.5px;
+  font-size:clamp(1.35rem, 1.2vw + 1rem, 2rem);
+  line-height:1.2;font-weight:700;letter-spacing:.5px;
   padding:6px 14px;border-radius:10px;
   background:rgba(255,255,255,0.08);
   display:inline-block;text-align:center;

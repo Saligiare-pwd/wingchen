@@ -122,6 +122,7 @@ document.querySelectorAll('.item.pub').forEach(card => {
   const toggle = () => {
     const open = card.classList.toggle('open');
     card.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) refreshInlinePdfs(card.querySelector('.summary-slide'));
   };
   card.addEventListener('click', (e) => {
     if (e.target.closest('a')) return; // don’t toggle when clicking a link
