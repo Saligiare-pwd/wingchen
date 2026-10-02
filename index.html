@@ -34,19 +34,18 @@
 <!-- 🔹 Header -->
 <header class="site">
   <div class="container navwrap">
-    <div class="brand">
+    <a class="brand" href="index.html" aria-label="Wing Chen portfolio home">
       <img class="brand-shell" src="assets/images/sandwich-2026/confined-shell-shock-breakout.png" alt="" width="64" height="64">
       <span class="brand-copy">
         <span>Wing Chen</span>
         <span class="sub">ASIAA · HITS · NTU</span>
       </span>
-    </div>
+    </a>
     <nav aria-label="Primary">
       <div class="navlinks">
         <a href="#about">About</a>
         <a href="#journey">Journey</a>
         <a href="#academic">Academic</a>
-        <a href="Mi.html">Future</a>
         <a href="#contact">Contact</a>
       </div>
     </nav>
@@ -101,7 +100,11 @@
 
     <!-- Publications -->
     <div class="academic-pane active" id="academic-publications" role="tabpanel" aria-labelledby="academic-tab-publications">
-      <div class="grid">
+      <div class="academic-pane-bar">
+        <p>Peer-reviewed papers and current manuscripts. Select a card for its concise scientific summary.</p>
+        <div class="academic-rail-controls"><button type="button" data-academic-previous aria-label="Scroll publications left">←</button><button type="button" data-academic-next aria-label="Scroll publications right">→</button></div>
+      </div>
+      <div class="grid" data-academic-rail>
         <article class="item pub" role="button" tabindex="0" aria-expanded="false">
           <h4>Multidimensional Radiation Hydrodynamics Simulations of Supernova 1987A Shock Breakout</h4>
           <div class="meta">Chen, W.-Y., et al. | 2024 | The Astrophysical Journal</div>
@@ -157,7 +160,11 @@
 
     <!-- Conferences -->
     <div class="academic-pane" id="academic-conferences" role="tabpanel" aria-labelledby="academic-tab-conferences" hidden>
-      <div class="grid">
+      <div class="academic-pane-bar">
+        <p>Selected talks and conference contributions, with the scientific context kept one click away.</p>
+        <div class="academic-rail-controls"><button type="button" data-academic-previous aria-label="Scroll conferences left">←</button><button type="button" data-academic-next aria-label="Scroll conferences right">→</button></div>
+      </div>
+      <div class="grid" data-academic-rail>
         <article class="item pub" role="button" tabindex="0" aria-expanded="false">
           <h4>Oral: East Asian Meeting on Astronomy (AG2026)</h4>
           <div class="meta">Garching · 2026 Interfacing observations and theories at stellar endpoints</div>
@@ -201,8 +208,11 @@
 
     <!-- Research focus -->
     <div class="academic-pane" id="academic-focus" role="tabpanel" aria-labelledby="academic-tab-focus" hidden>
-      <p class="academic-pane-intro">Four connected ideas define my research. Select a card to see the scientific context, method, or simulation figure.</p>
-      <div class="grid research-focus-grid">
+      <div class="academic-pane-bar">
+        <p>Four connected ideas define my research. Select a card to see the scientific context, method, or simulation figure.</p>
+        <div class="academic-rail-controls"><button type="button" data-academic-previous aria-label="Scroll research focuses left">←</button><button type="button" data-academic-next aria-label="Scroll research focuses right">→</button></div>
+      </div>
+      <div class="grid research-focus-grid" data-academic-rail>
         <article class="item pub research-focus-card" role="button" tabindex="0" aria-expanded="false">
           <h4>Shock Breakout</h4>
           <div class="meta">Physical phenomenon</div>

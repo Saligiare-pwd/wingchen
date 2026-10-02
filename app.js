@@ -120,9 +120,20 @@ if (y) y.textContent = new Date().getFullYear();
 ----------------------------- */
 document.querySelectorAll('.item.pub').forEach(card => {
   const toggle = () => {
-    const open = card.classList.toggle('open');
+    const willOpen = !card.classList.contains('open');
+    card.closest('.academic-pane')?.querySelectorAll('.item.pub.open').forEach(other => {
+      if (other !== card) {
+        other.classList.remove('open');
+        other.setAttribute('aria-expanded', 'false');
+      }
+    });
+    card.classList.toggle('open', willOpen);
+    const open = willOpen;
     card.setAttribute('aria-expanded', open ? 'true' : 'false');
-    if (open) refreshInlinePdfs(card.querySelector('.summary-slide'));
+    if (open) {
+      refreshInlinePdfs(card.querySelector('.summary-slide'));
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
   };
   card.addEventListener('click', (e) => {
     if (e.target.closest('a')) return; // don’t toggle when clicking a link
@@ -131,6 +142,13 @@ document.querySelectorAll('.item.pub').forEach(card => {
   card.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
   });
+});
+
+document.querySelectorAll('[data-academic-rail]').forEach(rail => {
+  const pane = rail.closest('.academic-pane');
+  const amount = () => Math.max(280, rail.clientWidth * .78);
+  pane?.querySelector('[data-academic-previous]')?.addEventListener('click', () => rail.scrollBy({ left: -amount(), behavior: 'smooth' }));
+  pane?.querySelector('[data-academic-next]')?.addEventListener('click', () => rail.scrollBy({ left: amount(), behavior: 'smooth' }));
 });
 
 /* -----------------------------
